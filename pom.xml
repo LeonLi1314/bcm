@@ -1,0 +1,260 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.rtmap.traffic</groupId>
+	<artifactId>bcm</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<!-- 编译依赖 -->
+		<servlet.version>3.1.0</servlet.version>
+		<!-- maven 插件 -->
+		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
+		<maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+		<maven.javadoc.plugin.version>2.10.1</maven.javadoc.plugin.version>
+		<maven.surefire.plugin.version>2.18</maven.surefire.plugin.version>
+		<maven.dependency.plugin.version>2.6</maven.dependency.plugin.version>
+		<maven.war.plugin.version>2.6</maven.war.plugin.version>
+		<springext-plugin-version>1.2</springext-plugin-version>
+
+
+		<!-- common -->
+		<file.encoding>UTF-8</file.encoding>
+		<java.version>1.8</java.version>
+
+		<aopalliance.version>1.0</aopalliance.version>
+		<spring.version>4.1.7.RELEASE</spring.version>
+
+
+		<druid.version>1.0.16</druid.version>
+		<jackson.version>2.6.3</jackson.version>
+		<log4j.version>2.4.1</log4j.version>
+		<slf4j.version>1.7.13</slf4j.version>
+		<jcl.over.version>1.7.6</jcl.over.version>
+		<spymemcached.version>2.12.0</spymemcached.version>
+		<commons.io.version>2.4</commons.io.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<commons.codec.version>1.10</commons.codec.version>
+		<httpclient.version>4.5</httpclient.version>
+		<jstl.version>1.2</jstl.version>
+
+		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.spring.version>1.2.3</mybatis.spring.version>
+
+		<!--test -->
+		<junit.version>4.12</junit.version>
+	</properties>
+
+	<dependencies>
+		<!-- servlet环境，编译依赖的组件，运行时由容器提供 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- spring-aspects：提供对AspectJ的支持，以便可以方便的将面向方面的功能集成进IDE中，比如Eclipse AJDT。 -->
+		<!-- spring-core：包含spring 框架基本的核心工具类,spring 其它组件要都要使用到这个包里的类，外部依赖Commons 
+			Logging， (Log4J)。 -->
+		<!-- spring-beans：所有应用都要用到的,包含访问配置文件、创建和管理bean 以及进行 IOC/DI操作相关的所有类。如果应用只需基本的IOC/DI 
+			支持，引入spring-core.jar 及spring-beans.jar 文件就可以。 -->
+		<!-- spring-aop：包含在应用中使用Spring 的AOP 特性时所需的类和源码级元数据支持。使用基于AOP 的Spring特性，如声明型事务管理。 -->
+		<!-- spring-context：为Spring 核心提供了大量扩展。可以找到使用Spring ApplicationContext特性时所需的全部类，JDNI 
+			所需的全部类，instrumentation组件以及校验Validation 方面的相关类。外部依赖spring-beans, (spring-aop)。 -->
+		<!-- spring-dao:这个jar 文件包含Spring DAO、Spring Transaction 进行数据访问的所有类。为了使用声明型事务支持，还需在自己的应用里包含spring-aop.jar。外部依赖spring-core，(spring-aop， 
+			spring-context， JTA API)。 -->
+		<!-- spring-jdbc:这个jar 文件包含对Spring 对JDBC 数据访问进行封装的所有类。外部依赖spring-beans，spring-dao。 -->
+		<!-- spring-support:包含支持UI模版（Velocity，FreeMarker，JasperReports），邮件服务，脚本服务(JRuby)，缓存Cache（EHCache），任务计划Scheduling（uartz）方面的类。外部依赖spring-context, 
+			(spring-jdbc, Velocity, FreeMarker, JasperReports, BSH, Groovy, JRuby, Quartz, 
+			EHCache) -->
+		<!-- spring-web:包含Web 应用开发时，用到Spring 框架时所需的核心类，包括自动载入Web Application Context 
+			特性的类、Struts 与JSF 集成类、文件上传的支持类、Filter 类和大量工具辅助类。 外部依赖spring-context, Servlet 
+			API, (JSP API, JSTL, Commons FileUpload, COS)。 -->
+		<!--spring-webmvc:包含Spring MVC 框架相关的所有类。包括框架的Servlets，Web MVC框架，控制器和视图支持。当然，如果你的应用使用了独立的MVC 
+			框架，则无需这个JAR 文件里的任何类。外部依赖spring-web, (spring-support，Tiles，iText，POI)。 -->
+		<!-- spring-portlet：spring自己实现的一个类似Spring MVC的框架。包括一个MVC框架和控制器。外部依赖spring-web， 
+			Portlet API，(spring-webmvc)。 -->
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>${aopalliance.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- 数据库连接池alibaba -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+
+		<!-- jackson -->
+
+		<!-- log4j -->
+
+		<!-- memcached -->
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>${spymemcached.version}</version>
+		</dependency>
+
+		<!-- commons -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>bcm</finalName>
+		<!-- pluginManagement主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致，当有父子项目的时候，父项目中可以利用pluginManagement声明子项目中需要用到的插件，之后，当某个或者某几个子项目需要加载该插件的时候，就可以在子项目中plugins节点只配置 
+			groupId 和 artifactId就可以完成插件的引用。 -->
+		<pluginManagement></pluginManagement>
+		<plugins>
+			<!-- 用来编译Java代码 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${file.encoding}</encoding>
+					<compilerArgument> -XDignore.symbol.file</compilerArgument>
+				</configuration>
+			</plugin>
+			<!-- 用来处理资源文件.在资源文件中使用${propertyName}形式的Maven属性，然后配置maven-resources-plugin开启对资源文件的过滤，之后就可以针对不同环境通过命令行或者Profile传入属性的值，以实现更为灵活的构建。 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven.resources.plugin.version}</version>
+				<configuration>
+					<encoding>${file.encoding}</encoding>
+				</configuration>
+			</plugin>
+			<!-- 用来生成文档包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven.javadoc.plugin.version}</version>
+				<configuration>
+					<charset>UTF16</charset>
+					<aggregate>true</aggregate>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 扩展框架的功能，指定xml的schema的位置 -->
+			<plugin>
+				<groupId>com.alibaba.citrus.tool</groupId>
+				<artifactId>springext-maven-plugin</artifactId>
+				<version>${springext-plugin-version}</version>
+			</plugin>
+			<!-- maven-war-plugin 将项目打成war包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.plugin.version}</version>
+			</plugin>
+			<!-- maven-surefire-plugin 执行测试用例，maven通过surefire插件并fork一个子进程来执行用例的 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+			</plugin>
+			<!-- 其他插件 -->
+			<!-- maven-assembly-plugin -->
+			<!-- maven-clean-plugin 在打包时，需要清空一些指定的目录 -->
+			<!-- tomcat-maven-plugin 将项目自动打包并部署到tomcat中 -->
+			<!-- cargo-maven2-plugin 将项目自动打包并部署到tomcat中 -->
+			<!-- maven-resources-plugin 把web项目的输出copy到tomcat的webapp下 -->
+			<!-- maven-antrun-plugin 在maven中使用antrun调用bat文件 ，可以启动tomcat -->
+			<!-- maven-jar-plugin 将项目打成jar包 -->
+			<!-- maven-dependency-plugin 自动拷贝jar包到target目录 ，部署war包时，需要将项目依赖的jar包，也打到war包中 -->
+			<!-- build-info-maven-plugin -->
+		</plugins>
+	</build>
+</project>
