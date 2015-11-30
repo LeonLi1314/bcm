@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-	Logger logger = LoggerFactory.getLogger("com.rtmap.traffic.bcm.controller.MainController");
+	private Logger logger = LoggerFactory.getLogger("com.rtmap.traffic.bcm.controller.MainController");
     
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, Model model){

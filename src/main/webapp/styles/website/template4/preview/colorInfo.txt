@@ -1,3 +1,0 @@
-theme0:  #519BC8  blue
-theme1:  #6D6D6D  grey
-theme2:  #D775A6  pink

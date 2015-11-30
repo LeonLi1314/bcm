@@ -43,20 +43,6 @@
 				<div class="accordion" fillSpace="sideBar">
 					<div class="accordionHeader">
 						<h2>
-							<span>Folder</span>网站管理
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="<c:url value='/management/website/edit'/>"
-								target="navTab" rel="websiteNav">网站装修</a></li>
-							<li><a href="<c:url value='/management/webpage/list'/>"
-								target="navTab" rel="pageLiNav">页面管理</a></li>
-						</ul>
-					</div>
-
-					<div class="accordionHeader">
-						<h2>
 							<span>Folder</span>系统管理
 						</h2>
 					</div>
@@ -64,18 +50,6 @@
 						<ul class="tree treeFolder">
 							<li><a href="<c:url value='/management/user'/>"
 								target="navTab" rel="userLiNav">用户管理</a></li>
-						</ul>
-					</div>
-
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>其它
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="<c:url value='/management/news'/>"
-								target="navTab" rel="newsLiNav">资讯管理</a></li>
 						</ul>
 					</div>
 
