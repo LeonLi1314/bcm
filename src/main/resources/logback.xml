@@ -38,7 +38,6 @@
 
     <logger name="com.rtmap.traffic.bcm" level="debug" additivity="true">
         <appender-ref ref="file" />
-        <!-- <appender-ref ref="STDOUT" /> -->
     </logger>
 
     <root level="info">
