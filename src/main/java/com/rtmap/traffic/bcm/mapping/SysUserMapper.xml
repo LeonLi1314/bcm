@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysUserDao" >
+  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysUser" >
+    <id column="user_cd" property="userCd" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="mobile_first" property="mobileFirst" jdbcType="VARCHAR" />
+    <result column="mobile_second" property="mobileSecond" jdbcType="VARCHAR" />
+    <result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+    <result column="home_phone" property="homePhone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="latest_login_date" property="latestLoginDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="modified_date" property="modifiedDate" jdbcType="TIMESTAMP" />
+    <result column="modified_user" property="modifiedUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_cd, password, real_name, sex, birthday, mobile_first, mobile_second, office_phone, 
+    home_phone, email, latest_login_date, create_date, create_user, modified_date, modified_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_cd = #{userCd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user
+    where user_cd = #{userCd,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysUser" >
+    insert into sys_user (user_cd, password, real_name, 
+      sex, birthday, mobile_first, 
+      mobile_second, office_phone, home_phone, 
+      email, latest_login_date, create_date, 
+      create_user, modified_date, modified_user
+      )
+    values (#{userCd,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=BIT}, #{birthday,jdbcType=DATE}, #{mobileFirst,jdbcType=VARCHAR}, 
+      #{mobileSecond,jdbcType=VARCHAR}, #{officePhone,jdbcType=VARCHAR}, #{homePhone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{latestLoginDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{modifiedDate,jdbcType=TIMESTAMP}, #{modifiedUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userCd != null" >
+        user_cd,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="mobileFirst != null" >
+        mobile_first,
+      </if>
+      <if test="mobileSecond != null" >
+        mobile_second,
+      </if>
+      <if test="officePhone != null" >
+        office_phone,
+      </if>
+      <if test="homePhone != null" >
+        home_phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="latestLoginDate != null" >
+        latest_login_date,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date,
+      </if>
+      <if test="modifiedUser != null" >
+        modified_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userCd != null" >
+        #{userCd,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="mobileFirst != null" >
+        #{mobileFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSecond != null" >
+        #{mobileSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="homePhone != null" >
+        #{homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="latestLoginDate != null" >
+        #{latestLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUser != null" >
+        #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.SysUser" >
+    update sys_user
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="mobileFirst != null" >
+        mobile_first = #{mobileFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSecond != null" >
+        mobile_second = #{mobileSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        office_phone = #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="homePhone != null" >
+        home_phone = #{homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="latestLoginDate != null" >
+        latest_login_date = #{latestLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUser != null" >
+        modified_user = #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_cd = #{userCd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysUser" >
+    update sys_user
+    set password = #{password,jdbcType=CHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=BIT},
+      birthday = #{birthday,jdbcType=DATE},
+      mobile_first = #{mobileFirst,jdbcType=VARCHAR},
+      mobile_second = #{mobileSecond,jdbcType=VARCHAR},
+      office_phone = #{officePhone,jdbcType=VARCHAR},
+      home_phone = #{homePhone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      latest_login_date = #{latestLoginDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_user = #{modifiedUser,jdbcType=VARCHAR}
+    where user_cd = #{userCd,jdbcType=VARCHAR}
+  </update>
+</mapper>
