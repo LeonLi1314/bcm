@@ -13,64 +13,66 @@ import com.rtmap.traffic.bcm.domain.RptDriverCond;
 import com.rtmap.traffic.bcm.domain.RptDriverDay;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 import com.rtmap.traffic.bcm.domain.RptDriverSubsection;
+import com.rtmap.traffic.bcm.domain.RptPassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 import com.rtmap.traffic.bcm.domain.RptPassDistribute;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeDay;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeSub;
+import com.rtmap.traffic.bcm.domain.RptVehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
-import com.rtmap.traffic.bcm.service.IRptDriverSubsectionService;
+import com.rtmap.traffic.bcm.service.IRptService;
 
 @Controller
 @RequestMapping("rpt")
 public class RptController {
 	@Resource
-	IRptDriverSubsectionService driverSubService;
+	IRptService rptService;
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverSub.do")
 	public List<RptDriverSubsection> getRptDriverSubsectionByCond(@RequestBody RptDriverCond cond) {
-		return driverSubService.getRptByCond(cond);
+		return rptService.getRptDriverSubByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverDay.do")
 	public List<RptDriverDay> getRptDriverDayByCond(@RequestBody RptDriverCond cond) {
-		return null;
+		return rptService.getRptDriverDayByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverHour.do")
 	public List<RptDriverHour> getRptDriverHourByCond(@RequestBody RptDriverCond cond) {
-		return null;
+		return rptService.getRptDriverHourByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptPassDay.do")
-	public List<RptPassDay> getRptPassDayByCond(@RequestBody RptDriverCond cond) {
-		return null;
+	public List<RptPassDay> getRptPassDayByCond(@RequestBody RptPassCond cond) {
+		return rptService.getRptPassDayByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptPassDistribute.do")
-	public List<RptPassDistribute> getRptPassDistributeByCond(@RequestBody RptDriverCond cond) {
-		return null;
+	public List<RptPassDistribute> getRptPassDistributeByCond(@RequestBody RptPassCond cond) {
+		return rptService.getRptPassDistributeByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptVehicleChargeDay.do")
-	public List<RptVehicleChargeDay> getRptVehicleChargeDayByCond(@RequestBody RptDriverCond cond) {
-		return null;
+	public List<RptVehicleChargeDay> getRptVehicleChargeDayByCond(@RequestBody RptVehicleCond cond) {
+		return rptService.getRptVehicleChargeDayByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptVehicleChargeSub.do")
-	public List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(@RequestBody RptDriverCond cond) {
-		return null;
+	public List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(@RequestBody RptVehicleCond cond) {
+		return rptService.getRptVehicleChargeSubByCond(cond);
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptVehicleTripHour.do")
-	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(@RequestBody RptDriverCond cond) {
-		return null;
+	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(@RequestBody RptVehicleCond cond) {
+		return rptService.getRptVehicleTripHourByCond(cond);
 	}
 }

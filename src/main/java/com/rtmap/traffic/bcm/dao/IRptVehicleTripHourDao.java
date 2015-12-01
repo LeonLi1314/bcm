@@ -1,5 +1,8 @@
 package com.rtmap.traffic.bcm.dao;
 
+import java.util.List;
+
+import com.rtmap.traffic.bcm.domain.RptVehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
 
 public interface IRptVehicleTripHourDao {
@@ -14,4 +17,6 @@ public interface IRptVehicleTripHourDao {
     int updateByPrimaryKeySelective(RptVehicleTripHour record);
 
     int updateByPrimaryKey(RptVehicleTripHour record);
+
+    List<RptVehicleTripHour> selectByCond(RptVehicleCond cond);
 }

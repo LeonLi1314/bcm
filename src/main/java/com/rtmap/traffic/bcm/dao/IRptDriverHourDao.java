@@ -1,5 +1,8 @@
 package com.rtmap.traffic.bcm.dao;
 
+import java.util.List;
+
+import com.rtmap.traffic.bcm.domain.RptDriverCond;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 
 public interface IRptDriverHourDao {
@@ -14,4 +17,6 @@ public interface IRptDriverHourDao {
     int updateByPrimaryKeySelective(RptDriverHour record);
 
     int updateByPrimaryKey(RptDriverHour record);
+
+    List<RptDriverHour> selectByCond(RptDriverCond cond);
 }
