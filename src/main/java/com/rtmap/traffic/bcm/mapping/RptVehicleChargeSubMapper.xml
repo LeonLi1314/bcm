@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rtmap.traffic.bcm.dao.IRptVehicleChargeSubDao" >
+  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.RptVehicleChargeSub" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stats_day" property="statsDay" jdbcType="DATE" />
+    <result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
+    <result column="vehicle_no" property="vehicleNo" jdbcType="VARCHAR" />
+    <result column="last_end_charge_time" property="lastEndChargeTime" jdbcType="TIMESTAMP" />
+    <result column="this_begin_charge_time" property="thisBeginChargeTime" jdbcType="TIMESTAMP" />
+    <result column="trip_distance" property="tripDistance" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stats_day, building_no, vehicle_no, last_end_charge_time, this_begin_charge_time, 
+    trip_distance, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rpt_vehicle_charge_sub
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rpt_vehicle_charge_sub
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.RptVehicleChargeSub" >
+    insert into rpt_vehicle_charge_sub (id, stats_day, building_no, 
+      vehicle_no, last_end_charge_time, this_begin_charge_time, 
+      trip_distance, create_time)
+    values (#{id,jdbcType=INTEGER}, #{statsDay,jdbcType=DATE}, #{buildingNo,jdbcType=VARCHAR}, 
+      #{vehicleNo,jdbcType=VARCHAR}, #{lastEndChargeTime,jdbcType=TIMESTAMP}, #{thisBeginChargeTime,jdbcType=TIMESTAMP}, 
+      #{tripDistance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.RptVehicleChargeSub" >
+    insert into rpt_vehicle_charge_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="statsDay != null" >
+        stats_day,
+      </if>
+      <if test="buildingNo != null" >
+        building_no,
+      </if>
+      <if test="vehicleNo != null" >
+        vehicle_no,
+      </if>
+      <if test="lastEndChargeTime != null" >
+        last_end_charge_time,
+      </if>
+      <if test="thisBeginChargeTime != null" >
+        this_begin_charge_time,
+      </if>
+      <if test="tripDistance != null" >
+        trip_distance,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="statsDay != null" >
+        #{statsDay,jdbcType=DATE},
+      </if>
+      <if test="buildingNo != null" >
+        #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleNo != null" >
+        #{vehicleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndChargeTime != null" >
+        #{lastEndChargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thisBeginChargeTime != null" >
+        #{thisBeginChargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tripDistance != null" >
+        #{tripDistance,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.RptVehicleChargeSub" >
+    update rpt_vehicle_charge_sub
+    <set >
+      <if test="statsDay != null" >
+        stats_day = #{statsDay,jdbcType=DATE},
+      </if>
+      <if test="buildingNo != null" >
+        building_no = #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleNo != null" >
+        vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndChargeTime != null" >
+        last_end_charge_time = #{lastEndChargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thisBeginChargeTime != null" >
+        this_begin_charge_time = #{thisBeginChargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tripDistance != null" >
+        trip_distance = #{tripDistance,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.RptVehicleChargeSub" >
+    update rpt_vehicle_charge_sub
+    set stats_day = #{statsDay,jdbcType=DATE},
+      building_no = #{buildingNo,jdbcType=VARCHAR},
+      vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
+      last_end_charge_time = #{lastEndChargeTime,jdbcType=TIMESTAMP},
+      this_begin_charge_time = #{thisBeginChargeTime,jdbcType=TIMESTAMP},
+      trip_distance = #{tripDistance,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
