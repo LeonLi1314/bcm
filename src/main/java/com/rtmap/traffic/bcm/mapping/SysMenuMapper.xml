@@ -114,4 +114,10 @@
       is_enabled = #{isEnabled,jdbcType=BIT}
     where menu_no = #{menuNo,jdbcType=CHAR}
   </update>
+  <select id="selectAllEnabled" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where is_enabled = 1
+  </select>
 </mapper>

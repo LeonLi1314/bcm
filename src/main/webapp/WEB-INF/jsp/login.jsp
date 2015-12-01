@@ -1,37 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/include.inc.jsp"%>
-
-<div class="pageContent">
-
-	<form method="post" action="<c:url value='/passport/login'/>"
-		class="pageForm"
-		onsubmit="return validateCallback(this, dialogAjaxDone)">
-
-		<div class="pageFormContent" layoutH="57">
-			<p>
-				<label>Username：</label> <input type="text" name="app_username"
-					size="20" class="login_input" />
-			</p>
-			<p>
-				<label>Password：</label> <input type="password" name="app_password"
-					size="20" class="login_input" />
-			</p>
+<%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>登录 - 医院微信管理后台</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<LINK rel=stylesheet type=text/css
+	href="${pageContext.request.contextPath}/img/common.css" media=screen>
+<META name=GENERATOR content="MSHTML 8.00.7600.16853">
+</HEAD>
+<BODY id=loginFrame>
+	<DIV id=header>
+		<div id="title">
+			<h1>管理后台</h1>
 		</div>
-		<div class="formBar">
-			<ul>
-				<li><div class="buttonActive">
-						<div class="buttonContent">
-							<button type="submit">Login</button>
-						</div>
-					</div></li>
-				<li><div class="button">
-						<div class="buttonContent">
-							<button type="button" class="close">Close</button>
-						</div>
-					</div></li>
-			</ul>
-		</div>
-	</form>
 
-</div>
+	</DIV>
+	<DIV id=loginBox>
+		<DIV id=loginBoxHeader></DIV>
+		<DIV id=loginBoxBody>
+			<UL class=floatLeft>
+				<LI>
+					<H4>请用您的账号登录</H4>
+				</LI>
+				<form id="login" method="post"
+					action="${pageContext.request.contextPath}/dologin.do">
+					<LI>
+						<P>用户名:</P>
+						<INPUT id=username class=textInput maxLength=150 size=30 type=text
+						name=username>
+					</LI>
+					<LI>
+						<P>密码:</P>
+						<INPUT id=password class=textInput maxLength=80 size=30
+						type=password name=password> <A class=highlight href="#"
+						target=_blank></A>
+					</LI>
+					<LI class=highlight><INPUT id=loginBtn onclick=this.blur();
+						value=登录 type=submit> <!--   <A id=regBtn href="#" target=_blank>忘记密码？</A> -->
+					</LI>
+					<LI></LI>
+				</form>
+			</UL>
+
+			<DIV class=floatRight>
+				系统管理后台登录</br>
+				推荐使用360浏览器极速模式</br>
+			</DIV>
+
+			<BR clear=all>
+		</DIV>
+		<DIV id=loginBoxFooter></DIV>
+	</DIV>
+	<DIV id=footer>@CopyRight 智慧图</DIV>
+
+</BODY>
+</HTML>
