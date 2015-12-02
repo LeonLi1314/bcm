@@ -10,5 +10,9 @@
 	<div>
 		<h1>司机分段统计报表</h1>
 	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>

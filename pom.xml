@@ -38,7 +38,8 @@
 		<org.codehaus.jackson.version>
 			1.9.13
 		</org.codehaus.jackson.version>
-
+		<!-- 缓存 -->
+		<ehcache.version>2.10.0</ehcache.version>
 		<!-- 日志组件 -->
 		<!-- <log4j.version>1.2.17</log4j.version> -->
 		<slf4j.version>1.7.13</slf4j.version>
@@ -249,6 +250,12 @@
 			<version>0.1.2</version>
 		</dependency>
 
+		<!-- 缓存 -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache.version}</version>
+		</dependency>
 		<!-- log start -->
 		<!-- <dependency> -->
 		<!-- <groupId>log4j</groupId> -->
@@ -316,7 +323,32 @@
 		<!-- pluginManagement主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致，当有父子项目的时候，父项目中可以利用pluginManagement声明子项目中需要用到的插件，之后，当某个或者某几个子项目需要加载该插件的时候，就可以在子项目中plugins节点只配置 
 			groupId 和 artifactId就可以完成插件的引用。 -->
 		<pluginManagement>
-
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>some-group-id</groupId>
+										<artifactId>some-artifact-id</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>some-goal</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
 		</pluginManagement>
 		<plugins>
 			<!-- 用来编译Java代码 -->

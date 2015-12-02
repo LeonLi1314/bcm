@@ -1,5 +1,7 @@
 package com.rtmap.traffic.bcm.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,10 +25,31 @@ import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
 import com.rtmap.traffic.bcm.service.IRptService;
 
 @Controller
-@RequestMapping("rpt")
+@RequestMapping("/rpt")
 public class RptController {
 	@Resource
 	IRptService rptService;
+	
+	@ResponseBody
+	@RequestMapping("/test.do")
+	public List<RptDriverSubsection> Test() {
+		RptDriverCond cond = new RptDriverCond();
+		Date endDate = new Date();
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(endDate);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		endDate = calendar.getTime();
+		
+		calendar.setTime(endDate);
+		calendar.add(Calendar.DAY_OF_MONTH, -10);
+		Date beginDate = calendar.getTime();
+		
+		cond.setBeginStatsDay(beginDate);
+		cond.setEndStatsDay(endDate);
+		
+		return rptService.getRptDriverSubByCond(cond);
+	}
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverSub.do")

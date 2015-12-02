@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.rtmap.traffic.bcm.dao.IRptDriverDayDao;
 import com.rtmap.traffic.bcm.dao.IRptDriverHourDao;
 import com.rtmap.traffic.bcm.dao.IRptDriverSubsectionDao;
@@ -25,6 +27,7 @@ import com.rtmap.traffic.bcm.domain.RptVehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
 import com.rtmap.traffic.bcm.service.IRptService;
 
+@Service
 public class RptServiceImp implements IRptService{
 
 	@Resource
@@ -46,7 +49,8 @@ public class RptServiceImp implements IRptService{
 
 	@Override
 	public List<RptDriverSubsection> getRptDriverSubByCond(RptDriverCond cond) {
-		return driverSubDao.selectByCond(cond);
+		List<RptDriverSubsection> list = driverSubDao.selectByCond(cond);
+		return list;
 	}
 
 	@Override

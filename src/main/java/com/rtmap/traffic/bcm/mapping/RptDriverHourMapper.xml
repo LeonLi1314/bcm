@@ -186,4 +186,20 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByCond" resultMap="BaseResultMap"
+		parameterType="com.rtmap.traffic.bcm.domain.RptDriverCond">
+		select
+		<include refid="Base_Column_List" />
+		from rpt_driver_subsection
+		where <![CDATA[ stats_day > #{beginStatsDay,jdbcType=TIMESTAMP} and stats_day < #{endStatsDay,jdbcType=TIMESTAMP} ]]>
+		<if test="buildingNo != null">
+			and building_no = #{buildingNo,jdbcType=VARCHAR},
+		</if>
+		<if test="driverNo != null">
+			and driver_no = #{driverNo,jdbcType=VARCHAR},
+		</if>
+		<if test="vehicleNo != null">
+			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
+		</if>
+	</select>
 </mapper>

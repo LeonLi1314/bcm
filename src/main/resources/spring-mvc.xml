@@ -18,6 +18,8 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+	<!-- 注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->
+	<mvc:annotation-driven/>  
 
 	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
 	<bean
