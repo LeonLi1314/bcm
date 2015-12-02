@@ -67,36 +67,6 @@ background-color: white;
 
 <script>
 	$(function() {
-		
-// 		var h = $(window).height()-10;
-	
-		
-		
-// 		if(h<200){
-// 			h=460;
-// 		}
-		
-// 		$("#pl").omPanel({
-// 			width : 'fit',
-// 			height:h,
-// 			iconCls : "",
-// 			header : true,
-// 			title : '待办任务',
-// 			collapsed : false,
-// 			collapsible : true,
-// 			closable : false,
-// 			onOpen : function() {
-// 			},
-// 			onClose : function() {
-// 			},
-// 			onExpand : function() {
-// 			},
-// 			onCollapse : function() {
-// 			}
-// 		});
-
-		 
-
 	});
 </script>
 </head>

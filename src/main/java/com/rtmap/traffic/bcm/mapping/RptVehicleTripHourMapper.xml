@@ -133,10 +133,10 @@
 		from rpt_driver_subsection
 		where <![CDATA[ stats_day > #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=TIMESTAMP} ]]>
 		<if test="buildingNo != null">
-			and building_no = #{buildingNo,jdbcType=VARCHAR},
+			and building_no = #{buildingNo,jdbcType=VARCHAR}
 		</if>
 		<if test="vehicleNo != null">
-			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
+			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
 		</if>
 	</select>
 </mapper>

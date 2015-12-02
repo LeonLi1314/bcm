@@ -24,7 +24,7 @@ import my.web.IUser;
 @Controller
 public class MainController extends BaseController {
 
-	private Logger logger = LoggerFactory.getLogger("com.rtmap.traffic.bcm.controller.PassportController");
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/*
 	 * Spring不但支持自己定义的@Autowired注解，还支持JSR-250规范定义的注解，它们分别是@Resource、
@@ -58,6 +58,11 @@ public class MainController extends BaseController {
 		deleteUserInCookie();
 
 		return "login";
+	}
+
+	@RequestMapping("/desktop")
+	public String desktop(Model m) {
+		return "desktop";
 	}
 
 	@RequestMapping("/dologin")
@@ -96,11 +101,13 @@ public class MainController extends BaseController {
 				}
 			}, true);
 		}
+		
+		m.addAttribute("user", sysUser);
 		return "main";
 	}
 
 	@ResponseBody
-	@RequestMapping("/api/modifypassword")
+	@RequestMapping("/modifypassword")
 	public AjaxMsg modifypassword(Model m) {
 		return run(new CallBack() {
 

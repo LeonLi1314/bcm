@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,37 +26,73 @@ import com.rtmap.traffic.bcm.domain.RptVehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
 import com.rtmap.traffic.bcm.service.IRptService;
 
+import my.web.BaseController;
+import operamasks.ui.model.GridDataModel;
+
 @Controller
-@RequestMapping("/rpt")
-public class RptController {
+@RequestMapping("rpt")
+public class RptController extends BaseController {
 	@Resource
 	IRptService rptService;
-	
+
 	@ResponseBody
 	@RequestMapping("/test.do")
 	public List<RptDriverSubsection> Test() {
 		RptDriverCond cond = new RptDriverCond();
 		Date endDate = new Date();
-		
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(endDate);
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		endDate = calendar.getTime();
-		
+
 		calendar.setTime(endDate);
 		calendar.add(Calendar.DAY_OF_MONTH, -10);
 		Date beginDate = calendar.getTime();
-		
+
 		cond.setBeginStatsDay(beginDate);
 		cond.setEndStatsDay(endDate);
-		
+
 		return rptService.getRptDriverSubByCond(cond);
+	}
+
+	@RequestMapping("/rptDriverSub")
+	public String login(HttpServletRequest request, Model model) {
+		return "rpt/driverSubStats";
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverSub.do")
 	public List<RptDriverSubsection> getRptDriverSubsectionByCond(@RequestBody RptDriverCond cond) {
 		return rptService.getRptDriverSubByCond(cond);
+	}
+
+	@ResponseBody
+	@RequestMapping("/getRptDriverSubform.do")
+	public GridDataModel<RptDriverSubsection> getRptDriverSubsectionByCond(HttpServletRequest request, Model model) {
+		String buildingNo = param("buildingNo");
+		RptDriverCond cond = new RptDriverCond();
+		cond.setBuildingNo(buildingNo);
+		Date endDate = new Date();
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(endDate);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		endDate = calendar.getTime();
+
+		calendar.setTime(endDate);
+		calendar.add(Calendar.DAY_OF_MONTH, -10);
+		Date beginDate = calendar.getTime();
+
+		cond.setBeginStatsDay(beginDate);
+		cond.setEndStatsDay(endDate);
+		List<RptDriverSubsection> list = rptService.getRptDriverSubByCond(cond);
+		
+		GridDataModel<RptDriverSubsection> gridData = new GridDataModel<RptDriverSubsection>();
+		gridData.setTotal(list == null ? 0 : list.size());
+		gridData.setRows(list);
+		
+		return gridData;
 	}
 
 	@ResponseBody

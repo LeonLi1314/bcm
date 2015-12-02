@@ -188,7 +188,19 @@ public class BaseController implements WebContext {
 
 	public String param(String name, String... def_value) {
 		String v = getRequest().getParameter(name);
-		return (v != null) ? v : ((def_value.length > 0) ? def_value[0] : null);
+
+		if (v == null) {
+			if (def_value.length > 0) {
+				return def_value[0];
+			} else {
+				return null;
+			}
+
+		} else {
+			if (StringUtils.isNotEmpty(v))
+				return v;
+			return null;
+		}
 	}
 
 	public boolean bparam(String name) {

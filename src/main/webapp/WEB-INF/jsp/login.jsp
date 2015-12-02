@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE>登录 - 医院微信管理后台</TITLE>
+<TITLE>登录 - 电瓶车管理系统</TITLE>
 <META content="text/html; charset=UTF-8" http-equiv=Content-Type>
 <LINK rel=stylesheet type=text/css
 	href="${pageContext.request.contextPath}/img/common.css" media=screen>
@@ -14,7 +14,7 @@
 <BODY id=loginFrame>
 	<DIV id=header>
 		<div id="title">
-			<h1>管理后台</h1>
+			<h1>电瓶车管理系统</h1>
 		</div>
 
 	</DIV>
@@ -46,15 +46,14 @@
 			</UL>
 
 			<DIV class=floatRight>
-				系统管理后台登录</br>
-				推荐使用360浏览器极速模式</br>
+				推荐使用ie9以上的浏览器</br>
 			</DIV>
 
 			<BR clear=all>
 		</DIV>
 		<DIV id=loginBoxFooter></DIV>
 	</DIV>
-	<DIV id=footer>@CopyRight 智慧图</DIV>
+	<DIV id=footer>@CopyRight 北京智慧图科技有限责任公司</DIV>
 
 </BODY>
 </HTML>
