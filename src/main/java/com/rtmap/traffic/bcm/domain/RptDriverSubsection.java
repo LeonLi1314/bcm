@@ -80,7 +80,7 @@ public class RptDriverSubsection {
 		this.vehicleNo = vehicleNo == null ? null : vehicleNo.trim();
 	}
 
-	@JSONField(format = "hh:mm:ss")
+	@JSONField(format = "HH:mm:ss")
 	public Date getGoToTime() {
 		return goToTime;
 	}
@@ -89,7 +89,7 @@ public class RptDriverSubsection {
 		this.goToTime = goToTime;
 	}
 
-	@JSONField(format = "hh:mm:ss")
+	@JSONField(format = "HH:mm:ss")
 	public Date getGoOffTime() {
 		return goOffTime;
 	}

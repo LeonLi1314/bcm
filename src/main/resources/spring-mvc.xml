@@ -107,5 +107,5 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="exceptionHandler" class="cn.basttg.core.exception.MyExceptionHandler"/>  
+<!-- 	<bean id="exceptionHandler" class="cn.basttg.core.exception.MyExceptionHandler"/>   -->
 </beans>  

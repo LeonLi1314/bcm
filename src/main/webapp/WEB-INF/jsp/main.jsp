@@ -35,13 +35,13 @@
 						modal : true,
 						resizable : true,
 						buttons :[{
-							text : msg.submit, 
+							text : '确认' ,
 							click:function() {
 								submitDialog();
 								return false; //阻止form的默认提交动作
 							}
 						},{
-							text:msg.cancel,
+							text: '取消' ,
 							click: function() {
 								$("#dialog-form").omDialog("close");//关闭dialog
 							}
@@ -50,7 +50,7 @@
 					
 					$("#changepassword").click(function() {
 						validator.resetForm();
-						dialog.omDialog("option", "title", msg.changepassword);
+						dialog.omDialog("option", "title", '修改密码');
 						dialog.omDialog("open");//显示dialog
 					});
 
@@ -67,16 +67,16 @@
 						},
 						messages : {
 							oldpassword : {
-								required : msg.inputoldpassword
+								required : '原密码'
 							},
 
 							newpassword : {
-								required : msg.inputnewpassword
+								required : '新密码'
 							},
 
 							newpassword2 : {
-								required : msg.required_newpassword2,
-								equalTo : msg.twonewpasswordneedsame
+								required : '新密码',
+								equalTo : '两次输入的密码应该一致'
 							}
 						}
 					});
@@ -89,15 +89,15 @@
 							$.post(url, submitData, function(data) {
 								if (!data.ok) {
 									$.omMessageTip.show({
-										title : msg.operror,
+										title : '操作失败',
 										content : data.msg,
 										timeout : 1500
 									});
 									return;
 								} else {
 									$.omMessageTip.show({
-										title : msg.opsuccess,
-										content : msg.changepasswordsuccess,
+										title : '操作成功',
+										content : '密码修改成功',
 										timeout : 1500
 									});
 								}

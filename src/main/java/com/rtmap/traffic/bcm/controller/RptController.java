@@ -1,5 +1,6 @@
 package com.rtmap.traffic.bcm.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,37 +37,15 @@ public class RptController extends BaseController {
 
 	@RequestMapping("/rptDriverSub")
 	public String rptDriverSub(Model model) {
-		model.addAttribute("preDay", DateUtils.addDay(DateUtils.getCurrentDate(), -1));
+		Date preDate = DateUtils.addDay(DateUtils.getCurrentDate(), -3);
+		model.addAttribute("preDay", DateUtils.formatDate(preDate));
 		return "rpt/driverSubStats";
 	}
 
 	@ResponseBody
 	@RequestMapping("/getRptDriverSubform.do")
 	public GridDataModel<RptDriverSubsection> getRptDriverSubsectionByCond() {
-		String buildingNo = param("buildingNo");
-		String driverNo = param("driverNo");
-		String vehicleNo = param("vehicleNo");
-		String beginStatsDay = param("beginStatsDay");
-		String endStatsDay = param("endStatsDay");
-
-		RptDriverCond cond = new RptDriverCond();
-
-		if (!StringUtils.isNullOrEmpty(buildingNo)) {
-			cond.setBuildingNo(buildingNo);
-		}
-		if (!StringUtils.isNullOrEmpty(driverNo)) {
-			cond.setDriverNo(driverNo);
-		}
-		if (!StringUtils.isNullOrEmpty(vehicleNo)) {
-			cond.setVehicleNo(vehicleNo);
-		}
-		if (!StringUtils.isNullOrEmpty(beginStatsDay)) {
-			cond.setBeginStatsDay(DateUtils.parseDate(beginStatsDay));
-		}
-		if (!StringUtils.isNullOrEmpty(endStatsDay)) {
-			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
-			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
-		}
+		RptDriverCond cond = convertRptDriverCond();
 
 		List<RptDriverSubsection> list = rptService.getRptDriverSubByCond(cond);
 
@@ -123,5 +102,95 @@ public class RptController extends BaseController {
 	@RequestMapping("/getRptVehicleTripHour.do")
 	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(@RequestBody RptVehicleCond cond) {
 		return rptService.getRptVehicleTripHourByCond(cond);
+	}
+
+	/**
+	 * 从请求对象中转化司机报表查询条件对象
+	 * 
+	 * @return 司机报表查询条件对象
+	 */
+	private RptDriverCond convertRptDriverCond() {
+		String buildingNo = param("buildingNo");
+		String driverNo = param("driverNo");
+		String vehicleNo = param("vehicleNo");
+		String beginStatsDay = param("beginStatsDay");
+		String endStatsDay = param("endStatsDay");
+
+		RptDriverCond cond = new RptDriverCond();
+
+		if (!StringUtils.isNullOrEmpty(buildingNo)) {
+			cond.setBuildingNo(buildingNo);
+		}
+		if (!StringUtils.isNullOrEmpty(driverNo)) {
+			cond.setDriverNo(driverNo);
+		}
+		if (!StringUtils.isNullOrEmpty(vehicleNo)) {
+			cond.setVehicleNo(vehicleNo);
+		}
+		if (!StringUtils.isNullOrEmpty(beginStatsDay)) {
+			cond.setBeginStatsDay(DateUtils.parseDate(beginStatsDay));
+		}
+		if (!StringUtils.isNullOrEmpty(endStatsDay)) {
+			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
+			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
+		}
+		
+		return cond;
+	}
+
+	/**
+	 * 从请求对象中转化乘客报表查询条件对象
+	 * 
+	 * @return 乘客报表查询条件对象
+	 */
+	private RptPassCond convertRptPassCond() {
+		String buildingNo = param("buildingNo");
+		String beginStatsDay = param("beginStatsDay");
+		String endStatsDay = param("endStatsDay");
+
+		RptPassCond cond = new RptPassCond();
+
+		if (!StringUtils.isNullOrEmpty(buildingNo)) {
+			cond.setBuildingNo(buildingNo);
+		}
+		if (!StringUtils.isNullOrEmpty(beginStatsDay)) {
+			cond.setBeginStatsDay(DateUtils.parseDate(beginStatsDay));
+		}
+		if (!StringUtils.isNullOrEmpty(endStatsDay)) {
+			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
+			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
+		}
+		
+		return cond;
+	}
+
+	/**
+	 * 从请求对象中转化车辆报表查询条件对象
+	 * 
+	 * @return 车辆报表查询条件对象
+	 */
+	private RptVehicleCond convertRptVehicleCond() {
+		String buildingNo = param("buildingNo");
+		String vehicleNo = param("vehicleNo");
+		String beginStatsDay = param("beginStatsDay");
+		String endStatsDay = param("endStatsDay");
+
+		RptVehicleCond cond = new RptVehicleCond();
+
+		if (!StringUtils.isNullOrEmpty(buildingNo)) {
+			cond.setBuildingNo(buildingNo);
+		}
+		if (!StringUtils.isNullOrEmpty(vehicleNo)) {
+			cond.setVehicleNo(vehicleNo);
+		}
+		if (!StringUtils.isNullOrEmpty(beginStatsDay)) {
+			cond.setBeginStatsDay(DateUtils.parseDate(beginStatsDay));
+		}
+		if (!StringUtils.isNullOrEmpty(endStatsDay)) {
+			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
+			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
+		}
+		
+		return cond;
 	}
 }
