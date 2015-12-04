@@ -252,7 +252,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from rpt_driver_subsection
-		where <![CDATA[ stats_day > #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
+		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}
 		</if>

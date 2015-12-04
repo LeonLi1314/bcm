@@ -41,7 +41,7 @@ import my.util.SysParam;
 
 public class RequestContext implements WebContext {
 	private static Logger logger = LoggerFactory.getLogger(RequestContext.class);
-	private static final String COOKIE_LOGIN = "zwthperuuid";// cookie中的用户token
+	private static final String COOKIE_LOGIN = "rtmapbcmlogin";// cookie中的用户token
 	private final static int MAX_AGE = 86400 * 365;
 	private final static byte[] E_KEY = "uukom-user-c".getBytes();
 	private final static String UTF_8 = "UTF-8";
