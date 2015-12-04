@@ -1,13 +1,11 @@
 package com.rtmap.traffic.bcm.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,75 +31,124 @@ import operamasks.ui.model.GridDataModel;
 @RequestMapping("rpt")
 public class RptController extends BaseController {
 	@Resource
-	IRptService rptService;
+	private IRptService rptService;
 
-	@RequestMapping("/rptDriverSub")
+	// mytest 只有12月1号有数据
+	private String preDateStr = "2015-12-01";
+	// private String preDateStr =
+	// DateUtils.formatDate(DateUtils.addDay(DateUtils.getCurrentDate(), -1));
+
+	@RequestMapping("/driverSub")
 	public String rptDriverSub(Model model) {
-		Date preDate = DateUtils.addDay(DateUtils.getCurrentDate(), -3);
-		model.addAttribute("preDay", DateUtils.formatDate(preDate));
+		model.addAttribute("preDay", preDateStr);
 		return "rpt/driverSubStats";
 	}
-
 	@ResponseBody
-	@RequestMapping("/getRptDriverSubform.do")
+	@RequestMapping("/getRptDriverSub.do")
 	public GridDataModel<RptDriverSubsection> getRptDriverSubsectionByCond() {
 		RptDriverCond cond = convertRptDriverCond();
 
 		List<RptDriverSubsection> list = rptService.getRptDriverSubByCond(cond);
 
-		GridDataModel<RptDriverSubsection> gridData = new GridDataModel<RptDriverSubsection>();
-		gridData.setTotal(list == null ? 0 : list.size());
-		gridData.setRows(list);
-
-		return gridData;
+		return convertToGridData(list);
 	}
 
-	@ResponseBody
-	@RequestMapping("/getRptDriverSub.do")
-	public List<RptDriverSubsection> getRptDriverSubsectionByCond(@RequestBody RptDriverCond cond) {
-		return rptService.getRptDriverSubByCond(cond);
+	@RequestMapping("/driverDay")
+	public String rptDriverDay(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/driverDayStats";
 	}
-
 	@ResponseBody
 	@RequestMapping("/getRptDriverDay.do")
-	public List<RptDriverDay> getRptDriverDayByCond(@RequestBody RptDriverCond cond) {
-		return rptService.getRptDriverDayByCond(cond);
+	public GridDataModel<RptDriverDay> getRptDriverDayByCond() {
+		RptDriverCond cond = convertRptDriverCond();
+		List<RptDriverDay> list = rptService.getRptDriverDayByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/driverHour")
+	public String rptDriverHour(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/driverHourStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptDriverHour.do")
-	public List<RptDriverHour> getRptDriverHourByCond(@RequestBody RptDriverCond cond) {
-		return rptService.getRptDriverHourByCond(cond);
+	public GridDataModel<RptDriverHour> getRptDriverHourByCond() {
+		RptDriverCond cond = convertRptDriverCond();
+		List<RptDriverHour> list = rptService.getRptDriverHourByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/passDay")
+	public String rptPassDay(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/passDayStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptPassDay.do")
-	public List<RptPassDay> getRptPassDayByCond(@RequestBody RptPassCond cond) {
-		return rptService.getRptPassDayByCond(cond);
+	public GridDataModel<RptPassDay> getRptPassDayByCond() {
+		RptPassCond cond = convertRptPassCond();
+		List<RptPassDay> list = rptService.getRptPassDayByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/passDistribute")
+	public String rptPassDistribute(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/passDistributeStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptPassDistribute.do")
-	public List<RptPassDistribute> getRptPassDistributeByCond(@RequestBody RptPassCond cond) {
-		return rptService.getRptPassDistributeByCond(cond);
+	public GridDataModel<RptPassDistribute> getRptPassDistributeByCond() {
+		RptPassCond cond = convertRptPassCond();
+		List<RptPassDistribute> list = rptService.getRptPassDistributeByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/vehicleChargeDay")
+	public String rptVehicleChargeDay(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/vehicleChargeDayStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptVehicleChargeDay.do")
-	public List<RptVehicleChargeDay> getRptVehicleChargeDayByCond(@RequestBody RptVehicleCond cond) {
-		return rptService.getRptVehicleChargeDayByCond(cond);
+	public GridDataModel<RptVehicleChargeDay> getRptVehicleChargeDayByCond() {
+		RptVehicleCond cond = convertRptVehicleCond();
+		List<RptVehicleChargeDay> list = rptService.getRptVehicleChargeDayByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/vehicleChargeSub")
+	public String rptVehicleChargeSub(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/vehicleChargeSubStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptVehicleChargeSub.do")
-	public List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(@RequestBody RptVehicleCond cond) {
-		return rptService.getRptVehicleChargeSubByCond(cond);
+	public GridDataModel<RptVehicleChargeSub> getRptVehicleChargeSubByCond() {
+		RptVehicleCond cond = convertRptVehicleCond();
+		List<RptVehicleChargeSub> list = rptService.getRptVehicleChargeSubByCond(cond);
+
+		return convertToGridData(list);
 	}
 
+	@RequestMapping("/vehicleTripHour")
+	public String rptVehicleTripHour(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "rpt/vehicleTripHourStats";
+	}
 	@ResponseBody
 	@RequestMapping("/getRptVehicleTripHour.do")
-	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(@RequestBody RptVehicleCond cond) {
-		return rptService.getRptVehicleTripHourByCond(cond);
+	public GridDataModel<RptVehicleTripHour> getRptVehicleTripHourByCond() {
+		RptVehicleCond cond = convertRptVehicleCond();
+		List<RptVehicleTripHour> list = rptService.getRptVehicleTripHourByCond(cond);
+
+		return convertToGridData(list);
 	}
 
 	/**
@@ -134,7 +181,7 @@ public class RptController extends BaseController {
 			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
 			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
 		}
-		
+
 		return cond;
 	}
 
@@ -160,7 +207,7 @@ public class RptController extends BaseController {
 			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
 			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
 		}
-		
+
 		return cond;
 	}
 
@@ -190,7 +237,22 @@ public class RptController extends BaseController {
 			// 页面开始结束日期都是当天，实际查询时结束日期条件应该加1天
 			cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(endStatsDay), 1));
 		}
-		
+
 		return cond;
+	}
+
+	/**
+	 * 将list集合转化为omGrid控件所需的GridDataModel类型
+	 * 
+	 * @param list
+	 *            报表数据集合
+	 * @return GridDataModel类型对象
+	 */
+	private <T> GridDataModel<T> convertToGridData(List<T> list) {
+		GridDataModel<T> gridData = new GridDataModel<T>();
+		gridData.setTotal(list == null ? 0 : list.size());
+		gridData.setRows(list);
+
+		return gridData;
 	}
 }

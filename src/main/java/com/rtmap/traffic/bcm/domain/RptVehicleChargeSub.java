@@ -2,6 +2,8 @@ package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RptVehicleChargeSub {
     private Integer id;
 
@@ -27,6 +29,7 @@ public class RptVehicleChargeSub {
         this.id = id;
     }
 
+	@JSONField(format = "yyyy-MM-dd")
     public Date getStatsDay() {
         return statsDay;
     }
@@ -51,6 +54,7 @@ public class RptVehicleChargeSub {
         this.vehicleNo = vehicleNo == null ? null : vehicleNo.trim();
     }
 
+	@JSONField(format = "HH:mm:ss")
     public Date getLastEndChargeTime() {
         return lastEndChargeTime;
     }
@@ -59,6 +63,7 @@ public class RptVehicleChargeSub {
         this.lastEndChargeTime = lastEndChargeTime;
     }
 
+	@JSONField(format = "HH:mm:ss")
     public Date getThisBeginChargeTime() {
         return thisBeginChargeTime;
     }

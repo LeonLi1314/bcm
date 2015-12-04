@@ -2,6 +2,8 @@ package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RptDriverHour {
     private Integer id;
 
@@ -37,6 +39,7 @@ public class RptDriverHour {
         this.id = id;
     }
 
+	@JSONField(format = "yyyy-MM-dd HH")
     public Date getStatsHour() {
         return statsHour;
     }

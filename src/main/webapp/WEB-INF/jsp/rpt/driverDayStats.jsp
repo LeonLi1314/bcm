@@ -217,7 +217,7 @@ html, body {
 			var data = $('#queryform').serializeObject();
 			$('#grid').omGrid('options').extraData = data;
 			$('#grid').omGrid("setData",
-					WEB_ROOT + "/rpt/getRptDriverSub.do");
+					WEB_ROOT + "/rpt/getRptDriverDay.do");
 		}
 	</script>
 </body>

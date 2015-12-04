@@ -2,6 +2,8 @@ package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RptPassDistribute {
     private Integer id;
 
@@ -37,6 +39,7 @@ public class RptPassDistribute {
         this.id = id;
     }
 
+	@JSONField(format = "yyyy-MM-dd")
     public Date getStatsDay() {
         return statsDay;
     }
@@ -53,6 +56,7 @@ public class RptPassDistribute {
         this.buildingNo = buildingNo == null ? null : buildingNo.trim();
     }
 
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getTakeTime() {
         return takeTime;
     }
@@ -85,6 +89,7 @@ public class RptPassDistribute {
         this.fltNo = fltNo == null ? null : fltNo.trim();
     }
 
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getEstimatedDepatureTime() {
         return estimatedDepatureTime;
     }

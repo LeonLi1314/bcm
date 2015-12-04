@@ -22,6 +22,7 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<!-- <ref bean="stringHttpMessageConverter" /> -->
+			<!-- 注册使用fastjson的消息转换器 -->
 			<ref bean="fastJsonHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>

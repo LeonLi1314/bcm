@@ -2,6 +2,8 @@ package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class RptPassDay {
     private Integer id;
 
@@ -31,6 +33,7 @@ public class RptPassDay {
         this.id = id;
     }
 
+	@JSONField(format = "yyyy-MM-dd")
     public Date getStatsDay() {
         return statsDay;
     }
