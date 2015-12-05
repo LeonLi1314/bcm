@@ -28,4 +28,5 @@ WEB_ROOT+"/sys/orderdatetype/list" },
 { id: "030205", pid: "0302", text: "乘客搭乘分布统计", url: WEB_ROOT+"/rpt/passDistribute" },
 { id: "030206", pid: "0302", text: "车辆充电分段统计", url: WEB_ROOT+"/rpt/vehicleChargeSub" },
 { id: "030207", pid: "0302", text: "车辆充电按天统计", url: WEB_ROOT+"/rpt/vehicleChargeDay" },
-{ id: "030208", pid: "0302", text: "车辆行驶按时统计", url: WEB_ROOT+"/rpt/vehicleTripHour" }];
+{ id: "030208", pid: "0302", text: "车辆行驶按时统计", url: WEB_ROOT+"/rpt/vehicleTripHour" },
+{ id: "030209", pid: "0302", text: "图表样例", url: WEB_ROOT+"/graph/graphTest" }];

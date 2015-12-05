@@ -51,6 +51,7 @@
 	<mvc:resources location="/nui/" mapping="/nui/**" />
 	<mvc:resources location="/ccm-css/" mapping="/ccm-css/**" />
 	<mvc:resources location="/ccm-js/" mapping="/ccm-js/**" />
+	<mvc:resources location="/highcharts/" mapping="/highcharts/**" />
 
 	<mvc:interceptors>
 		<mvc:interceptor>
