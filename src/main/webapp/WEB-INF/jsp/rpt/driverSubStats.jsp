@@ -195,10 +195,10 @@ html, body {
 					//autoextend : true,
 					align : 'left'
 				}, {
-					header : "有效扫描乘客数中的急客数",
+					header : "急客数",
 					name : 'scanHurriedPassCount',
-					width : 80,
-					//autoextend : true,
+					//width : 80,
+					autoextend : true,
 					align : 'left'
 				}, {
 					header : "有效扫描中的急客比率",
