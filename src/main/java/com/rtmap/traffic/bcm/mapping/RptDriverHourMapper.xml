@@ -191,7 +191,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from rpt_driver_hour
-		where <![CDATA[ stats_hour >= #{beginStatsDay,jdbcType=TIMESTAMP} and stats_hour < #{endStatsDay,jdbcType=TIMESTAMP} ]]>
+		where <![CDATA[ stats_hour >= #{beginStatsDay,jdbcType=TIMESTAMP} and stats_hour <= #{endStatsDay,jdbcType=TIMESTAMP} ]]>
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}
 		</if>

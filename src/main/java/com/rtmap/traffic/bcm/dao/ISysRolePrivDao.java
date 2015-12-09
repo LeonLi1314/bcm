@@ -1,11 +1,19 @@
 package com.rtmap.traffic.bcm.dao;
 
-import com.rtmap.traffic.bcm.domain.SysRolePrivKey;
+import java.util.List;
+
+import com.rtmap.traffic.bcm.domain.SysRolePriv;
 
 public interface ISysRolePrivDao {
-    int deleteByPrimaryKey(SysRolePrivKey key);
+    int deleteByPrimaryKey(SysRolePriv key);
 
-    int insert(SysRolePrivKey record);
+    int insert(SysRolePriv record);
 
-    int insertSelective(SysRolePrivKey record);
+    int insertSelective(SysRolePriv record);
+    
+    List<SysRolePriv> selectAll();
+    
+    List<String> selectPrivCdsByRoleCd(String roleCd);
+
+    List<String> selectPrivCdsByRoleCds(List<String> roleCds);
 }

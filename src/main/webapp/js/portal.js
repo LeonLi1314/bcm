@@ -13,10 +13,75 @@ portal.loadtree = function(mod) {
 	var ifh = tabElement.height()
 			- tabElement.find(".om-tabs-headers").outerHeight(true) - 4;
 
+	var data = [ {
+		id : "0101",
+		text : "报表",
+		expanded : true
+	}, {
+		id : "010101",
+		pid : "0101",
+		text : "司机分段统计报表",
+		url : WEB_ROOT + "/rpt/driverSub"
+	}, {
+		id : "010102",
+		pid : "0101",
+		text : "司机工作按天统计",
+		url : WEB_ROOT + "/rpt/driverDay"
+	}, {
+		id : "010103",
+		pid : "0101",
+		text : "司机工作按时统计",
+		url : WEB_ROOT + "/rpt/driverHour"
+	}, {
+		id : "010104",
+		pid : "0101",
+		text : "乘客按天统计",
+		url : WEB_ROOT + "/rpt/passDay"
+	}, {
+		id : "010105",
+		pid : "0101",
+		text : "乘客搭乘分布统计",
+		url : WEB_ROOT + "/rpt/passDistribute"
+	}, {
+		id : "010106",
+		pid : "0101",
+		text : "车辆充电按天统计",
+		url : WEB_ROOT + "/rpt/vehicleChargeSub"
+	}, {
+		id : "010107",
+		pid : "0101",
+		text : "司机工作按时统计",
+		url : WEB_ROOT + "/rpt/vehicleChargeDay"
+	}, {
+		id : "010108",
+		pid : "0101",
+		text : "车辆行驶按时统计",
+		url : WEB_ROOT + "/rpt/vehicleTripHour"
+	}, {
+		id : "0102",
+		text : "图表展示",
+		expanded : true
+	}, {
+		id : "010201",
+		pid : "0102",
+		text : "图表样例",
+		url : WEB_ROOT + "/graph/graphTest"
+	} ];
+
+//	$.ajax({
+//		url : WEB_ROOT + '/allEnabledMenus.do',
+//		success : function(result) {
+//			alert(result);
+//		},
+//		error : function(e) {
+//			alert("加载菜单失败！");
+//		}
+//	});
+
 	$("#navTree")
 			.omTree(
 					{
-						dataSource : data,
+						dataSource : WEB_ROOT + '/getCurrentUserSysMenus.do',
 						simpleDataModel : true,
 						onClick : function(nodeData, event) {
 							event.stopPropagation();

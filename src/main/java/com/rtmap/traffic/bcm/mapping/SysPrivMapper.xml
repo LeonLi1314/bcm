@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysPrivDao">
+	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysPriv">
+		<id column="priv_cd" jdbcType="VARCHAR" property="privCd" />
+		<result column="priv_name" jdbcType="VARCHAR" property="privName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		priv_cd, priv_name
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_priv
+		where priv_cd = #{privCd,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_priv
+		where priv_cd = #{privCd,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysPriv">
+		insert into sys_priv (priv_cd, priv_name)
+		values (#{privCd,jdbcType=VARCHAR}, #{privName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysPriv">
+		insert into sys_priv
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="privCd != null">
+				priv_cd,
+			</if>
+			<if test="privName != null">
+				priv_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="privCd != null">
+				#{privCd,jdbcType=VARCHAR},
+			</if>
+			<if test="privName != null">
+				#{privName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.SysPriv">
+		update sys_priv
+		<set>
+			<if test="privName != null">
+				priv_name = #{privName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where priv_cd = #{privCd,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysPriv">
+		update sys_priv
+		set priv_name = #{privName,jdbcType=VARCHAR}
+		where priv_cd = #{privCd,jdbcType=VARCHAR}
+	</update>
+</mapper>

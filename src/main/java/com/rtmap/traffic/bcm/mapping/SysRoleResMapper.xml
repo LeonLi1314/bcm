@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rtmap.traffic.bcm.dao.ISysRoleResDao" >
-  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysRoleResKey" >
-    <id column="role_cd" property="roleCd" jdbcType="VARCHAR" />
-    <id column="res_cd" property="resCd" jdbcType="VARCHAR" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysRoleResKey" >
-    delete from sys_role_res
-    where role_cd = #{roleCd,jdbcType=VARCHAR}
-      and res_cd = #{resCd,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysRoleResKey" >
-    insert into sys_role_res (role_cd, res_cd)
-    values (#{roleCd,jdbcType=VARCHAR}, #{resCd,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysRoleResKey" >
-    insert into sys_role_res
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="roleCd != null" >
-        role_cd,
-      </if>
-      <if test="resCd != null" >
-        res_cd,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="roleCd != null" >
-        #{roleCd,jdbcType=VARCHAR},
-      </if>
-      <if test="resCd != null" >
-        #{resCd,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysRoleResDao">
+	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysRoleRes">
+		<id column="role_cd" jdbcType="VARCHAR" property="roleCd" />
+		<id column="res_cd" jdbcType="VARCHAR" property="resCd" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysRoleRes">
+		delete from sys_role_res
+		where role_cd = #{roleCd,jdbcType=VARCHAR}
+		and res_cd = #{resCd,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysRoleRes">
+		insert into sys_role_res (role_cd, res_cd)
+		values (#{roleCd,jdbcType=VARCHAR}, #{resCd,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysRoleRes">
+		insert into sys_role_res
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleCd != null">
+				role_cd,
+			</if>
+			<if test="resCd != null">
+				res_cd,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleCd != null">
+				#{roleCd,jdbcType=VARCHAR},
+			</if>
+			<if test="resCd != null">
+				#{resCd,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
 </mapper>

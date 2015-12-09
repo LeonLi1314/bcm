@@ -1,6 +1,7 @@
 package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class SysUser {
     private String userCd;
@@ -22,6 +23,8 @@ public class SysUser {
     private String homePhone;
 
     private String email;
+
+    private Boolean isEnabled;
 
     private Date latestLoginDate;
 
@@ -113,6 +116,14 @@ public class SysUser {
         this.email = email == null ? null : email.trim();
     }
 
+    public Boolean getIsEnabled() {
+        return isEnabled;
+    }
+
+    public void setIsEnabled(Boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
     public Date getLatestLoginDate() {
         return latestLoginDate;
     }
@@ -152,4 +163,24 @@ public class SysUser {
     public void setModifiedUser(String modifiedUser) {
         this.modifiedUser = modifiedUser == null ? null : modifiedUser.trim();
     }
+    
+    //extends
+    private List<String> roles;
+	private List<String> privCds;
+	
+    public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public List<String> getPrivCds() {
+		return privCds;
+	}
+
+	public void setPrivCds(List<String> privCds) {
+		this.privCds = privCds;
+	}   
 }

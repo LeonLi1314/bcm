@@ -24,9 +24,9 @@ html, body {
 				<span class="label">建筑物编号：</span> <input id="buildingNo"
 					name="buildingNo" /> <span class="label">车辆编号：</span> <input
 					id="vehicleNo" name="vehicleNo" /><span class="label">&nbsp;&nbsp;&nbsp;统计日期：</span>
-				<input id="beginStatsDay" name="beginStatsDay" size="10"
-					value="${preDay}" /> <span class="label">-&nbsp;&nbsp;</span> <input
-					id="endStatsDay" name="endStatsDay" size="10" value="${preDay}" />
+				<input id="beginStatsDay" name="beginStatsDay" size="12"
+					value="${preDayBeginHour}" /> <span class="label">-&nbsp;&nbsp;</span> <input
+					id="endStatsDay" name="endStatsDay" size="12" value="${preDayEndHour}" />
 			</form>
 		</div>
 		<table id="grid"></table>
@@ -69,33 +69,34 @@ html, body {
 				dataSource : WEB_ROOT + '/base/building.do',
 				optionField : 'text',
 				editable : false,
-				lazyLoad : true,
+				value : 'T3C',
+				autofilter : true,
 				filterStrategy : 'first',
 				listMaxHeight : 100
 			});
-			$('#driverNo').omCombo({
-				dataSource : WEB_ROOT + '/base/driver.do',
+			$('#vehicleNo').omCombo({
+				dataSource : WEB_ROOT + '/base/vehicle.do',
 				optionField : 'text',
 				editable : true,
-				lazyLoad : true,
+				value : 'ALL',
 				autofilter : true,
 				filterStrategy : 'first',
 				listMaxHeight : 100
 			});
 			$('#beginStatsDay').omCalendar({
-				dateFormat : "yy-mm-dd",
+				dateFormat : "yy-mm-dd H",
 				date : preDate,
 				maxDate : currDate,
 				editable : false,
-				showTime : false
+				showTime : true
 			});
 			$('#beginStatsDay').omCalendar('setDate', preDate);
 			$('#endStatsDay').omCalendar({
-				dateFormat : "yy-mm-dd",
+				dateFormat : "yy-mm-dd H",
 				date : preDate,
 				maxDate : currDate,
 				editable : false,
-				showTime : false
+				showTime : true
 			});
 			$('#endStatsDay').omCalendar('setDate', preDate);
 
@@ -113,8 +114,8 @@ html, body {
 				colModel : [ {
 					header : "统计日期",
 					name : 'statsHour',
-					//width : 100,
-					autoextend : true,
+					width : 100,
+					//autoextend : true,
 					align : 'left'
 
 				}, {

@@ -69,15 +69,16 @@ html, body {
 				dataSource : WEB_ROOT + '/base/building.do',
 				optionField : 'text',
 				editable : false,
-				lazyLoad : true,
+				value : 'T3C',
+				autofilter : true,
 				filterStrategy : 'first',
 				listMaxHeight : 100
 			});
-			$('#driverNo').omCombo({
-				dataSource : WEB_ROOT + '/base/driver.do',
+			$('#vehicleNo').omCombo({
+				dataSource : WEB_ROOT + '/base/vehicle.do',
 				optionField : 'text',
 				editable : true,
-				lazyLoad : true,
+				value : 'ALL',
 				autofilter : true,
 				filterStrategy : 'first',
 				listMaxHeight : 100

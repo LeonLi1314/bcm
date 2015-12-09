@@ -1,36 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rtmap.traffic.bcm.dao.ISysUserRoleDao" >
-  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysUserRoleKey" >
-    <id column="user_cd" property="userCd" jdbcType="VARCHAR" />
-    <id column="role_cd" property="roleCd" jdbcType="VARCHAR" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysUserRoleKey" >
-    delete from sys_user_role
-    where user_cd = #{userCd,jdbcType=VARCHAR}
-      and role_cd = #{roleCd,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysUserRoleKey" >
-    insert into sys_user_role (user_cd, role_cd)
-    values (#{userCd,jdbcType=VARCHAR}, #{roleCd,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysUserRoleKey" >
-    insert into sys_user_role
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userCd != null" >
-        user_cd,
-      </if>
-      <if test="roleCd != null" >
-        role_cd,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userCd != null" >
-        #{userCd,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCd != null" >
-        #{roleCd,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysUserRoleDao">
+	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysUserRole">
+		<id column="user_cd" jdbcType="VARCHAR" property="userCd" />
+		<id column="role_cd" jdbcType="VARCHAR" property="roleCd" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_cd, role_cd
+	</sql>
+	<select id="selectRoleCdsByUserCd" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select role_cd from sys_user_role where user_cd = #{userCd,jdbcType=VARCHAR}
+	</select>
 </mapper>

@@ -1,11 +1,11 @@
 package com.rtmap.traffic.bcm.dao;
 
-import com.rtmap.traffic.bcm.domain.SysRoleResKey;
+import com.rtmap.traffic.bcm.domain.SysRoleRes;
 
 public interface ISysRoleResDao {
-    int deleteByPrimaryKey(SysRoleResKey key);
+    int deleteByPrimaryKey(SysRoleRes key);
 
-    int insert(SysRoleResKey record);
+    int insert(SysRoleRes record);
 
-    int insertSelective(SysRoleResKey record);
+    int insertSelective(SysRoleRes record);
 }

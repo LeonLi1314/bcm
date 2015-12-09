@@ -1,11 +1,7 @@
 package com.rtmap.traffic.bcm.dao;
 
-import com.rtmap.traffic.bcm.domain.SysUserRoleKey;
+import java.util.List;
 
-public interface ISysUserRoleDao {
-    int deleteByPrimaryKey(SysUserRoleKey key);
-
-    int insert(SysUserRoleKey record);
-
-    int insertSelective(SysUserRoleKey record);
+public interface ISysUserRoleDao {    
+    List<String> selectRoleCdsByUserCd(String userCd);
 }

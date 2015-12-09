@@ -1,7 +1,5 @@
 package my.dao.pool;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysResDao">
+  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.SysRes">
+    <id column="res_cd" jdbcType="VARCHAR" property="resCd" />
+    <result column="res_name" jdbcType="VARCHAR" property="resName" />
+    <result column="res_expression" jdbcType="VARCHAR" property="resExpression" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    res_cd, res_name, res_expression
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_res
+    where res_cd = #{resCd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_res
+    where res_cd = #{resCd,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.SysRes">
+    insert into sys_res (res_cd, res_name, res_expression
+      )
+    values (#{resCd,jdbcType=VARCHAR}, #{resName,jdbcType=VARCHAR}, #{resExpression,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.SysRes">
+    insert into sys_res
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resCd != null">
+        res_cd,
+      </if>
+      <if test="resName != null">
+        res_name,
+      </if>
+      <if test="resExpression != null">
+        res_expression,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resCd != null">
+        #{resCd,jdbcType=VARCHAR},
+      </if>
+      <if test="resName != null">
+        #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resExpression != null">
+        #{resExpression,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.SysRes">
+    update sys_res
+    <set>
+      <if test="resName != null">
+        res_name = #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resExpression != null">
+        res_expression = #{resExpression,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where res_cd = #{resCd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.SysRes">
+    update sys_res
+    set res_name = #{resName,jdbcType=VARCHAR},
+      res_expression = #{resExpression,jdbcType=VARCHAR}
+    where res_cd = #{resCd,jdbcType=VARCHAR}
+  </update>
+</mapper>

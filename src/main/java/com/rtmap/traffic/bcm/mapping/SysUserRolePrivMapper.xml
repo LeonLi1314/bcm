@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rtmap.traffic.bcm.dao.ISysUserRolePrivDao">
+	<resultMap id="UserMap" type="com.rtmap.traffic.bcm.domain.SysUser">
+		<id column="user_cd" jdbcType="VARCHAR" property="userCd" />
+		<result column="real_name" jdbcType="VARCHAR" property="realName" />
+	</resultMap>
+	<select id="selectPrivCdsByUserCd" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select distinct srp.priv_cd from sys_user_role sur
+		inner join sys_role_priv srp on sur.role_cd = srp.role_cd
+		where sur.user_cd = #{userCd,jdbcType=VARCHAR}
+	</select>
+	<select id="selectSysUsersByRoleCd" parameterType="java.lang.String"
+		resultMap="UserMap">
+		select su.user_cd,su.real_name from sys_user_role sur
+		inner join sys_user su on sur.user_cd = su.user_cd
+		where sur.role_cd =#{roleCd,jdbcType=VARCHAR}
+		order by su.user_cd
+	</select>
+</mapper>

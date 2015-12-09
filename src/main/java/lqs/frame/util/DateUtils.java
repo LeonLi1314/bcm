@@ -32,7 +32,7 @@ public class DateUtils {
 	 * 
 	 */
 	public static boolean isWeekend(String date) {
-		return isWeekend(date, "yyyy-MM-dd");
+		return isWeekend(date, DatePatterns.POPULAR_DATE);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class DateUtils {
 		List<String> dateList = new ArrayList<String>();
 		try {
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat(DatePatterns.POPULAR_DATE);
 			Date begin = sdf.parse(beginDate);
 			Date end = sdf.parse(endDate);
 			if (begin.after(end)) { // 开始时间不能大于结束时间
@@ -164,7 +164,7 @@ public class DateUtils {
 	 * @return 日期字符串
 	 */
 	public static String formatDate(Date date) {
-		return formatDate(date, "yyyy-MM-dd");
+		return formatDate(date, DatePatterns.POPULAR_DATE);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class DateUtils {
 	 * @return 日期类型的值
 	 */
 	public static Date parseDate(String strDate) {
-		return parseDate(strDate, "yyyy-MM-dd");
+		return parseDate(strDate, DatePatterns.POPULAR_DATE);
 	}
 
 	/**
@@ -304,13 +304,13 @@ public class DateUtils {
 	}
 
 	/**
-	 * 增加指定天数（默认按"yyyy-MM-dd"日期格式转化）
+	 * 增加指定天数，可以跨月
 	 * 
 	 * @param strDate
 	 *            日期字符串
 	 * @param days
 	 *            指定天数
-	 * @return 增加后的日期字符串（"yyyy-MM-dd"格式）
+	 * @return 增加后的日期
 	 */
 	public static Date addDay(Date date, int days) {
 		Calendar cal = Calendar.getInstance();
@@ -320,10 +320,10 @@ public class DateUtils {
 	}
 
 	/**
-	 * 增加指定天数（默认按"yyyy-MM-dd"日期格式转化）
+	 * 增加指定天数（默认按"yyyy-MM-dd"日期格式转化），可以跨月
 	 * 
 	 * @param strDate
-	 *            日期字符串
+	 *            指定的日期字符串
 	 * @param days
 	 *            指定天数
 	 * @return 增加后的日期字符串（"yyyy-MM-dd"格式）
@@ -336,10 +336,26 @@ public class DateUtils {
 	}
 
 	/**
-	 * 指定日期增加小时（默认按"yyyy-MM-dd"日期格式转化）
+	 * 增加指定小时数，可以超过当天
+	 * 
+	 * @param date
+	 *            指定日期
+	 * @param hours
+	 *            增加的小时数
+	 * @return 增加后的日期
+	 */
+	public static Date addHour(Date date, int hours) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.HOUR, hours);
+		return cal.getTime();
+	}
+
+	/**
+	 * 指定日期增加小时（默认按"yyyy-MM-dd"日期格式转化），可以超过当天
 	 * 
 	 * @param strDate
-	 *            指定的日期
+	 *            指定的日期字符串
 	 * @param hours
 	 *            增加的小时数
 	 * @return 增加小时后的日期字符串（"yyyy-MM-dd HH:mm:ss"日期格式）

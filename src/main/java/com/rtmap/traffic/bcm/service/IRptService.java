@@ -31,5 +31,4 @@ public interface IRptService {
 	List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(RptVehicleCond cond);
 
 	List<RptVehicleTripHour> getRptVehicleTripHourByCond(RptVehicleCond cond);
-
 }

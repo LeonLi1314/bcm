@@ -1,6 +1,6 @@
 package com.rtmap.traffic.bcm.domain;
 
-public class SysRolePrivKey {
+public class SysRolePriv {
     private String roleCd;
 
     private String privCd;

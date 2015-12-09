@@ -299,7 +299,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	 * @param outdate
 	 * @return
 	 */
-	public static Map getWeekMap(Date indate, Date outdate) {
+	public static Map<String, String> getWeekMap(Date indate, Date outdate) {
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (indate == null) {
 			return map;
@@ -366,10 +366,10 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		Date date2 = parseDate(strdate2);
 		int year1 = getYear(date1);
 		int month1 = getMonth(date1);
-		int day1 = getDay(date1);
+		//int day1 = getDay(date1);
 		int year2 = getYear(date2);
 		int month2 = getMonth(date2);
-		int day2 = getDay(date2);
+		//int day2 = getDay(date2);
 		if (year1 != year2) {
 			dateList.add(formatDate(date2));
 		} else if (year1 == year2 && month1 != month2) {

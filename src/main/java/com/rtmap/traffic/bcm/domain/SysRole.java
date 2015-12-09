@@ -1,17 +1,9 @@
 package com.rtmap.traffic.bcm.domain;
 
-public class SysUserRoleKey {
-    private String userCd;
-
+public class SysRole {
     private String roleCd;
 
-    public String getUserCd() {
-        return userCd;
-    }
-
-    public void setUserCd(String userCd) {
-        this.userCd = userCd == null ? null : userCd.trim();
-    }
+    private String roleName;
 
     public String getRoleCd() {
         return roleCd;
@@ -19,5 +11,13 @@ public class SysUserRoleKey {
 
     public void setRoleCd(String roleCd) {
         this.roleCd = roleCd == null ? null : roleCd.trim();
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 }
