@@ -187,7 +187,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByCond" resultMap="BaseResultMap"
-		parameterType="com.rtmap.traffic.bcm.domain.RptDriverCond">
+		parameterType="com.rtmap.traffic.bcm.domain.DriverCond">
 		select
 		<include refid="Base_Column_List" />
 		from rpt_driver_hour

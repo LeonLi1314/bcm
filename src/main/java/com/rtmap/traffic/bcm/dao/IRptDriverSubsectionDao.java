@@ -2,7 +2,7 @@ package com.rtmap.traffic.bcm.dao;
 
 import java.util.List;
 
-import com.rtmap.traffic.bcm.domain.RptDriverCond;
+import com.rtmap.traffic.bcm.domain.DriverCond;
 import com.rtmap.traffic.bcm.domain.RptDriverSubsection;
 
 public interface IRptDriverSubsectionDao {
@@ -18,5 +18,5 @@ public interface IRptDriverSubsectionDao {
 
     int updateByPrimaryKey(RptDriverSubsection record);
     
-    List<RptDriverSubsection> selectByCond(RptDriverCond cond);
+    List<RptDriverSubsection> selectByCond(DriverCond cond);
 }

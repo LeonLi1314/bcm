@@ -151,7 +151,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByCond" resultMap="BaseResultMap"
-		parameterType="com.rtmap.traffic.bcm.domain.RptPassCond">
+		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
 		select
 		<include refid="Base_Column_List" />
 		from rpt_pass_day

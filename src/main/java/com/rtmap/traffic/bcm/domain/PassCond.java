@@ -2,14 +2,12 @@ package com.rtmap.traffic.bcm.domain;
 
 import java.util.Date;
 
-public class RptVehicleCond {
+public class PassCond {
 	private Date beginStatsDay;
 
 	private Date endStatsDay;
 
 	private String buildingNo;
-
-	private String vehicleNo;
 
 	public Date getBeginStatsDay() {
 		return beginStatsDay;
@@ -33,13 +31,5 @@ public class RptVehicleCond {
 
 	public void setBuildingNo(String buildingNo) {
 		this.buildingNo = buildingNo == null ? null : buildingNo.trim();
-	}
-
-	public String getVehicleNo() {
-		return vehicleNo;
-	}
-
-	public void setVehicleNo(String vehicleNo) {
-		this.vehicleNo = vehicleNo == null ? null : vehicleNo.trim();
 	}
 }

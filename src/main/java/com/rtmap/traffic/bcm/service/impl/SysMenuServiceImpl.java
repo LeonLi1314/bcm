@@ -13,7 +13,7 @@ import com.rtmap.traffic.bcm.dao.ISysMenuDao;
 import com.rtmap.traffic.bcm.domain.SysMenu;
 import com.rtmap.traffic.bcm.service.ISysMenuService;
 
-import operamasks.ui.model.OmMenu;
+import operamasks.ui.model.DataConvertor;
 import operamasks.ui.model.OmMenuModel;
 
 @Service
@@ -24,7 +24,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
 	@Override
 	public List<OmMenuModel> getAllEnabledOmMenus() {
 		List<SysMenu> source = getAllEnabled();
-		return OmMenu.convertToOmMenuModel(source);
+		return DataConvertor.convertToOmMenuModel(source);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
 				list.add(sysMenu);
 		}
 
-		return OmMenu.convertToOmMenuModel(list);
+		return DataConvertor.convertToOmMenuModel(list);
 	}
 
 	private List<SysMenu> getAllEnabled() {

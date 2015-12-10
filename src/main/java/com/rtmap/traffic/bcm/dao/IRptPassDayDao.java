@@ -2,7 +2,7 @@ package com.rtmap.traffic.bcm.dao;
 
 import java.util.List;
 
-import com.rtmap.traffic.bcm.domain.RptPassCond;
+import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 
 public interface IRptPassDayDao {
@@ -18,5 +18,5 @@ public interface IRptPassDayDao {
 
     int updateByPrimaryKey(RptPassDay record);
 
-    List<RptPassDay> selectByCond(RptPassCond cond);
+    List<RptPassDay> selectByCond(PassCond cond);
 }

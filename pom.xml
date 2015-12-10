@@ -11,6 +11,13 @@
 		<servlet.version>3.1.0</servlet.version>
 		<jstl.version>1.2</jstl.version>
 
+		<!-- 解决maven编译打包时输出乱码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<file.encoding>UTF-8</file.encoding>
+		<java.version>1.8</java.version>
+
 		<!-- maven 插件 -->
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
 		<maven.resources.plugin.version>2.7</maven.resources.plugin.version>
@@ -18,13 +25,13 @@
 		<maven.surefire.plugin.version>2.18</maven.surefire.plugin.version>
 		<springext-plugin-version>1.2</springext-plugin-version>
 
-		<!-- common -->
-		<file.encoding>UTF-8</file.encoding>
-		<java.version>1.8</java.version>
-
 		<!-- spring -->
 		<aopalliance.version>1.0</aopalliance.version>
 		<spring.version>4.1.7.RELEASE</spring.version>
+		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+
+		<!-- shiro安全框架 -->
+		<org.apache.shiro.version>1.2.4</org.apache.shiro.version>
 
 		<!-- 数据库 -->
 		<druid.version>1.0.16</druid.version>
@@ -140,13 +147,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
+			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 			<scope>compile</scope>
 		</dependency>
@@ -173,6 +180,22 @@
 			<artifactId>spring-oxm</artifactId>
 			<version>${spring.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 		<!-- 导入Mysql数据库链接jar包 -->
@@ -261,6 +284,29 @@
 			<artifactId>ehcache</artifactId>
 			<version>${ehcache.version}</version>
 		</dependency>
+
+		<!-- shiro安全框架 -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${org.apache.shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>${org.apache.shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>${org.apache.shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${org.apache.shiro.version}</version>
+		</dependency>
+
 		<!-- 映入JSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -315,34 +361,34 @@
 		<finalName>bcm</finalName>
 		<!-- pluginManagement主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致，当有父子项目的时候，父项目中可以利用pluginManagement声明子项目中需要用到的插件，之后，当某个或者某几个子项目需要加载该插件的时候，就可以在子项目中plugins节点只配置 
 			groupId 和 artifactId就可以完成插件的引用。 -->
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>some-group-id</groupId>
-										<artifactId>some-artifact-id</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
-										<goals>
-											<goal>some-goal</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<!-- <pluginManagement> -->
+		<!-- <plugins> -->
+		<!-- <plugin> -->
+		<!-- <groupId>org.eclipse.m2e</groupId> -->
+		<!-- <artifactId>lifecycle-mapping</artifactId> -->
+		<!-- <version>1.0.0</version> -->
+		<!-- <configuration> -->
+		<!-- <lifecycleMappingMetadata> -->
+		<!-- <pluginExecutions> -->
+		<!-- <pluginExecution> -->
+		<!-- <pluginExecutionFilter> -->
+		<!-- <groupId>some-group-id</groupId> -->
+		<!-- <artifactId>some-artifact-id</artifactId> -->
+		<!-- <versionRange>[1.0.0,)</versionRange> -->
+		<!-- <goals> -->
+		<!-- <goal>some-goal</goal> -->
+		<!-- </goals> -->
+		<!-- </pluginExecutionFilter> -->
+		<!-- <action> -->
+		<!-- <ignore /> -->
+		<!-- </action> -->
+		<!-- </pluginExecution> -->
+		<!-- </pluginExecutions> -->
+		<!-- </lifecycleMappingMetadata> -->
+		<!-- </configuration> -->
+		<!-- </plugin> -->
+		<!-- </plugins> -->
+		<!-- </pluginManagement> -->
 		<plugins>
 			<!-- 用来编译Java代码 -->
 			<plugin>
@@ -356,6 +402,7 @@
 					<compilerArgument> -XDignore.symbol.file</compilerArgument>
 				</configuration>
 			</plugin>
+			
 			<!-- 用来处理资源文件.在资源文件中使用${propertyName}形式的Maven属性，然后配置maven-resources-plugin开启对资源文件的过滤，之后就可以针对不同环境通过命令行或者Profile传入属性的值，以实现更为灵活的构建。 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -365,13 +412,14 @@
 					<encoding>${file.encoding}</encoding>
 				</configuration>
 			</plugin>
+			
 			<!-- 用来生成文档包 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${maven.javadoc.plugin.version}</version>
 				<configuration>
-					<charset>UTF16</charset>
+					<charset>${file.encoding}</charset>
 					<aggregate>true</aggregate>
 				</configuration>
 				<executions>
@@ -383,18 +431,21 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<!-- 扩展框架的功能，指定xml的schema的位置 -->
-			<plugin>
-				<groupId>com.alibaba.citrus.tool</groupId>
-				<artifactId>springext-maven-plugin</artifactId>
-				<version>${springext-plugin-version}</version>
-			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>com.alibaba.citrus.tool</groupId> -->
+			<!-- <artifactId>springext-maven-plugin</artifactId> -->
+			<!-- <version>${springext-plugin-version}</version> -->
+			<!-- </plugin> -->
+			
 			<!-- maven-surefire-plugin 执行测试用例，maven通过surefire插件并fork一个子进程来执行用例的 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-surefire-plugin</artifactId> -->
+			<!-- <version>${maven.surefire.plugin.version}</version> -->
+			<!-- </plugin> -->
+			
 			<!-- 其他插件 -->
 			<!-- maven-assembly-plugin -->
 			<!-- maven-clean-plugin 在打包时，需要清空一些指定的目录 -->

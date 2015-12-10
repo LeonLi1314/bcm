@@ -14,16 +14,16 @@ import com.rtmap.traffic.bcm.dao.IRptPassDistributeDao;
 import com.rtmap.traffic.bcm.dao.IRptVehicleChargeDayDao;
 import com.rtmap.traffic.bcm.dao.IRptVehicleChargeSubDao;
 import com.rtmap.traffic.bcm.dao.IRptVehicleTripHourDao;
-import com.rtmap.traffic.bcm.domain.RptDriverCond;
+import com.rtmap.traffic.bcm.domain.DriverCond;
 import com.rtmap.traffic.bcm.domain.RptDriverDay;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 import com.rtmap.traffic.bcm.domain.RptDriverSubsection;
-import com.rtmap.traffic.bcm.domain.RptPassCond;
+import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 import com.rtmap.traffic.bcm.domain.RptPassDistribute;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeDay;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeSub;
-import com.rtmap.traffic.bcm.domain.RptVehicleCond;
+import com.rtmap.traffic.bcm.domain.VehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
 import com.rtmap.traffic.bcm.service.IRptService;
 
@@ -48,43 +48,43 @@ public class RptServiceImp implements IRptService{
 	IRptVehicleTripHourDao vehicleHourDao;
 
 	@Override
-	public List<RptDriverSubsection> getRptDriverSubByCond(RptDriverCond cond) {
+	public List<RptDriverSubsection> getRptDriverSubByCond(DriverCond cond) {
 		List<RptDriverSubsection> list = driverSubDao.selectByCond(cond);
 		return list;
 	}
 
 	@Override
-	public List<RptDriverDay> getRptDriverDayByCond(RptDriverCond cond) {
+	public List<RptDriverDay> getRptDriverDayByCond(DriverCond cond) {
 		return driverDayDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptDriverHour> getRptDriverHourByCond(RptDriverCond cond) {
+	public List<RptDriverHour> getRptDriverHourByCond(DriverCond cond) {
 		return driverHourDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptPassDay> getRptPassDayByCond(RptPassCond cond) {
+	public List<RptPassDay> getRptPassDayByCond(PassCond cond) {
 		return passDayDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptPassDistribute> getRptPassDistributeByCond(RptPassCond cond) {
+	public List<RptPassDistribute> getRptPassDistributeByCond(PassCond cond) {
 		return passDistributeDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptVehicleChargeDay> getRptVehicleChargeDayByCond(RptVehicleCond cond) {
+	public List<RptVehicleChargeDay> getRptVehicleChargeDayByCond(VehicleCond cond) {
 		return vehicleDayDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(RptVehicleCond cond) {
+	public List<RptVehicleChargeSub> getRptVehicleChargeSubByCond(VehicleCond cond) {
 		return vehicleSubDao.selectByCond(cond);
 	}
 
 	@Override
-	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(RptVehicleCond cond) {
+	public List<RptVehicleTripHour> getRptVehicleTripHourByCond(VehicleCond cond) {
 		return vehicleHourDao.selectByCond(cond);
 	}
 }

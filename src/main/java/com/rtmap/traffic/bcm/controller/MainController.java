@@ -74,7 +74,7 @@ public class MainController extends BaseController {
 		return "desktop";
 	}
 
-	@RequestMapping("/dologin")
+	@RequestMapping("/main")
 	public String dologin(HttpServletRequest request, final Model m) {
 		String username = param("username", "");
 		String password = param("password", "");
@@ -88,7 +88,6 @@ public class MainController extends BaseController {
 			return "login";
 		} else {
 			saveUserInCookie(new IUser() {
-
 				@Override
 				public String getUserXm() {
 					return sysUser.getRealName();
@@ -116,7 +115,7 @@ public class MainController extends BaseController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/modifypassword")
+	@RequestMapping("/modifyPwd.do")
 	public AjaxMsg modifypassword(Model m) {
 		return run(new CallBack() {
 

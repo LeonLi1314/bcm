@@ -127,7 +127,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByCond" resultMap="BaseResultMap"
-		parameterType="com.rtmap.traffic.bcm.domain.RptVehicleCond">
+		parameterType="com.rtmap.traffic.bcm.domain.VehicleCond">
 		select
 		<include refid="Base_Column_List" />
 		from rpt_vehicle_charge_day

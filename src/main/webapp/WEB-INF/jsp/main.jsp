@@ -65,7 +65,7 @@
 				},
 				newpassword2 : {
 					required : '新密码',
-					equalTo : '两次输入的密码应该一致'
+					equalTo : '两次输入的不一致'
 				}
 			}
 		});
@@ -74,7 +74,7 @@
 			if (validator.form()) {
 				var submitData = $("#myform").serializeObject();
 				console.log(submitData);
-				var url = "${pageContext.request.contextPath}/modifypassword";
+				var url = "${pageContext.request.contextPath}/modifyPwd.do";
 				$.post(url, submitData, function(data) {
 					if (!data.ok) {
 						$.omMessageTip.show({

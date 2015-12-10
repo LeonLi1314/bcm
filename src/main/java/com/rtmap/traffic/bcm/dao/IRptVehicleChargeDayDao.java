@@ -3,7 +3,7 @@ package com.rtmap.traffic.bcm.dao;
 import java.util.List;
 
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeDay;
-import com.rtmap.traffic.bcm.domain.RptVehicleCond;
+import com.rtmap.traffic.bcm.domain.VehicleCond;
 
 public interface IRptVehicleChargeDayDao {
     int deleteByPrimaryKey(Integer id);
@@ -18,5 +18,5 @@ public interface IRptVehicleChargeDayDao {
 
     int updateByPrimaryKey(RptVehicleChargeDay record);
 
-    List<RptVehicleChargeDay> selectByCond(RptVehicleCond cond);
+    List<RptVehicleChargeDay> selectByCond(VehicleCond cond);
 }

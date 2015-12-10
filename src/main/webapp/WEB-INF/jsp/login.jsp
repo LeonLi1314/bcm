@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- <%@ page import="java.util.*"%> --%>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
@@ -12,21 +12,21 @@
 <META name=GENERATOR content="MSHTML 8.00.7600.16853">
 </HEAD>
 <BODY id=loginFrame>
-	<DIV id=header>
+	<div id=header>
 		<div id="title">
 			<h1>电瓶车管理系统</h1>
 		</div>
 
-	</DIV>
-	<DIV id=loginBox>
-		<DIV id=loginBoxHeader></DIV>
-		<DIV id=loginBoxBody>
+	</div>
+	<div id=loginBox>
+		<div id=loginBoxHeader></div>
+		<div id=loginBoxBody>
 			<UL class=floatLeft>
 				<LI>
 					<H4>请用您的账号登录</H4>
 				</LI>
 				<form id="login" method="post"
-					action="${pageContext.request.contextPath}/dologin.do">
+					action="${pageContext.request.contextPath}/main">
 					<LI>
 						<P>用户名:</P>
 						<INPUT id=username class=textInput maxLength=150 size=30 type=text
@@ -39,21 +39,21 @@
 						target=_blank></A>
 					</LI>
 					<LI class=highlight><INPUT id=loginBtn onclick=this.blur();
-						value=登录 type=submit> <!--   <A id=regBtn href="#" target=_blank>忘记密码？</A> -->
+						value=登录 type=submit> 
 					</LI>
 					<LI></LI>
 				</form>
 			</UL>
 
-			<DIV class=floatRight>
+			<div class=floatRight>
 				推荐使用ie9以上的浏览器</br>
-			</DIV>
+			</div>
 
 			<BR clear=all>
-		</DIV>
-		<DIV id=loginBoxFooter></DIV>
-	</DIV>
-	<DIV id=footer>@CopyRight 北京智慧图科技有限责任公司</DIV>
+		</div>
+		<div id=loginBoxFooter></div>
+	</div>
+	<div id=footer>@CopyRight 北京智慧图科技有限责任公司</div>
 
 </BODY>
 </HTML>
