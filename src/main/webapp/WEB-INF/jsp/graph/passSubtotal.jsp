@@ -13,6 +13,11 @@ html, body {
 	padding: 0;
 	margin: 0;
 }
+
+#graph {
+	width: 50%;
+	height: 80%;
+}
 </style>
 </head>
 <body>
@@ -27,8 +32,12 @@ html, body {
 					id="endStatsDay" name="endStatsDay" size="10" value="${preDay}" />
 			</form>
 		</div>
-		<table id="grid"></table>
+		<div id="graph"></div>
 	</div>
+	<!-- 	<script src="../js/jquery-1.7.2.min.js"></script> -->
+	<script src="../highcharts/highcharts.js"></script>
+	<!--支持3D图表-->
+	<script src="../highcharts/highcharts-3d.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
@@ -99,15 +108,19 @@ html, body {
 
 			function btnQuery_onClick() {
 				$.ajax({
-					url : WEB_ROOT + "/graph/getTotalDriverWork.do",
+					url : WEB_ROOT + "/graph/getpassCategory.do",
 					async : false,
 					data : $('#queryform').serializeObject(),
 					success : function(rst) {
-						alert(JSON.stringify(rst));
+						btnQuerySuccess(rst);
 					},
 					error : function(error) {
 					}
 				});
+			}
+
+			function btnQuerySuccess(rst) {
+				
 			}
 		});
 	</script>

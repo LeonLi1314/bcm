@@ -84,15 +84,21 @@ html, body {
 				listMaxHeight : 100
 			});
 			$('#beginStatsDay').omCalendar('setDate', preDate);
+			$('#beginStatsDay').omCalendar({
+				dateFormat : "yy-mm-dd H",
+				date : preDate,
+				maxDate : currDate,
+				editable : true,
+				showTime : true
+			});
+			$('#endStatsDay').omCalendar('setDate', preDate);
 			$('#endStatsDay').omCalendar({
 				dateFormat : "yy-mm-dd H",
 				date : preDate,
 				maxDate : currDate,
-				editable : false,
+				editable : true,
 				showTime : true
 			});
-			$('#endStatsDay').omCalendar('setDate', preDate);
-
 			$('#grid').omGrid({
 				dataSource : null,
 				limit : 0,

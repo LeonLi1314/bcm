@@ -1,160 +1,200 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rtmap.traffic.bcm.dao.IRptPassDayDao" >
-  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.RptPassDay" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="stats_day" property="statsDay" jdbcType="DATE" />
-    <result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
-    <result column="pass_count" property="passCount" jdbcType="INTEGER" />
-    <result column="scan_pass_count" property="scanPassCount" jdbcType="INTEGER" />
-    <result column="photo_pass_count" property="photoPassCount" jdbcType="INTEGER" />
-    <result column="manual_add_pass_count" property="manualAddPassCount" jdbcType="INTEGER" />
-    <result column="scan_hurried_pass_count" property="scanHurriedPassCount" jdbcType="INTEGER" />
-    <result column="scan_hurried_rate" property="scanHurriedRate" jdbcType="DOUBLE" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, stats_day, building_no, pass_count, scan_pass_count, photo_pass_count, manual_add_pass_count, 
-    scan_hurried_pass_count, scan_hurried_rate, create_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from rpt_pass_day
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from rpt_pass_day
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay" >
-    insert into rpt_pass_day (id, stats_day, building_no, 
-      pass_count, scan_pass_count, photo_pass_count, 
-      manual_add_pass_count, scan_hurried_pass_count, 
-      scan_hurried_rate, create_time)
-    values (#{id,jdbcType=INTEGER}, #{statsDay,jdbcType=DATE}, #{buildingNo,jdbcType=VARCHAR}, 
-      #{passCount,jdbcType=INTEGER}, #{scanPassCount,jdbcType=INTEGER}, #{photoPassCount,jdbcType=INTEGER}, 
-      #{manualAddPassCount,jdbcType=INTEGER}, #{scanHurriedPassCount,jdbcType=INTEGER}, 
-      #{scanHurriedRate,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay" >
-    insert into rpt_pass_day
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="statsDay != null" >
-        stats_day,
-      </if>
-      <if test="buildingNo != null" >
-        building_no,
-      </if>
-      <if test="passCount != null" >
-        pass_count,
-      </if>
-      <if test="scanPassCount != null" >
-        scan_pass_count,
-      </if>
-      <if test="photoPassCount != null" >
-        photo_pass_count,
-      </if>
-      <if test="manualAddPassCount != null" >
-        manual_add_pass_count,
-      </if>
-      <if test="scanHurriedPassCount != null" >
-        scan_hurried_pass_count,
-      </if>
-      <if test="scanHurriedRate != null" >
-        scan_hurried_rate,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="statsDay != null" >
-        #{statsDay,jdbcType=DATE},
-      </if>
-      <if test="buildingNo != null" >
-        #{buildingNo,jdbcType=VARCHAR},
-      </if>
-      <if test="passCount != null" >
-        #{passCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanPassCount != null" >
-        #{scanPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="photoPassCount != null" >
-        #{photoPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="manualAddPassCount != null" >
-        #{manualAddPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanHurriedPassCount != null" >
-        #{scanHurriedPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanHurriedRate != null" >
-        #{scanHurriedRate,jdbcType=DOUBLE},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay" >
-    update rpt_pass_day
-    <set >
-      <if test="statsDay != null" >
-        stats_day = #{statsDay,jdbcType=DATE},
-      </if>
-      <if test="buildingNo != null" >
-        building_no = #{buildingNo,jdbcType=VARCHAR},
-      </if>
-      <if test="passCount != null" >
-        pass_count = #{passCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanPassCount != null" >
-        scan_pass_count = #{scanPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="photoPassCount != null" >
-        photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="manualAddPassCount != null" >
-        manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanHurriedPassCount != null" >
-        scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
-      </if>
-      <if test="scanHurriedRate != null" >
-        scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay" >
-    update rpt_pass_day
-    set stats_day = #{statsDay,jdbcType=DATE},
-      building_no = #{buildingNo,jdbcType=VARCHAR},
-      pass_count = #{passCount,jdbcType=INTEGER},
-      scan_pass_count = #{scanPassCount,jdbcType=INTEGER},
-      photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
-      manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
-      scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
-      scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByCond" resultMap="BaseResultMap"
+<mapper namespace="com.rtmap.traffic.bcm.dao.IRptPassDayDao">
+	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.RptPassDay">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="stats_day" property="statsDay" jdbcType="DATE" />
+		<result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
+		<result column="pass_count" property="passCount" jdbcType="INTEGER" />
+		<result column="scan_pass_count" property="scanPassCount"
+			jdbcType="INTEGER" />
+		<result column="photo_pass_count" property="photoPassCount"
+			jdbcType="INTEGER" />
+		<result column="manual_add_pass_count" property="manualAddPassCount"
+			jdbcType="INTEGER" />
+		<result column="scan_hurried_pass_count" property="scanHurriedPassCount"
+			jdbcType="INTEGER" />
+		<result column="scan_hurried_rate" property="scanHurriedRate"
+			jdbcType="DOUBLE" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, stats_day, building_no, pass_count, scan_pass_count,
+		photo_pass_count, manual_add_pass_count,
+		scan_hurried_pass_count, scan_hurried_rate, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from rpt_pass_day
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from rpt_pass_day
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay">
+		insert into rpt_pass_day (id, stats_day, building_no,
+		pass_count, scan_pass_count, photo_pass_count,
+		manual_add_pass_count, scan_hurried_pass_count,
+		scan_hurried_rate, create_time)
+		values (#{id,jdbcType=INTEGER}, #{statsDay,jdbcType=DATE},
+		#{buildingNo,jdbcType=VARCHAR},
+		#{passCount,jdbcType=INTEGER}, #{scanPassCount,jdbcType=INTEGER},
+		#{photoPassCount,jdbcType=INTEGER},
+		#{manualAddPassCount,jdbcType=INTEGER},
+		#{scanHurriedPassCount,jdbcType=INTEGER},
+		#{scanHurriedRate,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay">
+		insert into rpt_pass_day
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="statsDay != null">
+				stats_day,
+			</if>
+			<if test="buildingNo != null">
+				building_no,
+			</if>
+			<if test="passCount != null">
+				pass_count,
+			</if>
+			<if test="scanPassCount != null">
+				scan_pass_count,
+			</if>
+			<if test="photoPassCount != null">
+				photo_pass_count,
+			</if>
+			<if test="manualAddPassCount != null">
+				manual_add_pass_count,
+			</if>
+			<if test="scanHurriedPassCount != null">
+				scan_hurried_pass_count,
+			</if>
+			<if test="scanHurriedRate != null">
+				scan_hurried_rate,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="statsDay != null">
+				#{statsDay,jdbcType=DATE},
+			</if>
+			<if test="buildingNo != null">
+				#{buildingNo,jdbcType=VARCHAR},
+			</if>
+			<if test="passCount != null">
+				#{passCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanPassCount != null">
+				#{scanPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="photoPassCount != null">
+				#{photoPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="manualAddPassCount != null">
+				#{manualAddPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanHurriedPassCount != null">
+				#{scanHurriedPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanHurriedRate != null">
+				#{scanHurriedRate,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay">
+		update rpt_pass_day
+		<set>
+			<if test="statsDay != null">
+				stats_day = #{statsDay,jdbcType=DATE},
+			</if>
+			<if test="buildingNo != null">
+				building_no = #{buildingNo,jdbcType=VARCHAR},
+			</if>
+			<if test="passCount != null">
+				pass_count = #{passCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanPassCount != null">
+				scan_pass_count = #{scanPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="photoPassCount != null">
+				photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="manualAddPassCount != null">
+				manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanHurriedPassCount != null">
+				scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
+			</if>
+			<if test="scanHurriedRate != null">
+				scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.RptPassDay">
+		update rpt_pass_day
+		set stats_day = #{statsDay,jdbcType=DATE},
+		building_no = #{buildingNo,jdbcType=VARCHAR},
+		pass_count = #{passCount,jdbcType=INTEGER},
+		scan_pass_count = #{scanPassCount,jdbcType=INTEGER},
+		photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
+		manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
+		scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
+		scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByCond" resultMap="BaseResultMap"
 		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
 		select
 		<include refid="Base_Column_List" />
 		from rpt_pass_day
+		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
+		<if test="buildingNo != null">
+			and building_no = #{buildingNo,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<resultMap id="DimensionAnalyzeMap"
+		type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="value" property="value" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectPassFlowVolume" resultMap="DimensionAnalyzeMap"
+		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
+		select stats_day as 'name',sum(pass_count) as 'value'
+		from
+		rpt_pass_day
+		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
+		<if test="buildingNo != null">
+			and building_no = #{buildingNo,jdbcType=VARCHAR}
+		</if>
+		group by stats_day
+	</select>
+	<select id="selectPassSubtotal" resultMap="BaseResultMap"
+		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
+		select sum(pass_count) as pass_count,sum(scan_pass_count) as
+		scan_pass_count
+		,sum(photo_pass_count) as
+		photo_pass_count,sum(manual_add_pass_count) as manual_add_pass_count
+		,sum(scan_hurried_pass_count) as scan_hurried_pass_count
+		from
+		rpt_pass_day
 		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}

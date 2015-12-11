@@ -70,14 +70,6 @@ public class BaseController implements WebContext {
 		return context.getLoginUer();
 	}
 
-	/**
-	 * 保存登录信息
-	 * 
-	 * @param req
-	 * @param res
-	 * @param user
-	 * @param save
-	 */
 	public void saveUserInCookie(IUser user, boolean save) {
 		RequestContext context = RequestContext.get();
 		if (context != null) {
@@ -144,34 +136,14 @@ public class BaseController implements WebContext {
 		RequestUtils.setCookie(getRequest(), getResponse(), name, value, max_age, all_sub_domain);
 	}
 
-	/**
-	 * 加密
-	 * 
-	 * @param value
-	 * @return
-	 * @throws Exception
-	 */
 	public String encrypt(String value) {
 		return RequestContext.encrypt(value);
 	}
 
-	/**
-	 * 解密
-	 * 
-	 * @param value
-	 * @return
-	 * @throws Exception
-	 */
 	public static String decrypt(String value) {
 		return RequestContext.decrypt(value);
 	}
 
-	/**
-	 * 从cookie中读取保存的用户信息
-	 * 
-	 * @param req
-	 * @return
-	 */
 	public IUser getUserFromCookie() {
 		return getLoginUer();
 	}
@@ -334,17 +306,11 @@ public class BaseController implements WebContext {
 		// binder.registerCustomEditor(Date.class, propertyEditor);
 	}
 
-	/**
-	 * @return now time yyyy-MM-dd HH:mm:ss
-	 */
 	protected String getDateTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(new Date());
 	}
 
-	/**
-	 * @return now date yyyy-MM-dd
-	 */
 	protected String getDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(new Date());
@@ -409,12 +375,6 @@ public class BaseController implements WebContext {
 		RequestContext.end();
 	}
 
-	/**
-	 * 模板方法，执行成功自动提交，执行失败自动回滚
-	 * 
-	 * @param callbak
-	 * @return
-	 */
 	protected AjaxMsg run(CallBack callbak) {
 		AjaxMsg msg = null;
 		try {
@@ -440,7 +400,6 @@ public class BaseController implements WebContext {
 		public AjaxMsg call() throws Exception;
 	}
 
-	// 下载一个静态文件
 	protected void download(File file) {
 		RequestContext.get().download(file);
 	}

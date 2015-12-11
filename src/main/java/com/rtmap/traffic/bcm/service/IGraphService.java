@@ -16,13 +16,22 @@ public interface IGraphService {
 	List<DimensionAnalyzeDto> getTotalDriverWork(PassCond cond);
 
 	/**
+	 * 获取每日乘客流量情况
+	 * 
+	 * @param cond
+	 *            查询条件
+	 * @return 乘客流量统计结果
+	 */
+	List<DimensionAnalyzeDto> getPassFlowVolume(PassCond cond);
+
+	/**
 	 * 获取乘客的分类情况
 	 * 
 	 * @param cond
 	 *            查询条件
 	 * @return 乘客分类统计结果
 	 */
-	List<DimensionAnalyzeDto> getPassCategory(PassCond cond);
+	List<DimensionAnalyzeDto> getPassSubtotal(PassCond cond);
 
 	/**
 	 * 获取乘客各时间段数量

@@ -25,10 +25,10 @@ public class GraphController {
 	// mytest 只有12月1号有数据
 	private String preDateStr = "2015-12-01";
 	
-	@RequestMapping("driverWork")
-	public String driverWork(Model model){
+	@RequestMapping("totalDriverWork")
+	public String totalDriverWork(Model model){
 		model.addAttribute("preDay", preDateStr);
-		return "/graph/driverWork";
+		return "/graph/totalDriverWork";
 	}
 	
 	@ResponseBody
@@ -36,6 +36,34 @@ public class GraphController {
 	public List<DimensionAnalyzeDto> getTotalDriverWorkByCond(HttpServletRequest request) {
 		PassCond cond = paramUtils.convertRptPassCond(request);
 		List<DimensionAnalyzeDto> list = graphService.getTotalDriverWork(cond);
+		return list;
+	}
+
+	@RequestMapping("passFlowVolume")
+	public String passFlowVolume(Model model){
+		model.addAttribute("preDay", preDateStr);
+		return "/graph/passFlowVolume";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getPassFlowVolume.do")
+	public List<DimensionAnalyzeDto> getPassFlowVolume(HttpServletRequest request) {
+		PassCond cond = paramUtils.convertRptPassCond(request);
+		List<DimensionAnalyzeDto> list = graphService.getPassFlowVolume(cond);
+		return list;
+	}
+
+	@RequestMapping("passSubtotal")
+	public String passCategory(Model model){
+		model.addAttribute("preDay", preDateStr);
+		return "/graph/passSubtotal";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getPassSubtotal.do")
+	public List<DimensionAnalyzeDto> getPassSubtotal(HttpServletRequest request) {
+		PassCond cond = paramUtils.convertRptPassCond(request);
+		List<DimensionAnalyzeDto> list = graphService.getPassSubtotal(cond);
 		return list;
 	}
 }

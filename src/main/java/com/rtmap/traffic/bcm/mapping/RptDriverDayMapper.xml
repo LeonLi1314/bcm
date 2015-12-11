@@ -289,7 +289,8 @@
 			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
 		</if>
 	</select>
-	<resultMap id="DimensionAnalyzeMap" type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">
+	<resultMap id="DimensionAnalyzeMap"
+		type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="value" property="value" jdbcType="VARCHAR" />
 	</resultMap>
@@ -299,7 +300,9 @@
 		from
 		rpt_driver_day
 		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
-		and building_no = #{buildingNo,jdbcType=VARCHAR}
+		<if test="buildingNo != null">
+			and building_no = #{buildingNo,jdbcType=VARCHAR}
+		</if>
 		group by driver_no
 	</select>
 </mapper>

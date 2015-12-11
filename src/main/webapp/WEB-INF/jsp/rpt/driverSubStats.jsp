@@ -22,8 +22,8 @@ html, body {
 		<div id="search-panel">
 			<form id="queryform">
 				<span class="label">建筑物编号：</span> <input id="buildingNo"
-					name="buildingNo" /> <span class="label">司机编号：</span> <input
-					id="driverNo" name="driverNo" /> <span class="label">车辆编号：</span>
+					name="buildingNo" /><span class="label">司机编号：</span> <input
+					id="driverNo" name="driverNo" /><span class="label">车辆编号：</span>
 				<input id="vehicleNo" name="vehicleNo" /><br> <br> <span
 					class="label">&nbsp;&nbsp;&nbsp;统计日期：</span> <input
 					id="beginStatsDay" name="beginStatsDay" size="10" value="${preDay}" />

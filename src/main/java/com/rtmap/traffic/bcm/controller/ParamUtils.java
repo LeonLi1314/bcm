@@ -118,10 +118,8 @@ public class ParamUtils {
 
 	/**
 	 * 从请求对象中转化车辆报表查询条件对象
-	 * 
-	 * @param request
-	 *            客户端请求对象
-	 * @request.getParameter changeDate 是否转化为日期，并且处理结束日期条件+1天
+	 * @param request 客户端请求对象
+	 * @param changeDate 是否转化为日期，并且处理结束日期条件+1天
 	 * @return 车辆报表查询条件对象
 	 */
 	public VehicleCond convertRptVehicleCond(HttpServletRequest request, boolean changeDate) {
