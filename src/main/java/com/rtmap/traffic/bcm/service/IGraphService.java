@@ -1,6 +1,7 @@
 package com.rtmap.traffic.bcm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
@@ -34,11 +35,11 @@ public interface IGraphService {
 	List<DimensionAnalyzeDto> getPassSubtotal(PassCond cond);
 
 	/**
-	 * 获取乘客各时间段数量
+	 * 获取各司机一段时间内的乘客分类汇总信息
 	 * 
 	 * @param cond
 	 *            查询条件
 	 * @return 各时间段乘客数量
 	 */
-	List<DimensionAnalyzeDto> getPassPeriodCount(PassCond cond);
+	Map<String,List<DimensionAnalyzeDto>> getDriverPassSubtotaSection(PassCond cond);
 }

@@ -2,6 +2,7 @@ package com.rtmap.traffic.bcm.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -65,7 +66,7 @@ public class GraphServiceImpl implements IGraphService {
 	}
 
 	@Override
-	public List<DimensionAnalyzeDto> getPassPeriodCount(PassCond cond) {
+	public Map<String,List<DimensionAnalyzeDto>> getDriverPassSubtotaSection(PassCond cond) {
 		// TODO Auto-generated method stub
 		return null;
 	}

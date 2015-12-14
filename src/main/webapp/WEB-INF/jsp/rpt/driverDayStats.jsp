@@ -32,13 +32,21 @@ html, body {
 			</form>
 		</div>
 		<table id="grid"></table>
+		<div id="graph"
+			style="width: 330px; height: 150px; position: fixed; bottom: 30px; right: 30px;"></div>
 	</div>
 
+	<script src="../highcharts/highcharts.js"></script>
+	<script src="../highcharts/themes/grid-light.js"></script>
+	<script src="../highcharts/pie.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
 
 		$(function() {
+			$(document).click(function() {
+				$('#graph').css('display', 'none');
+			})
 			$("#center-panel").height($('body').height());
 			$("#center-panel").width($('body').width());
 			$("#search-panel").omPanel({
@@ -122,11 +130,15 @@ html, body {
 				wrap : true,
 				width : 'fit',
 				method : 'post',
+				onRowClick : function onRowClick(rowIndex, rowData, event) {
+					grid_onRowClick(rowIndex, rowData, event);
+				},
 				colModel : [ {
 					header : "统计日期",
 					name : 'statsDay',
 					//width : 100,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 
 				}, {
@@ -140,12 +152,14 @@ html, body {
 					name : 'driverNo',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "车辆编号",
 					name : 'vehicleNo',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "上岗时间",
@@ -170,42 +184,49 @@ html, body {
 					name : 'tripDistance',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "载客数量",
 					name : 'passCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "有效扫描乘客数",
 					name : 'scanPassCount',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "拍照乘客数",
 					name : 'photoPassCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "手动+1乘客数",
 					name : 'manualAddPassCount',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "急客数",
 					name : 'scanHurriedPassCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "有效扫描中的急客比率",
 					name : 'scanHurriedRate',
 					width : 120,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left',
 					renderer : function(colValue, rowData, rowIndex) {
 						return colValue * 100 + '%';
@@ -217,8 +238,22 @@ html, body {
 		function btnQuery_onClick() {
 			var data = $('#queryform').serializeObject();
 			$('#grid').omGrid('options').extraData = data;
-			$('#grid').omGrid("setData",
-					WEB_ROOT + "/rpt/getRptDriverDay.do");
+			$('#grid').omGrid("setData", WEB_ROOT + "/rpt/getRptDriverDay.do");
+		}
+
+		function grid_onRowClick(rowIndex, rowData, event) {
+			$('#graph').css('display', 'block');
+			var arr = [];
+			arr[0] = [
+					"有效扫描乘客数" + rowData.scanPassCount + "人<br>(其中急客数为:)"
+							+ rowData.scanHurriedPassCount + '人',
+					rowData.scanPassCount ];
+			arr[1] = [ "拍照乘客数" + rowData.photoPassCount + "人",
+					rowData.photoPassCount ];
+			arr[2] = [ "手动+1乘客数" + rowData.manualAddPassCount + "人",
+					rowData.manualAddPassCount ];
+			show(arr);
+			event.stopPropagation();
 		}
 	</script>
 </body>

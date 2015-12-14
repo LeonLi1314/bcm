@@ -106,6 +106,7 @@ html, body {
 					name : 'statsDay',
 					//width : 100,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 
 				}, {
@@ -119,36 +120,42 @@ html, body {
 					name : 'passCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "有效扫描乘客数",
 					name : 'scanPassCount',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "拍照乘客数",
 					name : 'photoPassCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "手动+1乘客数",
 					name : 'manualAddPassCount',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "急客数",
 					name : 'scanHurriedPassCount',
 					//width : 140,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "有效扫描中的急客比率",
 					name : 'scanHurriedRate',
 					width : 120,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left',
 					renderer : function(colValue, rowData, rowIndex) {
 						return colValue * 100 + '%';

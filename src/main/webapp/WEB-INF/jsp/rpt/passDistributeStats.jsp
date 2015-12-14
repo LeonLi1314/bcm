@@ -29,13 +29,24 @@ html, body {
 			</form>
 		</div>
 		<table id="grid"></table>
+		<div id="map"
+			style="width: 500px; height: 333px; position: fixed; bottom: 0; right: 0; display: none">
+			<svg id="svg-map"
+				style="width: 100%; height: 100%; background: url(../img/T3C-F3_small.jpg) no-repeat; background-size: cover;">
+		</svg>
+		</div>
 	</div>
 
+	<script src="../js/createPoint.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
 
 		$(function() {
+			$(document).click(function() {
+				$('#map').css('display', 'none');
+			})
+
 			$("#center-panel").height($('body').height());
 			$("#center-panel").width($('body').width());
 			$("#search-panel").omPanel({
@@ -101,6 +112,9 @@ html, body {
 				wrap : true,
 				width : 'fit',
 				method : 'post',
+				onRowClick : function onRowClick(rowIndex, rowData, event) {
+					grid_onRowClick(rowIndex, rowData, event);
+				},
 				colModel : [ {
 					header : "统计日期",
 					name : 'statsDay',
@@ -169,7 +183,25 @@ html, body {
 		function btnQuery_onClick() {
 			var data = $('#queryform').serializeObject();
 			$('#grid').omGrid('options').extraData = data;
-			$('#grid').omGrid("setData", WEB_ROOT + "/rpt/getRptPassDistribute.do");
+			$('#grid').omGrid("setData",
+					WEB_ROOT + "/rpt/getRptPassDistribute.do");
+		}
+
+		var timer = null;
+		function grid_onRowClick(rowIndex, rowData, event) {
+			$('#map').css('display', 'block');
+
+			var rst = [ [ rowData.xPoint, rowData.yPoint ],
+					[ rowData.xGatePoint, rowData.yGatePoint ] ]
+
+			createPoint(rst);
+			clearInterval(timer);
+
+			timer = setInterval(function() {
+				createPoint(rst);
+			}, 1000);
+
+			event.stopPropagation();
 		}
 	</script>
 </body>

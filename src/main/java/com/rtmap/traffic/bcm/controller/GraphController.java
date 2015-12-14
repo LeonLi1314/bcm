@@ -54,7 +54,7 @@ public class GraphController {
 	}
 
 	@RequestMapping("passSubtotal")
-	public String passCategory(Model model){
+	public String passSubtotal(Model model){
 		model.addAttribute("preDay", preDateStr);
 		return "/graph/passSubtotal";
 	}

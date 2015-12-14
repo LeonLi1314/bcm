@@ -116,6 +116,7 @@ html, body {
 					name : 'statsHour',
 					width : 100,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 
 				}, {
@@ -129,24 +130,28 @@ html, body {
 					name : 'vehicleNo',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "实际行驶距离（米）",
 					name : 'tripDistance',
 					width : 80,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "理论行驶距离（米）",
 					name : 'theoryTripDistance',
 					width : 80,
 					// autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				},  {
 					header : "饱和度（%）",
 					name : 'saturation',
 					width : 120,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left',
 					renderer : function(colValue, rowData, rowIndex) {
 						return colValue * 100 + '%';

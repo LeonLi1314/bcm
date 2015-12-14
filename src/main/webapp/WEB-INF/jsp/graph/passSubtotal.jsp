@@ -108,7 +108,7 @@ html, body {
 
 			function btnQuery_onClick() {
 				$.ajax({
-					url : WEB_ROOT + "/graph/getpassCategory.do",
+					url : WEB_ROOT + "/graph/getPassSubtotal.do",
 					async : false,
 					data : $('#queryform').serializeObject(),
 					success : function(rst) {

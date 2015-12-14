@@ -116,6 +116,7 @@ html, body {
 					name : 'statsDay',
 					//width : 100,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 
 				}, {
@@ -129,6 +130,7 @@ html, body {
 					name : 'vehicleNo',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				},  {
 					header : "上次充电结束时间",
@@ -147,6 +149,7 @@ html, body {
 					name : 'tripDistance',
 					width : 100,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				} ]
 			});

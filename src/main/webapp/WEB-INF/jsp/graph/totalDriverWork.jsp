@@ -38,6 +38,7 @@ html, body {
 	<script src="../highcharts/highcharts.js"></script>
 	<!--支持3D图表-->
 	<script src="../highcharts/highcharts-3d.js"></script>
+	<script src="../highcharts/pie-3d.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
@@ -120,55 +121,14 @@ html, body {
 			}
 
 			function btnQuerySuccess(rst) {
-				var arr = rst;
-				var newArr = [];
-				var sum = 0;
-				for (var i = 0; i < arr.length; i++) {
-					var json = arr[i];
-					sum += Math.floor(json["value"]);
+				var newArr=[];
+				for(var i=0; i<rst.length; i++)
+				{
+					var json=rst[i];
+					newArr.push([json["name"]+'载客：'+json["value"]+'人',
+						Math.floor(json["value"])]);
 				}
-				for (var i = 0; i < arr.length; i++) {
-					var json = arr[i];
-					newArr.push({
-						"name" : json["name"],
-						"y" : Math.floor(json["value"]) / sum * 100
-					});
-				}
-
-				$('#graph')
-						.highcharts(
-								{
-									chart : {
-										type : 'pie',
-										options3d : {
-											enabled : true,
-											alpha : 50,
-											sbeta : 0
-										}
-									},
-									title : {
-										text : null
-									},
-									tooltip : {
-										pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
-									},
-									plotOptions : {
-										pie : {
-											allowPointSelect : true,
-											cursor : 'pointer',
-											depth : 50,
-											dataLabels : {
-												enabled : true,
-												format : '{point.name}'
-											}
-										}
-									},
-									series : [ {
-										type : 'pie',
-										name : '电瓶车工作量比例',
-										data : newArr
-									} ]
-								});
+				createPie(newArr);
 			}
 		});
 	</script>

@@ -116,6 +116,7 @@ html, body {
 					name : 'statsDay',
 					//width : 100,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 
 				}, {
@@ -129,24 +130,28 @@ html, body {
 					name : 'vehicleNo',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				},{
 					header : "充电总次数",
 					name : 'chargeCount',
 					//width : 80,
 					autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "充电总时长（分钟）",
 					name : 'chargeMinutes',
 					width : 100,
 					// autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "一天行驶里程（米）",
 					name : 'averageDistance',
 					width : 100,
 					//autoextend : true,
+					sort : 'clientSide',
 					align : 'left'
 				} ]
 			});
