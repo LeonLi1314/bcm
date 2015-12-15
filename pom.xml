@@ -103,16 +103,16 @@
 			<artifactId>aopalliance</artifactId>
 			<version>${aopalliance.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.aspectj</groupId> -->
-<!-- 			<artifactId>aspectjrt</artifactId> -->
-<!-- 			<version>1.6.9</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>aspectj</groupId> -->
-<!-- 			<artifactId>aspectjweaver</artifactId> -->
-<!-- 			<version>1.5.4</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.aspectj</groupId> -->
+		<!-- <artifactId>aspectjrt</artifactId> -->
+		<!-- <version>1.6.9</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>aspectj</groupId> -->
+		<!-- <artifactId>aspectjweaver</artifactId> -->
+		<!-- <version>1.5.4</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -169,21 +169,21 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- Spring Security -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.security</groupId> -->
-<!-- 			<artifactId>spring-security-core</artifactId> -->
-<!-- 			<version>${spring.security.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.security</groupId> -->
-<!-- 			<artifactId>spring-security-web</artifactId> -->
-<!-- 			<version>${spring.security.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.security</groupId> -->
-<!-- 			<artifactId>spring-security-config</artifactId> -->
-<!-- 			<version>${spring.security.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.security</groupId> -->
+		<!-- <artifactId>spring-security-core</artifactId> -->
+		<!-- <version>${spring.security.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.security</groupId> -->
+		<!-- <artifactId>spring-security-web</artifactId> -->
+		<!-- <version>${spring.security.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.security</groupId> -->
+		<!-- <artifactId>spring-security-config</artifactId> -->
+		<!-- <version>${spring.security.version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- 导入Mysql数据库链接jar包 -->
 		<dependency>
@@ -224,7 +224,7 @@
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
-		
+
 		<!-- JSTL标签类 -->
 		<dependency>
 			<groupId>jstl</groupId>
@@ -267,26 +267,26 @@
 		</dependency>
 
 		<!-- shiro安全框架 -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.shiro</groupId> -->
-<!-- 			<artifactId>shiro-core</artifactId> -->
-<!-- 			<version>${org.apache.shiro.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.shiro</groupId> -->
-<!-- 			<artifactId>shiro-web</artifactId> -->
-<!-- 			<version>${org.apache.shiro.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.shiro</groupId> -->
-<!-- 			<artifactId>shiro-ehcache</artifactId> -->
-<!-- 			<version>${org.apache.shiro.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.shiro</groupId> -->
-<!-- 			<artifactId>shiro-spring</artifactId> -->
-<!-- 			<version>${org.apache.shiro.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-core</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-web</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-ehcache</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-spring</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- 映入JSON -->
 		<dependency>
@@ -385,33 +385,25 @@
 			</plugin>
 
 			<!-- 用来处理资源文件.在资源文件中使用${propertyName}形式的Maven属性，然后配置maven-resources-plugin开启对资源文件的过滤，之后就可以针对不同环境通过命令行或者Profile传入属性的值，以实现更为灵活的构建。 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven.resources.plugin.version}</version>
-				<configuration>
-					<encoding>${file.encoding}</encoding>
-				</configuration>
-			</plugin>
+	<!-- <plugin> -->
+	<!-- <groupId>org.apache.maven.plugins</groupId> -->
+	<!-- <artifactId>maven-resources-plugin</artifactId> -->
+	<!-- <version>${maven.resources.plugin.version}</version> -->
+	<!-- <configuration> -->
+	<!-- <encoding>${file.encoding}</encoding> -->
+	<!-- </configuration> -->
+	<!-- </plugin> -->
 
 			<!-- 用来生成文档包 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven.javadoc.plugin.version}</version>
-				<configuration>
-					<charset>${file.encoding}</charset>
-					<aggregate>true</aggregate>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+	<!-- <plugin> -->
+	<!-- <groupId>org.apache.maven.plugins</groupId> -->
+	<!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+	<!-- <version>${maven.javadoc.plugin.version}</version> -->
+	<!-- <configuration> -->
+	<!-- <charset>UTF16</charset> -->
+	<!-- <aggregate>true</aggregate> -->
+	<!-- </configuration> -->
+	<!-- </plugin> -->
 
 			<!-- 扩展框架的功能，指定xml的schema的位置 -->
 			<!-- <plugin> -->
