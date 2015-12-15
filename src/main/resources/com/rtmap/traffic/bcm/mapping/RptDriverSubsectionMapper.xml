@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rtmap.traffic.bcm.dao.IRptDriverDayDao">
-	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.RptDriverDay">
+<mapper namespace="com.rtmap.traffic.bcm.dao.IRptDriverSubsectionDao">
+	<resultMap id="BaseResultMap"
+		type="com.rtmap.traffic.bcm.domain.RptDriverSubsection">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="stats_day" property="statsDay" jdbcType="DATE" />
 		<result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
@@ -28,11 +29,9 @@
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, stats_day, building_no, driver_no, vehicle_no,
-		go_to_time,
+		id, stats_day, building_no, driver_no, vehicle_no, go_to_time,
 		go_off_time, work_mins,
-		effect_work_mins, trip_distance,
-		pass_count, scan_pass_count, photo_pass_count,
+		effect_work_mins, trip_distance, pass_count, scan_pass_count, photo_pass_count,
 		manual_add_pass_count,
 		scan_hurried_pass_count, scan_hurried_rate, create_time
 	</sql>
@@ -40,40 +39,33 @@
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from rpt_driver_day
+		from rpt_driver_subsection
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		rpt_driver_day
+		delete from rpt_driver_subsection
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.RptDriverDay">
-		insert into rpt_driver_day
-		(id, stats_day, building_no,
+	<insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.RptDriverSubsection">
+		insert into rpt_driver_subsection (id, stats_day, building_no,
 		driver_no, vehicle_no, go_to_time,
 		go_off_time, work_mins, effect_work_mins,
-		trip_distance, pass_count,
-		scan_pass_count,
-		photo_pass_count, manual_add_pass_count,
-		scan_hurried_pass_count,
+		trip_distance, pass_count, scan_pass_count,
+		photo_pass_count, manual_add_pass_count, scan_hurried_pass_count,
 		scan_hurried_rate, create_time)
-		values
-		(#{id,jdbcType=INTEGER}, #{statsDay,jdbcType=DATE},
+		values (#{id,jdbcType=INTEGER}, #{statsDay,jdbcType=DATE},
 		#{buildingNo,jdbcType=VARCHAR},
-		#{driverNo,jdbcType=VARCHAR},
-		#{vehicleNo,jdbcType=VARCHAR}, #{goToTime,jdbcType=TIMESTAMP},
+		#{driverNo,jdbcType=VARCHAR}, #{vehicleNo,jdbcType=VARCHAR}, #{goToTime,jdbcType=TIMESTAMP},
 		#{goOffTime,jdbcType=TIMESTAMP}, #{workMins,jdbcType=INTEGER},
 		#{effectWorkMins,jdbcType=INTEGER},
-		#{tripDistance,jdbcType=INTEGER},
-		#{passCount,jdbcType=INTEGER}, #{scanPassCount,jdbcType=INTEGER},
+		#{tripDistance,jdbcType=INTEGER}, #{passCount,jdbcType=INTEGER}, #{scanPassCount,jdbcType=INTEGER},
 		#{photoPassCount,jdbcType=INTEGER},
 		#{manualAddPassCount,jdbcType=INTEGER},
 		#{scanHurriedPassCount,jdbcType=INTEGER},
 		#{scanHurriedRate,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP})
 	</insert>
-	<insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.RptDriverDay">
-		insert into rpt_driver_day
+	<insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.RptDriverSubsection">
+		insert into rpt_driver_subsection
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -181,8 +173,8 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.RptDriverDay">
-		update rpt_driver_day
+	<update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.RptDriverSubsection">
+		update rpt_driver_subsection
 		<set>
 			<if test="statsDay != null">
 				stats_day = #{statsDay,jdbcType=DATE},
@@ -221,12 +213,10 @@
 				photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
 			</if>
 			<if test="manualAddPassCount != null">
-				manual_add_pass_count =
-				#{manualAddPassCount,jdbcType=INTEGER},
+				manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
 			</if>
 			<if test="scanHurriedPassCount != null">
-				scan_hurried_pass_count =
-				#{scanHurriedPassCount,jdbcType=INTEGER},
+				scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
 			</if>
 			<if test="scanHurriedRate != null">
 				scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
@@ -237,47 +227,31 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.RptDriverDay">
-		update
-		rpt_driver_day
+	<update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.RptDriverSubsection">
+		update rpt_driver_subsection
 		set stats_day = #{statsDay,jdbcType=DATE},
-		building_no =
-		#{buildingNo,jdbcType=VARCHAR},
-		driver_no =
-		#{driverNo,jdbcType=VARCHAR},
-		vehicle_no =
-		#{vehicleNo,jdbcType=VARCHAR},
-		go_to_time =
-		#{goToTime,jdbcType=TIMESTAMP},
-		go_off_time =
-		#{goOffTime,jdbcType=TIMESTAMP},
-		work_mins =
-		#{workMins,jdbcType=INTEGER},
-		effect_work_mins =
-		#{effectWorkMins,jdbcType=INTEGER},
-		trip_distance =
-		#{tripDistance,jdbcType=INTEGER},
-		pass_count =
-		#{passCount,jdbcType=INTEGER},
-		scan_pass_count =
-		#{scanPassCount,jdbcType=INTEGER},
-		photo_pass_count =
-		#{photoPassCount,jdbcType=INTEGER},
-		manual_add_pass_count =
-		#{manualAddPassCount,jdbcType=INTEGER},
-		scan_hurried_pass_count =
-		#{scanHurriedPassCount,jdbcType=INTEGER},
-		scan_hurried_rate =
-		#{scanHurriedRate,jdbcType=DOUBLE},
-		create_time =
-		#{createTime,jdbcType=TIMESTAMP}
+		building_no = #{buildingNo,jdbcType=VARCHAR},
+		driver_no = #{driverNo,jdbcType=VARCHAR},
+		vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
+		go_to_time = #{goToTime,jdbcType=TIMESTAMP},
+		go_off_time = #{goOffTime,jdbcType=TIMESTAMP},
+		work_mins = #{workMins,jdbcType=INTEGER},
+		effect_work_mins = #{effectWorkMins,jdbcType=INTEGER},
+		trip_distance = #{tripDistance,jdbcType=INTEGER},
+		pass_count = #{passCount,jdbcType=INTEGER},
+		scan_pass_count = #{scanPassCount,jdbcType=INTEGER},
+		photo_pass_count = #{photoPassCount,jdbcType=INTEGER},
+		manual_add_pass_count = #{manualAddPassCount,jdbcType=INTEGER},
+		scan_hurried_pass_count = #{scanHurriedPassCount,jdbcType=INTEGER},
+		scan_hurried_rate = #{scanHurriedRate,jdbcType=DOUBLE},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="selectByCond" resultMap="BaseResultMap"
 		parameterType="com.rtmap.traffic.bcm.domain.DriverCond">
 		select
 		<include refid="Base_Column_List" />
-		from rpt_driver_day
+		from rpt_driver_subsection
 		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}
@@ -288,22 +262,6 @@
 		<if test="vehicleNo != null">
 			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
 		</if>
-		group by stats_day
-	</select>
-	<resultMap id="DimensionAnalyzeMap"
-		type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="value" property="value" jdbcType="VARCHAR" />
-	</resultMap>
-	<select id="selectTotalDriverWork" resultMap="DimensionAnalyzeMap"
-		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
-		select driver_no as 'name',sum(pass_count) as 'value'
-		from
-		rpt_driver_day
-		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
-		<if test="buildingNo != null">
-			and building_no = #{buildingNo,jdbcType=VARCHAR}
-		</if>
-		group by driver_no
+		order by stats_day
 	</select>
 </mapper>

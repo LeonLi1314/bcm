@@ -1,5 +1,5 @@
 function createPoint(arr) {
-	$('#svg-map').html('');
+	$('#svg-map').empty();
 
 	setTimeout(function() {
 		for (var i = 0; i < arr.length; i++) {
