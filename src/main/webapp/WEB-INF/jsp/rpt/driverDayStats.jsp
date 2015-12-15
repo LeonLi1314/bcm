@@ -229,7 +229,7 @@ html, body {
 					sort : 'clientSide',
 					align : 'left',
 					renderer : function(colValue, rowData, rowIndex) {
-						return colValue * 100 + '%';
+						return (colValue * 100).toFixed(2) + '%';
 					}
 				} ]
 			});

@@ -169,6 +169,7 @@
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}
 		</if>
+		group by stats_day
 	</select>
 	<resultMap id="DimensionAnalyzeMap"
 		type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">

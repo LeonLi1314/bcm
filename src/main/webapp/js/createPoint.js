@@ -3,6 +3,9 @@ function createPoint(arr) {
 
 	setTimeout(function() {
 		for (var i = 0; i < arr.length; i++) {
+			if (arr[i][0] == 0 && arr[i][1] == 0)
+				continue;
+
 			var oC = document.createElementNS('http://www.w3.org/2000/svg',
 					'circle');
 			var color;

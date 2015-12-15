@@ -262,5 +262,6 @@
 		<if test="vehicleNo != null">
 			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
 		</if>
+		group by stats_day
 	</select>
 </mapper>
