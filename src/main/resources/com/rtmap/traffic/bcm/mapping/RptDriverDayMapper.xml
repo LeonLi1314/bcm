@@ -291,19 +291,20 @@
 		order by stats_day
 	</select>
 	<resultMap id="DimensionAnalyzeMap"
-		type="com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto">
-		<result column="name" property="name" jdbcType="VARCHAR" />
+		type="com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto">
+		<result column="driver_no" property="firstDimension" jdbcType="VARCHAR" />
+		<result column="building_no" property="secondDimension" jdbcType="VARCHAR" />
 		<result column="value" property="value" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="selectTotalDriverWork" resultMap="DimensionAnalyzeMap"
 		parameterType="com.rtmap.traffic.bcm.domain.PassCond">
-		select driver_no as 'name',sum(pass_count) as 'value'
+		select driver_no,building_no,sum(pass_count) as 'value'
 		from
 		rpt_driver_day
 		where <![CDATA[ stats_day >= #{beginStatsDay,jdbcType=DATE} and stats_day < #{endStatsDay,jdbcType=DATE} ]]>
 		<if test="buildingNo != null">
 			and building_no = #{buildingNo,jdbcType=VARCHAR}
 		</if>
-		group by driver_no
+		group by driver_no,building_no
 	</select>
 </mapper>

@@ -2,8 +2,8 @@ package com.rtmap.traffic.bcm.dao;
 
 import java.util.List;
 
-import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.DriverCond;
+import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptDriverDay;
 
@@ -22,5 +22,5 @@ public interface IRptDriverDayDao {
     
     List<RptDriverDay> selectByCond(DriverCond cond);
 
-	List<DimensionAnalyzeDto> selectTotalDriverWork(PassCond cond);
+	List<MultiDimensionAnalyzeDto> selectTotalDriverWork(PassCond cond);
 }

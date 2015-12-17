@@ -32,7 +32,7 @@ html, body {
 		<div id="map"
 			style="width: 500px; height: 333px; position: fixed; bottom: 0; right: 0; display: none">
 			<svg id="svg-map"
-				style="width: 100%; height: 100%; background: url(../img/T3C-F3_small.jpg) no-repeat; background-size: cover;">
+				style="width: 100%; height: 100%; background: url(../img/T3C-F3_small.png) no-repeat; background-size: cover;">
 		</svg>
 		</div>
 	</div>
@@ -129,6 +129,12 @@ html, body {
 					autoextend : true,
 					align : 'left'
 				}, {
+					header : "搭乘时间",
+					name : 'takeTime',
+					width : 140,
+					//autoextend : true,
+					align : 'left'
+				},{
 					header : "搭乘点X坐标",
 					name : 'xPoint',
 					width : 80,

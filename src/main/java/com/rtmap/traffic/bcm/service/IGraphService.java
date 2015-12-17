@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 
 public interface IGraphService {
@@ -14,7 +15,7 @@ public interface IGraphService {
 	 *            查询条件
 	 * @return 各司机的总工作量
 	 */
-	List<DimensionAnalyzeDto> getTotalDriverWork(PassCond cond);
+	List<MultiDimensionAnalyzeDto> getTotalDriverWork(PassCond cond);
 
 	/**
 	 * 获取每日乘客流量情况

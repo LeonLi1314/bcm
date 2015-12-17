@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.service.IGraphService;
 
@@ -33,9 +34,9 @@ public class GraphController {
 	
 	@ResponseBody
 	@RequestMapping("/getTotalDriverWork.do")
-	public List<DimensionAnalyzeDto> getTotalDriverWorkByCond(HttpServletRequest request) {
+	public List<MultiDimensionAnalyzeDto> getTotalDriverWorkByCond(HttpServletRequest request) {
 		PassCond cond = paramUtils.convertRptPassCond(request);
-		List<DimensionAnalyzeDto> list = graphService.getTotalDriverWork(cond);
+		List<MultiDimensionAnalyzeDto> list = graphService.getTotalDriverWork(cond);
 		return list;
 	}
 

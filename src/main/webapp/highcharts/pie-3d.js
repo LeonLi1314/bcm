@@ -1,6 +1,7 @@
-function createPie(newArr)
+function createPie(newArr,elementId )
 {
-	$('#graph').highcharts({                  
+	elementId=elementId || '#graph';
+	$(elementId).highcharts({                  
 	    chart: {
 	        type: 'pie',                        
 	         options3d: {

@@ -1,7 +1,8 @@
 
-function show(arr)
+function show(arr,elementId )
 {
-	$('#graph').highcharts({
+	elementId=elementId || '#graph';
+	$(elementId).highcharts({
 	    chart: {
 	        type: 'pie'
 	    },

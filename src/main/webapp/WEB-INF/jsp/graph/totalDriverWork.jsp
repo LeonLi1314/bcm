@@ -32,13 +32,11 @@ html, body {
 					id="endStatsDay" name="endStatsDay" size="10" value="${preDay}" />
 			</form>
 		</div>
-		<div id="graph"></div>
+		<div id="graph" ></div>
 	</div>
 	<!-- 	<script src="../js/jquery-1.7.2.min.js"></script> -->
 	<script src="../highcharts/highcharts.js"></script>
-	<!--支持3D图表-->
-	<script src="../highcharts/highcharts-3d.js"></script>
-	<script src="../highcharts/pie-3d.js"></script>
+	<script src="../highcharts/double-pie.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
@@ -121,14 +119,44 @@ html, body {
 			}
 
 			function btnQuerySuccess(rst) {
-				var newArr=[];
-				for(var i=0; i<rst.length; i++)
-				{
-					var json=rst[i];
-					newArr.push([json["name"]+'载客：'+json["value"]+'人',
-						Math.floor(json["value"])]);
+				var temp;
+				var json = {};
+				var data = [];
+				var firstDimensionArr = [];
+				var colors = Highcharts.getOptions().colors;
+				
+				for (var i = 0; i < rst.length; i++) {
+					if (temp == rst[i].firstDimension) {
+						json.y += parseInt(rst[i].value);
+						json.drilldown.categories.push(rst[i].secondDimension);
+						json.drilldown.data.push(parseInt(rst[i].value));
+					} else {
+						if (json != null && temp != null) {
+							data.push(json);
+							json = {};
+							temp = null;
+						}
+						if (temp == null) {
+							json.drilldown = {};
+							json.drilldown.categories = [];
+							json.drilldown.data = [];
+							temp = rst[i].firstDimension;
+							firstDimensionArr.push(temp);
+							json.y = parseInt(rst[i].value);
+							json.color = colors[i];
+							json.drilldown.name = rst[i].firstDimension;
+							json.drilldown.color = colors[i];
+							json.drilldown.categories
+									.push(rst[i].secondDimension);
+							json.drilldown.data.push(parseInt(rst[i].value));
+							continue;
+						}
+					}
 				}
-				createPie(newArr);
+				if (json != null)
+					data.push(json);
+				
+				createDpie(data, firstDimensionArr);
 			}
 		});
 	</script>

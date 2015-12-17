@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.rtmap.traffic.bcm.dao.IRptDriverDayDao;
 import com.rtmap.traffic.bcm.dao.IRptPassDayDao;
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 import com.rtmap.traffic.bcm.service.IGraphService;
@@ -23,7 +24,7 @@ public class GraphServiceImpl implements IGraphService {
 	IRptPassDayDao passDayDao;
 
 	@Override
-	public List<DimensionAnalyzeDto> getTotalDriverWork(PassCond cond) {
+	public List<MultiDimensionAnalyzeDto> getTotalDriverWork(PassCond cond) {
 		return driverDayDao.selectTotalDriverWork(cond);
 	}
 
