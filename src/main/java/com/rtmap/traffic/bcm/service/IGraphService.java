@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.Location;
+import com.rtmap.traffic.bcm.domain.LocationCond;
 import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 
@@ -43,4 +45,18 @@ public interface IGraphService {
 	 * @return 各时间段乘客数量
 	 */
 	Map<String,List<DimensionAnalyzeDto>> getDriverPassSubtotaSection(PassCond cond);
+
+	/**
+	 * 根据查询条件获取有效的坐标集合
+	 * @param cond 查询条件
+	 * @return 有效坐标集合
+	 */
+	List<Location> getEffectCoordinatesByCond(LocationCond cond);
+
+	/**
+	 * 根据查询条件获取有效的坐标数组
+	 * @param cond 查询条件
+	 * @return 有效坐标集合
+	 */
+	int[][] getEffectCoordinateArrayByCond(LocationCond cond);
 }

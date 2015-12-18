@@ -76,7 +76,7 @@ html, body {
 			});
 
 			$('#buildingNo').omCombo({
-				dataSource : WEB_ROOT + '/base/building.do',
+				dataSource : WEB_ROOT + '/base/buildingWithAll.do',
 				optionField : 'text',
 				editable : false,
 				value : 'T3C',

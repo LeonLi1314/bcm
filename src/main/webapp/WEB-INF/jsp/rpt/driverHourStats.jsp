@@ -66,7 +66,7 @@ html, body {
 			});
 
 			$('#buildingNo').omCombo({
-				dataSource : WEB_ROOT + '/base/building.do',
+				dataSource : WEB_ROOT + '/base/buildingWithAll.do',
 				optionField : 'text',
 				editable : false,
 				value : 'T3C',
@@ -75,7 +75,7 @@ html, body {
 				listMaxHeight : 100
 			});
 			$('#driverNo').omCombo({
-				dataSource : WEB_ROOT + '/base/driver.do',
+				dataSource : WEB_ROOT + '/base/driverWithAll.do',
 				optionField : 'text',
 				editable : true,
 				value : 'ALL',

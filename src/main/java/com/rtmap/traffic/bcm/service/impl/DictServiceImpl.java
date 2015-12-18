@@ -35,7 +35,21 @@ public class DictServiceImpl implements IDictService {
 	ISysUserRolePrivDao urpDao;
 
 	@Override
-	public List<ComboStrItem> getBuildingSource() {
+	public List<ComboStrItem> getBuildingsWithAll() {
+		List<ComboStrItem> source = DictCache.get(CacheKeys.BUILDING_WITH_ALL);
+
+		if (source == null) {
+			source = new ArrayList<>();
+
+			DataSourceUtils.AddComboWithAll(source);
+			source.addAll(getBuildings());
+			DictCache.put(CacheKeys.BUILDING_WITH_ALL, source);
+		}
+
+		return source;
+	}
+
+	public List<ComboStrItem> getBuildings() {
 		List<ComboStrItem> source = DictCache.get(CacheKeys.BUILDING);
 
 		if (source == null) {
@@ -52,16 +66,30 @@ public class DictServiceImpl implements IDictService {
 					source.add(item);
 				}
 			}
+		}
 
+		DictCache.put(CacheKeys.BUILDING, source);
+
+		return source;
+	}
+
+	@Override
+	public List<ComboStrItem> getDriversWithAll() {
+		List<ComboStrItem> source = DictCache.get(CacheKeys.DRIVER_WITH_ALL);
+
+		if (source == null) {
+			source = new ArrayList<>();
+			
 			DataSourceUtils.AddComboWithAll(source);
-			DictCache.put(CacheKeys.BUILDING, source);
+			source.addAll(getDrivers());
+			DictCache.put(CacheKeys.DRIVER_WITH_ALL, source);
 		}
 
 		return source;
 	}
 
 	@Override
-	public List<ComboStrItem> getDriverSource() {
+	public List<ComboStrItem> getDrivers() {
 		List<ComboStrItem> source = DictCache.get(CacheKeys.DRIVER);
 
 		if (source == null) {
@@ -78,16 +106,30 @@ public class DictServiceImpl implements IDictService {
 					source.add(item);
 				}
 			}
+		}
 
+		DictCache.put(CacheKeys.DRIVER, source);
+
+		return source;
+	}
+
+	@Override
+	public List<ComboStrItem> getVehiclesWithAll() {
+		List<ComboStrItem> source = DictCache.get(CacheKeys.VEHICLE_WITH_ALL);
+
+		if (source == null) {
+			source = new ArrayList<>();
+			
 			DataSourceUtils.AddComboWithAll(source);
-			DictCache.put(CacheKeys.DRIVER, source);
+			source.addAll(getVehicles());
+			DictCache.put(CacheKeys.VEHICLE_WITH_ALL, source);
 		}
 
 		return source;
 	}
 
 	@Override
-	public List<ComboStrItem> getVehicleSource() {
+	public List<ComboStrItem> getVehicles() {
 		List<ComboStrItem> source = DictCache.get(CacheKeys.VEHICLE);
 
 		if (source == null) {
@@ -105,7 +147,6 @@ public class DictServiceImpl implements IDictService {
 				}
 			}
 
-			DataSourceUtils.AddComboWithAll(source);
 			DictCache.put(CacheKeys.VEHICLE, source);
 		}
 

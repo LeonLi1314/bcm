@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import com.rtmap.traffic.bcm.domain.DriverCond;
+import com.rtmap.traffic.bcm.domain.LocationCond;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.VehicleCond;
 
@@ -118,8 +119,11 @@ public class ParamUtils {
 
 	/**
 	 * 从请求对象中转化车辆报表查询条件对象
-	 * @param request 客户端请求对象
-	 * @param changeDate 是否转化为日期，并且处理结束日期条件+1天
+	 * 
+	 * @param request
+	 *            客户端请求对象
+	 * @param changeDate
+	 *            是否转化为日期，并且处理结束日期条件+1天
 	 * @return 车辆报表查询条件对象
 	 */
 	public VehicleCond convertRptVehicleCond(HttpServletRequest request, boolean changeDate) {
@@ -153,6 +157,38 @@ public class ParamUtils {
 				Date endDate = DateUtils.parseDate(endStatsDay, DatePatterns.POPULAR_DATE_24HOUR);
 				cond.setEndStatsDay(DateUtils.addHour(endDate, 1));
 			}
+		}
+
+		return cond;
+	}
+
+	public LocationCond convertLocationCond(HttpServletRequest request) {
+		String buildingNo = request.getParameter("buildingNo");
+		String driverNo = request.getParameter("driverNo");
+		String vehicleNo = request.getParameter("vehicleNo");
+		String day = request.getParameter("day");
+		String beginTime = request.getParameter("beginTime");
+		String endTime = request.getParameter("endTime");
+
+		LocationCond cond = new LocationCond();
+
+		if (!StringUtils.isNullOrEmpty(buildingNo)) {
+			cond.setBuildingNo(buildingNo);
+		}
+		if (!StringUtils.isNullOrEmpty(driverNo)) {
+			cond.setDriverNo(driverNo);
+		}
+		if (!StringUtils.isNullOrEmpty(vehicleNo)) {
+			cond.setVehicleNo(vehicleNo);
+		}
+		if (!StringUtils.isNullOrEmpty(day)) {
+				cond.setDay(DateUtils.parseDate(day));
+		}
+		if (!StringUtils.isNullOrEmpty(beginTime)) {
+				cond.setBeginTime(DateUtils.parseDate(beginTime, DatePatterns.POPULAR_DATE24TIME));
+		}
+		if (!StringUtils.isNullOrEmpty(endTime)) {
+				cond.setEndTime(DateUtils.parseDate(endTime, DatePatterns.POPULAR_DATE24TIME));
 		}
 
 		return cond;

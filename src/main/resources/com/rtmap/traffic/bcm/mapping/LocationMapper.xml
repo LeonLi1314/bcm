@@ -1,164 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rtmap.traffic.bcm.dao.LocationDao" >
-  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.Location" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
-    <result column="floor_no" property="floorNo" jdbcType="VARCHAR" />
-    <result column="driver_no" property="driverNo" jdbcType="VARCHAR" />
-    <result column="vehicle_no" property="vehicleNo" jdbcType="VARCHAR" />
-    <result column="x_point" property="xPoint" jdbcType="INTEGER" />
-    <result column="y_point" property="yPoint" jdbcType="INTEGER" />
-    <result column="gather_time" property="gatherTime" jdbcType="TIMESTAMP" />
-    <result column="gather_status" property="gatherStatus" jdbcType="INTEGER" />
-    <result column="partition_no" property="partitionNo" jdbcType="VARCHAR" />
-    <result column="is_cross_border" property="isCrossBorder" jdbcType="BIT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, building_no, floor_no, driver_no, vehicle_no, x_point, y_point, gather_time, 
-    gather_status, partition_no, is_cross_border
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from location_2015_11_26
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from location_2015_11_26
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.rtmap.traffic.bcm.domain.Location" >
-    insert into location_2015_11_26 (id, building_no, floor_no, 
-      driver_no, vehicle_no, x_point, 
-      y_point, gather_time, gather_status, 
-      partition_no, is_cross_border)
-    values (#{id,jdbcType=INTEGER}, #{buildingNo,jdbcType=VARCHAR}, #{floorNo,jdbcType=VARCHAR}, 
-      #{driverNo,jdbcType=VARCHAR}, #{vehicleNo,jdbcType=VARCHAR}, #{xPoint,jdbcType=INTEGER}, 
-      #{yPoint,jdbcType=INTEGER}, #{gatherTime,jdbcType=TIMESTAMP}, #{gatherStatus,jdbcType=INTEGER}, 
-      #{partitionNo,jdbcType=VARCHAR}, #{isCrossBorder,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.rtmap.traffic.bcm.domain.Location" >
-    insert into location_2015_11_26
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="buildingNo != null" >
-        building_no,
-      </if>
-      <if test="floorNo != null" >
-        floor_no,
-      </if>
-      <if test="driverNo != null" >
-        driver_no,
-      </if>
-      <if test="vehicleNo != null" >
-        vehicle_no,
-      </if>
-      <if test="xPoint != null" >
-        x_point,
-      </if>
-      <if test="yPoint != null" >
-        y_point,
-      </if>
-      <if test="gatherTime != null" >
-        gather_time,
-      </if>
-      <if test="gatherStatus != null" >
-        gather_status,
-      </if>
-      <if test="partitionNo != null" >
-        partition_no,
-      </if>
-      <if test="isCrossBorder != null" >
-        is_cross_border,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="buildingNo != null" >
-        #{buildingNo,jdbcType=VARCHAR},
-      </if>
-      <if test="floorNo != null" >
-        #{floorNo,jdbcType=VARCHAR},
-      </if>
-      <if test="driverNo != null" >
-        #{driverNo,jdbcType=VARCHAR},
-      </if>
-      <if test="vehicleNo != null" >
-        #{vehicleNo,jdbcType=VARCHAR},
-      </if>
-      <if test="xPoint != null" >
-        #{xPoint,jdbcType=INTEGER},
-      </if>
-      <if test="yPoint != null" >
-        #{yPoint,jdbcType=INTEGER},
-      </if>
-      <if test="gatherTime != null" >
-        #{gatherTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gatherStatus != null" >
-        #{gatherStatus,jdbcType=INTEGER},
-      </if>
-      <if test="partitionNo != null" >
-        #{partitionNo,jdbcType=VARCHAR},
-      </if>
-      <if test="isCrossBorder != null" >
-        #{isCrossBorder,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.rtmap.traffic.bcm.domain.Location" >
-    update location_2015_11_26
-    <set >
-      <if test="buildingNo != null" >
-        building_no = #{buildingNo,jdbcType=VARCHAR},
-      </if>
-      <if test="floorNo != null" >
-        floor_no = #{floorNo,jdbcType=VARCHAR},
-      </if>
-      <if test="driverNo != null" >
-        driver_no = #{driverNo,jdbcType=VARCHAR},
-      </if>
-      <if test="vehicleNo != null" >
-        vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
-      </if>
-      <if test="xPoint != null" >
-        x_point = #{xPoint,jdbcType=INTEGER},
-      </if>
-      <if test="yPoint != null" >
-        y_point = #{yPoint,jdbcType=INTEGER},
-      </if>
-      <if test="gatherTime != null" >
-        gather_time = #{gatherTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gatherStatus != null" >
-        gather_status = #{gatherStatus,jdbcType=INTEGER},
-      </if>
-      <if test="partitionNo != null" >
-        partition_no = #{partitionNo,jdbcType=VARCHAR},
-      </if>
-      <if test="isCrossBorder != null" >
-        is_cross_border = #{isCrossBorder,jdbcType=BIT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.rtmap.traffic.bcm.domain.Location" >
-    update location_2015_11_26
-    set building_no = #{buildingNo,jdbcType=VARCHAR},
-      floor_no = #{floorNo,jdbcType=VARCHAR},
-      driver_no = #{driverNo,jdbcType=VARCHAR},
-      vehicle_no = #{vehicleNo,jdbcType=VARCHAR},
-      x_point = #{xPoint,jdbcType=INTEGER},
-      y_point = #{yPoint,jdbcType=INTEGER},
-      gather_time = #{gatherTime,jdbcType=TIMESTAMP},
-      gather_status = #{gatherStatus,jdbcType=INTEGER},
-      partition_no = #{partitionNo,jdbcType=VARCHAR},
-      is_cross_border = #{isCrossBorder,jdbcType=BIT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.rtmap.traffic.bcm.dao.ILocationDao">
+	<resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.Location">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
+		<result column="floor_no" property="floorNo" jdbcType="VARCHAR" />
+		<result column="driver_no" property="driverNo" jdbcType="VARCHAR" />
+		<result column="vehicle_no" property="vehicleNo" jdbcType="VARCHAR" />
+		<result column="x_point" property="xPoint" jdbcType="INTEGER" />
+		<result column="y_point" property="yPoint" jdbcType="INTEGER" />
+		<result column="gather_time" property="gatherTime" jdbcType="TIMESTAMP" />
+		<result column="gather_status" property="gatherStatus"
+			jdbcType="INTEGER" />
+		<result column="partition_no" property="partitionNo" jdbcType="VARCHAR" />
+		<result column="is_cross_border" property="isCrossBorder"
+			jdbcType="BIT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, building_no, floor_no, driver_no, vehicle_no, x_point,
+		y_point,
+		gather_time,
+		gather_status, partition_no, is_cross_border
+	</sql>
+	<select id="selectEffectCoordinatesByCond" resultMap="BaseResultMap"
+		parameterType="com.rtmap.traffic.bcm.domain.LocationCond" >
+		select x_point, y_point from ${tableName}
+		where <![CDATA[ gather_time >= #{beginTime,jdbcType=TIMESTAMP} and gather_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+		<if test="buildingNo != null">
+			and building_no = #{buildingNo,jdbcType=VARCHAR}
+		</if>
+		<if test="driverNo != null">
+			and driver_no = #{driverNo,jdbcType=VARCHAR}
+		</if>
+		and gather_status = 1 order by gather_time
+	</select>
 </mapper>
