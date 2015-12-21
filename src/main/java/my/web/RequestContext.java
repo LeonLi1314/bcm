@@ -334,11 +334,11 @@ public class RequestContext implements WebContext {
 			return null;
 		String ck = decrypt(uuid);
 		final String[] items = ck.split("\\|");
-		if (items.length == 6) {
+		if (items.length == 5) {
 			String ua = header("user-agent");
-			int ua_code = (ua == null) ? 0 : ua.hashCode();
-			int old_ua_code = Integer.parseInt(items[items.length - 2]);
-			if (ua_code == old_ua_code) {
+			//int ua_code = (ua == null) ? 0 : ua.hashCode();
+			//int old_ua_code = Integer.parseInt(items[items.length - 2]);
+			//if (ua_code == old_ua_code) {
 				return new IUser() {
 					@Override
 					public String getUserName() {
@@ -352,15 +352,15 @@ public class RequestContext implements WebContext {
 
 					@Override
 					public String getRoleNames() {
-						return items[2];
+						return "";
 					}
 
 					@Override
 					public String getUserId() {
-						return items[5];
+						return "";
 					}
 				};
-			}
+		//	}
 		}
 		return null;
 	}

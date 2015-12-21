@@ -37,7 +37,9 @@ html, body {
 		</div>
 	</div>
 
-	<script src="../js/createPoint.js"></script>
+	<!-- 	<script src="../js/createPoint.js"></script> -->
+	<script src="../js/createPointRecursived.js"></script>
+
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
@@ -134,7 +136,7 @@ html, body {
 					width : 140,
 					//autoextend : true,
 					align : 'left'
-				},{
+				}, {
 					header : "搭乘点X坐标",
 					name : 'xPoint',
 					width : 80,
@@ -200,12 +202,11 @@ html, body {
 			var rst = [ [ rowData.xPoint, rowData.yPoint ],
 					[ rowData.xGatePoint, rowData.yGatePoint ] ]
 
-			createPoint(rst);
-			clearInterval(timer);
-
-			timer = setInterval(function() {
-				createPoint(rst);
-			}, 1000);
+			createPoint(rst, true);
+			//clearInterval(timer);
+			// 			timer = setInterval(function() {
+			// 				createPoint(rst, true);
+			// 			}, 1000);
 
 			event.stopPropagation();
 		}

@@ -1,7 +1,8 @@
-function createPoint(arr) {
+function createPoint(arr, isPair) {
 	$('#svg-map').empty();
-
-	setTimeout(function() {
+	//isPair = isPair || true;
+	console.log(isPair);
+	
 		for (var i = 0; i < arr.length; i++) {
 			if (arr[i][0] == 0 && arr[i][1] == 0)
 				continue;
@@ -9,10 +10,15 @@ function createPoint(arr) {
 			var oC = document.createElementNS('http://www.w3.org/2000/svg',
 					'circle');
 			var color;
-			if (i == 0) {
-				color = 'green';
+
+			if (isPair) {
+				if (i == 0) {
+					color = 'green';
+				} else {
+					color = 'red';
+				}
 			} else {
-				color = 'red';
+				color = 'green'
 			}
 
 			$(oC).attr(
@@ -21,10 +27,9 @@ function createPoint(arr) {
 								* $('#map').width() / 945),
 						'cy' : Math.floor((Math.abs(arr[i][1]) - 74620) / 1220
 								* $('#map').height() / 630),
-						'r' : 5,
+						'r' : 3,
 						'fill' : color
 					});
 			$(oC).appendTo($('#svg-map'));
 		}
-	}, 200)
 }

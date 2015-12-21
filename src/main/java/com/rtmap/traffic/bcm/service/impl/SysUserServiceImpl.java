@@ -19,6 +19,8 @@ import com.rtmap.traffic.bcm.domain.SysRolePriv;
 import com.rtmap.traffic.bcm.domain.SysUser;
 import com.rtmap.traffic.bcm.service.ISysUserService;
 
+import lqs.frame.util.MD5;
+
 @Service
 public class SysUserServiceImpl implements ISysUserService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -36,24 +38,7 @@ public class SysUserServiceImpl implements ISysUserService {
 
 		if (user == null) {
 			user = sysUserDao.selectByPrimaryKey(userCd);
-			// 加载用户对应的角色
-			List<String> roleCds = sysUserRoleDao.selectRoleCdsByUserCd(userCd);
 
-			if (roleCds == null) {
-				roleCds = new ArrayList<>();
-				logger.warn(String.format("用户【%s】没有配置任何角色！", userCd));
-			}
-
-			user.setRoles(roleCds);
-
-			// 加载user对应的权限
-			List<String> privCds = getPrivCdsByRoleCds(roleCds);
-
-			if (privCds == null) {
-				privCds = new ArrayList<>();
-			}
-
-			user.setPrivCds(privCds);
 			UserCache.put(userCd, user);
 		}
 
@@ -61,13 +46,40 @@ public class SysUserServiceImpl implements ISysUserService {
 	}
 
 	@Override
+	public void getUserPrivs(SysUser user) {
+		// 加载用户对应的角色
+		List<String> roleCds = sysUserRoleDao.selectRoleCdsByUserCd(user.getUserCd());
+
+		if (roleCds == null) {
+			roleCds = new ArrayList<>();
+			logger.warn(String.format("用户【%s】没有配置任何角色！", user.getUserCd()));
+		}
+
+		user.setRoles(roleCds);
+
+		// 加载user对应的权限
+		List<String> privCds = getPrivCdsByRoleCds(roleCds);
+
+		if (privCds == null) {
+			privCds = new ArrayList<>();
+		}
+
+		user.setPrivCds(privCds);
+	}
+
+	@Override
 	public boolean modifyPasswordByUserCd(String userCd, String password) {
 		SysUser user = new SysUser();
 		user.setUserCd(userCd);
-		user.setPassword(password);
+		user.setPassword(MD5.getMD5Code(password));
 		int i = sysUserDao.updateByPrimaryKeySelective(user);
 
-		return i == 1;
+		if (i == 1) {
+			UserCache.remove(userCd);
+			return true;
+		}
+
+		return false;
 	}
 
 	private List<String> getPrivCdsByRoleCds(List<String> roleCds) {

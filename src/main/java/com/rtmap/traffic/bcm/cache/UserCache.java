@@ -14,4 +14,8 @@ public class UserCache {
 	public static void put(String userCd, SysUser value) {
 		util.put(CacheNames.USER, userCd, value);
 	}
+	
+	public static void remove(String userCd) {
+		util.remove(CacheNames.USER, userCd);
+	}
 }

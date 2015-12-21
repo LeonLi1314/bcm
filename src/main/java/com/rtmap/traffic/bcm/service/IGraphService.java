@@ -54,6 +54,14 @@ public interface IGraphService {
 	List<Location> getEffectCoordinatesByCond(LocationCond cond);
 
 	/**
+	 * 获取某天的搭乘点坐标集合
+	 * @param buildingNo 建筑物编号
+	 * @param day 查询日期
+	 * @return 搭乘点坐标集合
+	 */
+	int[][] getTakePlaceArray(PassCond cond);
+
+	/**
 	 * 根据查询条件获取有效的坐标数组
 	 * @param cond 查询条件
 	 * @return 有效坐标集合

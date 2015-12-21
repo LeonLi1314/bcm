@@ -35,7 +35,7 @@
 					<LI>
 						<P>密码:</P>
 						<INPUT id=password class=textInput maxLength=80 size=30
-						type=password name=password> <A class=highlight href="#"
+						type=password name=password><br><span style="color:red">${msg}</span> <A class=highlight href="#"
 						target=_blank></A>
 					</LI>
 					<LI class=highlight><INPUT id=loginBtn onclick=this.blur();

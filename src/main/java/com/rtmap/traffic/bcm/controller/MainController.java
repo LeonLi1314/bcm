@@ -18,6 +18,7 @@ import com.rtmap.traffic.bcm.domain.SysUser;
 import com.rtmap.traffic.bcm.service.ISysMenuService;
 import com.rtmap.traffic.bcm.service.ISysUserService;
 
+import lqs.frame.util.MD5;
 import my.web.AjaxMsg;
 import my.web.BaseController;
 import my.web.IUser;
@@ -83,10 +84,11 @@ public class MainController extends BaseController {
 		if (sysUser == null) {
 			m.addAttribute("msg", "用户不存在");
 			return "login";
-		} else if (!password.equals(sysUser.getPassword())) {
-			m.addAttribute("msg", "密码不正确");
+		} else if (!MD5.checkPassword(password, sysUser.getPassword())) {
+			m.addAttribute("msg", "密码错误");
 			return "login";
 		} else {
+			sysUserService.getUserPrivs(sysUser);
 			saveUserInCookie(new IUser() {
 				@Override
 				public String getUserXm() {
@@ -117,31 +119,23 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/modifyPwd.do")
 	public AjaxMsg modifypassword(Model m) {
-		return run(new CallBack() {
+		String oldpassword = param("oldpassword", "");
+		String newpassword = param("newpassword", "");
+		String newpassword2 = param("newpassword2", "");
 
-			@Override
-			public AjaxMsg call() throws Exception {
-				String oldpassword = param("oldpassword", "");
-				String newpassword = param("newpassword", "");
-				String newpassword2 = param("newpassword2", "");
+		if (!newpassword.equals(newpassword2)) {
+			return AjaxMsg.error("两次输入的密码不一致！");
+		}
+		IUser user = getLoginUer();
 
-				if (!newpassword.equals(newpassword2)) {
-					return AjaxMsg.error("两次输入的密码不一致！");
-				}
+		SysUser sysUser = sysUserService.getUserByUsername(user.getUserName());
+		if (MD5.checkPassword(oldpassword, sysUser.getPassword())) {
+			sysUserService.modifyPasswordByUserCd(user.getUserName(), newpassword);
+		} else {
+			return AjaxMsg.error("原密码输入错误");
+		}
 
-				IUser user = getLoginUer();
-
-				SysUser sysUser = sysUserService.getUserByUsername(user.getUserName());
-				if (sysUser.getPassword().equals(oldpassword)) {
-					sysUser.setPassword(newpassword);
-					sysUserService.modifyPasswordByUserCd(user.getUserName(), newpassword);
-				} else {
-					return AjaxMsg.error("原密码输入错误");
-				}
-
-				return AjaxMsg.ok();
-			}
-		});
+		return AjaxMsg.ok("修改成功");
 	}
 
 	@ResponseBody
@@ -153,7 +147,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/getCurrentUserSysMenus.do", method = RequestMethod.GET)
 	public List<OmMenuModel> getCurrentUserSysMenus() {
-		//获取当前登陆人的权限集合
+		// 获取当前登陆人的权限集合
 		List<String> privCds = new ArrayList<>();
 		privCds.add("RPT_BROWSE");
 		return sysMenuService.getOmMenusByUserPriv(privCds);

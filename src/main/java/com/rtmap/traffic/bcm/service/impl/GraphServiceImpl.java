@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.rtmap.traffic.bcm.dao.ILocationDao;
 import com.rtmap.traffic.bcm.dao.IRptDriverDayDao;
 import com.rtmap.traffic.bcm.dao.IRptPassDayDao;
+import com.rtmap.traffic.bcm.dao.IRptPassDistributeDao;
+import com.rtmap.traffic.bcm.domain.Coordinate;
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.Location;
 import com.rtmap.traffic.bcm.domain.LocationCond;
@@ -27,6 +29,8 @@ public class GraphServiceImpl implements IGraphService {
 	IRptDriverDayDao driverDayDao;
 	@Resource
 	IRptPassDayDao passDayDao;
+	@Resource
+	IRptPassDistributeDao passDistributeDao;
 	@Resource
 	ILocationDao locationDao;
 
@@ -100,6 +104,26 @@ public class GraphServiceImpl implements IGraphService {
 		for (int i = 0; i < length; i++) {
 			array[i][0] = list.get(i).getxPoint();
 			array[i][1] = Math.abs(list.get(i).getyPoint());
+		}
+		
+		return array;
+	}
+
+	@Override
+	public int[][] getTakePlaceArray(PassCond cond) {
+		List<Coordinate> list=  passDistributeDao.selectTakePlaceArray(cond);
+
+		int length = 0;
+		if (list != null) {
+			length = list.size();
+		} else {
+			return null;
+		}
+
+		int[][] array = new int[length][2];
+		for (int i = 0; i < length; i++) {
+			array[i][0] = list.get(i).getX();
+			array[i][1] = Math.abs(list.get(i).getY());
 		}
 		
 		return array;

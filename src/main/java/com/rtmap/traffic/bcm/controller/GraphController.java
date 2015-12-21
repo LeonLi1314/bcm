@@ -17,6 +17,8 @@ import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.service.IGraphService;
 
+import lqs.frame.util.DateUtils;
+
 @Controller
 @RequestMapping("graph")
 public class GraphController {
@@ -72,11 +74,30 @@ public class GraphController {
 
 	@RequestMapping("pathAnalysis")
 	public String pathAnalysis(Model model) {
-		String beginTime = "2015-11-26 06:00:00";
-		String endTime = "2015-11-26 23:00:00";
+		model.addAttribute("preDay", preDateStr);
+		return "/graph/pathAnalysis";
+	}
+
+	@ResponseBody
+	@RequestMapping("/getTakePlaceArray.do")
+	public int[][] getTakePlaceArray(HttpServletRequest request) {
+		String buildingNo = request.getParameter("buildingNo");
+		String day = request.getParameter("day");
+		PassCond cond = new PassCond();
+		cond.setBuildingNo(buildingNo);
+		cond.setBeginStatsDay(DateUtils.parseDate(day));
+		cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(day),1));
+		
+		return graphService.getTakePlaceArray( cond);
+	}
+
+	@RequestMapping("dynamicPathAnalysis")
+	public String dynamicPathAnalysis(Model model) {
+		String beginTime = "2015-12-01 06:00:00";
+		String endTime = "2015-12-01 23:00:00";
 		model.addAttribute("beginTime", beginTime);
 		model.addAttribute("endTime", endTime);
-		return "/graph/pathAnalysis";
+		return "/graph/dynamicPathAnalysis";
 	}
 
 	@ResponseBody
