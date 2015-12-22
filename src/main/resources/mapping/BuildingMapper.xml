@@ -9,7 +9,7 @@
 	<sql id="Base_Column_List">
 		building_no, building_name
 	</sql>
-	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="selectAll" resultMap="BaseResultMap" >
 		select
 		<include refid="Base_Column_List" />
 		from building
