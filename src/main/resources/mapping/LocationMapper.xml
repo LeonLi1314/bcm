@@ -32,6 +32,9 @@
 		<if test="driverNo != null">
 			and driver_no = #{driverNo,jdbcType=VARCHAR}
 		</if>
+		<if test="vehicleNo != null">
+			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
+		</if>
 		and gather_status = 1 order by gather_time
 	</select>
 </mapper>

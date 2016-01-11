@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rtmap.traffic.bcm.dao.IVirtualAreaDao" >
+  <resultMap id="BaseResultMap" type="com.rtmap.traffic.bcm.domain.VirtualArea" >
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="building_no" property="buildingNo" jdbcType="VARCHAR" />
+    <result column="floor_no" property="floorNo" jdbcType="VARCHAR" />
+    <result column="tl_x_point" property="tlXPoint" jdbcType="INTEGER" />
+    <result column="tl_y_point" property="tlYPoint" jdbcType="INTEGER" />
+    <result column="br_x_point" property="brXPoint" jdbcType="INTEGER" />
+    <result column="br_y_point" property="brYPoint" jdbcType="INTEGER" />
+  </resultMap>
+   <sql id="Base_Column_List">
+    area_code, building_no, floor_no, tl_x_point, tl_y_point, br_x_point, br_y_point
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from virtual_area
+  </select>
+</mapper>

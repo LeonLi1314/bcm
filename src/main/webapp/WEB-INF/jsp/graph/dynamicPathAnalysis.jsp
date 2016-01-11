@@ -39,8 +39,8 @@ html, body {
 		<div id="search-panel">
 			<form id="queryform">
 				<span class="label">建筑物编号：</span> <input id="buildingNo"
-					name="buildingNo" /> <span class="label">司机编号：</span> <input
-					id="driverNo" name="driverNo" /> <span class="label">&nbsp;&nbsp;&nbsp;时间范围：</span>
+					name="buildingNo" /> <span class="label">车辆编号：</span> <input
+					id="vehicleNo" name="vehicleNo" /> <span class="label">&nbsp;&nbsp;&nbsp;时间范围：</span>
 				<input id="beginTime" name="beginTime" size="18"
 					value="${beginTime}" /> <span class="label">-&nbsp;&nbsp;</span> <input
 					id="endTime" name="endTime" size="18" value="${endTime}" />
@@ -106,11 +106,11 @@ html, body {
 				filterStrategy : 'first',
 				listMaxHeight : 100
 			});
-			$('#driverNo').omCombo({
-				dataSource : WEB_ROOT + '/base/driver.do',
+			$('#vehicleNo').omCombo({
+				dataSource : WEB_ROOT + '/base/vehicle.do',
 				optionField : 'text',
 				editable : true,
-				value : 'A01',
+				value : '19',
 				autofilter : true,
 				filterStrategy : 'first',
 				listMaxHeight : 100

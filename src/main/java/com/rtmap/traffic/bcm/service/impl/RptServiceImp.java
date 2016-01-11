@@ -15,16 +15,16 @@ import com.rtmap.traffic.bcm.dao.IRptVehicleChargeDayDao;
 import com.rtmap.traffic.bcm.dao.IRptVehicleChargeSubDao;
 import com.rtmap.traffic.bcm.dao.IRptVehicleTripHourDao;
 import com.rtmap.traffic.bcm.domain.DriverCond;
+import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptDriverDay;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 import com.rtmap.traffic.bcm.domain.RptDriverSubsection;
-import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 import com.rtmap.traffic.bcm.domain.RptPassDistribute;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeDay;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeSub;
-import com.rtmap.traffic.bcm.domain.VehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
+import com.rtmap.traffic.bcm.domain.VehicleCond;
 import com.rtmap.traffic.bcm.service.IRptService;
 
 @Service
@@ -46,6 +46,8 @@ public class RptServiceImp implements IRptService{
 	IRptVehicleChargeSubDao vehicleSubDao;
 	@Resource
 	IRptVehicleTripHourDao vehicleHourDao;
+	@Resource
+	VirtualAreaMatcher virtualAreaMatcher;
 
 	@Override
 	public List<RptDriverSubsection> getRptDriverSubByCond(DriverCond cond) {
@@ -70,7 +72,16 @@ public class RptServiceImp implements IRptService{
 
 	@Override
 	public List<RptPassDistribute> getRptPassDistributeByCond(PassCond cond) {
-		return passDistributeDao.selectByCond(cond);
+		List<RptPassDistribute> list =passDistributeDao.selectByCond(cond);
+		
+		if(list == null)
+			return list;
+		
+		for (RptPassDistribute rptPassDistribute : list) {
+			rptPassDistribute.setInArea(virtualAreaMatcher.caculateInArea(rptPassDistribute.getTakeDistance()));
+		}
+		
+		return list;
 	}
 
 	@Override

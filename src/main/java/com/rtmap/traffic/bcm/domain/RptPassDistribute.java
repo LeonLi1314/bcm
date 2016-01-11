@@ -137,4 +137,14 @@ public class RptPassDistribute {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    
+    private int inArea;
+
+	public int getInArea() {
+		return inArea;
+	}
+
+	public void setInArea(int inArea) {
+		this.inArea = inArea;
+	}
 }

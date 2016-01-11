@@ -2,7 +2,9 @@ package com.rtmap.traffic.bcm.dao;
 
 import java.util.List;
 
+import com.rtmap.traffic.bcm.domain.DimensionMultiAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.DriverCond;
+import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 
 public interface IRptDriverHourDao {
@@ -19,4 +21,6 @@ public interface IRptDriverHourDao {
     int updateByPrimaryKey(RptDriverHour record);
 
     List<RptDriverHour> selectByCond(DriverCond cond);
+
+	List<DimensionMultiAnalyzeDto> selectPassHourSum(PassCond cond);
 }

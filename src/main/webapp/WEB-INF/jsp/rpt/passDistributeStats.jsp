@@ -184,10 +184,25 @@ html, body {
 					//width : 80,
 					autoextend : true,
 					align : 'left'
+				}, {
+					header : "区域内搭乘",
+					name : 'inArea',
+					//width : 80,
+					autoextend : true,
+					align : 'left',
+					renderer : areaRenderer
 				} ]
 			});
 		});
-
+		function areaRenderer(colValue, rowData, rowIndex) {
+			if (colValue == 0) {
+				return '<span style="color:red;"><b>' + colValue
+						+ '</b></span>';
+			} else {
+				return '<span style="color:green;"><b>' + colValue
+						+ '</b></span>';
+			}
+		}
 		function btnQuery_onClick() {
 			var data = $('#queryform').serializeObject();
 			$('#grid').omGrid('options').extraData = data;
@@ -203,11 +218,6 @@ html, body {
 					[ rowData.xGatePoint, rowData.yGatePoint ] ]
 
 			createPoint(rst, true);
-			//clearInterval(timer);
-			// 			timer = setInterval(function() {
-			// 				createPoint(rst, true);
-			// 			}, 1000);
-
 			event.stopPropagation();
 		}
 	</script>

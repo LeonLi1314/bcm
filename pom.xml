@@ -69,6 +69,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+<!--         <dependency> -->
+<!--             <groupId>taglibs</groupId> -->
+<!--             <artifactId>standard</artifactId> -->
+<!--             <version>1.1.2</version> -->
+<!--         </dependency> -->
 		<!-- commons -->
 		<dependency>
 			<groupId>junit</groupId>

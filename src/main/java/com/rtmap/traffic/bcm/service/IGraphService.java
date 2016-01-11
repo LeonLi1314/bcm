@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.DimensionMultiAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.Location;
 import com.rtmap.traffic.bcm.domain.LocationCond;
 import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
@@ -44,27 +45,52 @@ public interface IGraphService {
 	 *            查询条件
 	 * @return 各时间段乘客数量
 	 */
-	Map<String,List<DimensionAnalyzeDto>> getDriverPassSubtotaSection(PassCond cond);
+	Map<String, List<DimensionAnalyzeDto>> getDriverPassSubtotaSection(PassCond cond);
 
 	/**
 	 * 根据查询条件获取有效的坐标集合
-	 * @param cond 查询条件
+	 * 
+	 * @param cond
+	 *            查询条件
 	 * @return 有效坐标集合
 	 */
 	List<Location> getEffectCoordinatesByCond(LocationCond cond);
 
 	/**
-	 * 获取某天的搭乘点坐标集合
-	 * @param buildingNo 建筑物编号
-	 * @param day 查询日期
+	 * 根据查询条件获取某天的搭乘点坐标集合
+	 * 
+	 * @param buildingNo
+	 *            建筑物编号
+	 * @param day
+	 *            查询日期
 	 * @return 搭乘点坐标集合
 	 */
 	int[][] getTakePlaceArray(PassCond cond);
 
 	/**
 	 * 根据查询条件获取有效的坐标数组
-	 * @param cond 查询条件
+	 * 
+	 * @param cond
+	 *            查询条件
 	 * @return 有效坐标集合
 	 */
 	int[][] getEffectCoordinateArrayByCond(LocationCond cond);
+
+	/**
+	 * 根据查询条件获取司机在某个建筑内的工作量
+	 * 
+	 * @param cond
+	 *            查询条件
+	 * @return 司机工作量集合
+	 */
+	List<DimensionAnalyzeDto> getDriverWorkBuildingSum(PassCond cond);
+
+	/**
+	 * 根据查询条件获取每小时乘客的总量
+	 * 
+	 * @param cond
+	 *            查询条件
+	 * @return 乘客总量集合
+	 */
+	List<DimensionMultiAnalyzeDto> getPassHourSum(PassCond cond);
 }

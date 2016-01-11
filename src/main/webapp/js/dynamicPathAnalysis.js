@@ -1,6 +1,7 @@
 function createPointMove(arr) {
 	$('#svg-map').html('');
 	var n = 0;
+
 	timer = setInterval(function() {
 		var oC = document.createElementNS('http://www.w3.org/2000/svg',
 				'circle');
@@ -8,11 +9,19 @@ function createPointMove(arr) {
 				/ 945);
 		var y1 = Math.floor((arr[n][1] - 74620) / 1220 * $('#svg-map').height()
 				/ 630);
+		
+		var color;
+		if (arr[n][2] == 1) {
+			color = 'green';
+		} else {
+			color = 'yellow';
+		}
+		
 		$(oC).attr({
 			'cx' : x1,
 			'cy' : y1,
 			'r' : 3,
-			'fill' : 'green',
+			'fill' : color,
 			'id' : 'oC' + n
 		});
 		$(oC).appendTo($('#svg-map'));

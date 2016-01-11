@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rtmap.traffic.bcm.domain.DimensionAnalyzeDto;
+import com.rtmap.traffic.bcm.domain.DimensionMultiAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.Location;
 import com.rtmap.traffic.bcm.domain.LocationCond;
 import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
@@ -111,7 +112,36 @@ public class GraphController {
 	@ResponseBody
 	@RequestMapping("/getCoordinateArray.do")
 	public int[][] getCoordinateArray(HttpServletRequest request) {
-		LocationCond cond = paramUtils.convertLocationCond(request);
+		LocationCond cond =
+				paramUtils.convertLocationCond(request);
 		return graphService.getEffectCoordinateArrayByCond(cond);
+	}
+	
+	@RequestMapping("driverWorkBuildingSum")
+	public String driverWorkBuildingSum(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "/graph/driverWorkBuildingSum";
+	}
+
+	@ResponseBody
+	@RequestMapping("/getDriverWorkBuildingSum.do")
+	public List<DimensionAnalyzeDto> getDriverWorkBuildingSum(HttpServletRequest request) {
+		PassCond cond = paramUtils.convertRptPassCond(request);
+		List<DimensionAnalyzeDto> list = graphService.getDriverWorkBuildingSum(cond);
+		return list;
+	}
+	
+	@RequestMapping("passHourSum")
+	public String passHourSum(Model model) {
+		model.addAttribute("preDay", preDateStr);
+		return "/graph/passHourSum";
+	}
+
+	@ResponseBody
+	@RequestMapping("/getPassHourSum.do")
+	public List<DimensionMultiAnalyzeDto> getPassHourSum(HttpServletRequest request) {
+		PassCond cond = paramUtils.convertRptPassCond(request);
+		List<DimensionMultiAnalyzeDto> list = graphService.getPassHourSum(cond);
+		return list;
 	}
 }

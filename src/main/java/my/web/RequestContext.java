@@ -335,7 +335,7 @@ public class RequestContext implements WebContext {
 		String ck = decrypt(uuid);
 		final String[] items = ck.split("\\|");
 		if (items.length == 5) {
-			String ua = header("user-agent");
+			//String ua = header("user-agent");
 			//int ua_code = (ua == null) ? 0 : ua.hashCode();
 			//int old_ua_code = Integer.parseInt(items[items.length - 2]);
 			//if (ua_code == old_ua_code) {
