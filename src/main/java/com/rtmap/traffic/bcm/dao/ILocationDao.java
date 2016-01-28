@@ -7,4 +7,6 @@ import com.rtmap.traffic.bcm.domain.LocationCond;
 
 public interface ILocationDao {
     List<Location> selectEffectCoordinatesByCond(LocationCond cond);
+
+	 String selectLocationTableName(String tableName);
 }

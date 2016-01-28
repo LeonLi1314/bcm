@@ -25,9 +25,11 @@ html, body {
 	line-height: 20px;
 	box-shadow: 1px 1px 5px #ccc;
 }
+
 #plus {
 	top: 10px;
 }
+
 #minus {
 	top: 50px;
 }
@@ -40,13 +42,12 @@ html, body {
 			<form id="queryform">
 				<span class="label">建筑物编号：</span> <input id="buildingNo"
 					name="buildingNo" /> <span class="label">车辆编号：</span> <input
-					id="vehicleNo" name="vehicleNo" /> <span class="label">&nbsp;&nbsp;&nbsp;时间范围：</span>
+					id="vehicleNo" name="vehicleNo" /> <span class="label">&nbsp;&nbsp;&nbsp;起始时间：</span>
 				<input id="beginTime" name="beginTime" size="18"
-					value="${beginTime}" /> <span class="label">-&nbsp;&nbsp;</span> <input
-					id="endTime" name="endTime" size="18" value="${endTime}" />
+					value="${beginTime}" /> <span class="label">
 			</form>
 		</div>
-		<div id="map" style="overflow: hidden; position: relative;">
+		<div id="map" style="overflow: hidden; position: relative; border:1px soild red">
 			<svg id="svg-map"
 				style="width:100%; height:100%; background:url(../img/T3C-F3.jpg) no-repeat; 
 		background-size:cover; position: absolute;left:0; top:0;">
@@ -56,6 +57,7 @@ html, body {
 		</div>
 
 	</div>
+	<script src="../js/createPointCommon.js"></script>
 	<script src="../js/dynamicPathAnalysis.js"></script>
 	<script type="text/javascript">
 		var currDate = new Date();
@@ -63,7 +65,9 @@ html, body {
 		var svgMapW;
 		var svgMapH;
 		var svgMapInitW;
+		var svgMapMaxW;
 		var svgMapInitH;
+		var svgMapMaxH;
 		$(function() {
 			$("#center-panel").height($('body').height());
 			$("#center-panel").width($('body').width());
@@ -80,11 +84,13 @@ html, body {
 				"width" : mapw,
 				"height" : maph
 			});
-			svgMapInitW=mapw;
-			svgMapInitH=maph;
+			svgMapInitW = mapw;
+			svgMapMaxW = mapw * Math.pow(1.6, 5);
+			svgMapInitH = maph;
+			svgMapMaxH = maph * Math.pow(1.6, 5);
 			svgMapW = mapw;
 			svgMapH = maph;
-			
+
 			$('#buttonbar').omButtonbar({
 				btns : [ {
 					label : "查询",
@@ -121,26 +127,37 @@ html, body {
 				editable : true,
 				showTime : true
 			});
-			$('#endTime').omCalendar({
-				dateFormat : "yy-mm-dd H:i:s",
-				date : '${endTime}',
-				editable : true,
-				showTime : true
+			// 			$('#endTime').omCalendar({
+			// 				dateFormat : "yy-mm-dd H:i:s",
+			// 				date : '${endTime}',
+			// 				editable : true,
+			// 				showTime : true
+			// 			});
+			//var num=0;
+			$('#plus').click(function(){
+				//num++;
+				plus();
+				drag($('#svg-map'));
+				//console.log(num);
 			});
-			$('#plus').click(plus);
-			$('#minus').click(minus);
-			$('#svg-map').drag();
+			$('#minus').click(function(){
+				minus();
+				drag($('#svg-map'));
+			});
+
 			$('#svg-map').wheelEvent(function(down) {
 				if (down) {
 					minus();
+					drag($('#svg-map'));
 				} else {
 					plus();
+					drag($('#svg-map'));
 				}
 			});
 		});
-
 		function btnQuery_onClick() {
 			//校验起始结束时间
+			clearInterval(timer);
 
 			$.ajax({
 				url : WEB_ROOT + "/graph/getCoordinateArray.do",
@@ -155,8 +172,11 @@ html, body {
 		}
 
 		function btnQuerySuccess(rst) {
-			createPointMove(rst);
+			var buildingNo =  $("#buildingNo").val();
+			backgroudChage(buildingNo)
+			createPointMove(rst, buildingNo);
 		}
 	</script>
 </body>
 </html>
+;

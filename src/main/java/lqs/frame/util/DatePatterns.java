@@ -18,7 +18,7 @@ public class DatePatterns {
 	 */
 	public final static String POPULAR_DATE12TIME = "yyyy-MM-dd hh:mm:ss";
 	/**
-	 * 普通日期带时间（24制小时格式）"yyyy-MM-dd hh:mm:ss"
+	 * 普通日期带时间（24制小时格式）"yyyy-MM-dd HH:mm:ss"
 	 */
 	public final static String POPULAR_DATE24TIME = "yyyy-MM-dd HH:mm:ss";
 }

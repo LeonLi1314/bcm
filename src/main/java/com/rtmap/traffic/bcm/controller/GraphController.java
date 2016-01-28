@@ -18,6 +18,7 @@ import com.rtmap.traffic.bcm.domain.MultiDimensionAnalyzeDto;
 import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.service.IGraphService;
 
+import lqs.frame.util.DatePatterns;
 import lqs.frame.util.DateUtils;
 
 @Controller
@@ -29,7 +30,8 @@ public class GraphController {
 	private IGraphService graphService;
 
 	// mytest 只有12月1号有数据
-	private String preDateStr = "2015-12-01";
+	// private String preDateStr = "2015-12-01";
+	private String preDateStr = DateUtils.formatDate(DateUtils.addDay(DateUtils.getCurrentDate(), -1));
 
 	@RequestMapping("totalDriverWork")
 	public String totalDriverWork(Model model) {
@@ -73,10 +75,10 @@ public class GraphController {
 		return list;
 	}
 
-	@RequestMapping("pathAnalysis")
-	public String pathAnalysis(Model model) {
+	@RequestMapping("takePlaceAnalysis")
+	public String takePlaceAnalysis(Model model) {
 		model.addAttribute("preDay", preDateStr);
-		return "/graph/pathAnalysis";
+		return "/graph/takePlaceAnalysis";
 	}
 
 	@ResponseBody
@@ -87,15 +89,17 @@ public class GraphController {
 		PassCond cond = new PassCond();
 		cond.setBuildingNo(buildingNo);
 		cond.setBeginStatsDay(DateUtils.parseDate(day));
-		cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(day),1));
-		
-		return graphService.getTakePlaceArray( cond);
+		cond.setEndStatsDay(DateUtils.addDay(DateUtils.parseDate(day), 1));
+
+		return graphService.getTakePlaceArray(cond);
 	}
 
 	@RequestMapping("dynamicPathAnalysis")
 	public String dynamicPathAnalysis(Model model) {
-		String beginTime = "2015-12-01 06:00:00";
-		String endTime = "2015-12-01 23:00:00";
+		String beginTime = DateUtils.formatDate(DateUtils.addHour(DateUtils.addDay(DateUtils.getCurrentDate(), -1), 7),
+				DatePatterns.POPULAR_DATE24TIME);
+		String endTime = DateUtils.formatDate(DateUtils.addHour(DateUtils.addDay(DateUtils.getCurrentDate(), -1), 23),
+				DatePatterns.POPULAR_DATE24TIME);
 		model.addAttribute("beginTime", beginTime);
 		model.addAttribute("endTime", endTime);
 		return "/graph/dynamicPathAnalysis";
@@ -112,11 +116,10 @@ public class GraphController {
 	@ResponseBody
 	@RequestMapping("/getCoordinateArray.do")
 	public int[][] getCoordinateArray(HttpServletRequest request) {
-		LocationCond cond =
-				paramUtils.convertLocationCond(request);
+		LocationCond cond = paramUtils.convertLocationCond(request);
 		return graphService.getEffectCoordinateArrayByCond(cond);
 	}
-	
+
 	@RequestMapping("driverWorkBuildingSum")
 	public String driverWorkBuildingSum(Model model) {
 		model.addAttribute("preDay", preDateStr);
@@ -130,7 +133,7 @@ public class GraphController {
 		List<DimensionAnalyzeDto> list = graphService.getDriverWorkBuildingSum(cond);
 		return list;
 	}
-	
+
 	@RequestMapping("passHourSum")
 	public String passHourSum(Model model) {
 		model.addAttribute("preDay", preDateStr);

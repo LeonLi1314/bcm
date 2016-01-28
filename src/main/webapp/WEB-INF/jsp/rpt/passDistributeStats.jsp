@@ -37,9 +37,8 @@ html, body {
 		</div>
 	</div>
 
-	<!-- 	<script src="../js/createPoint.js"></script> -->
-	<script src="../js/createPointRecursived.js"></script>
-
+	<script src="../js/createPointCommon.js"></script>
+	<script src="../js/createPoint.js"></script>
 	<script>
 		var currDate = new Date();
 		var preDate = new Date(currDate.getTime() - 24 * 60 * 60 * 1000);
@@ -133,22 +132,22 @@ html, body {
 				}, {
 					header : "搭乘时间",
 					name : 'takeTime',
-					width : 140,
-					//autoextend : true,
+					// width : 140,
+					autoextend : true,
 					align : 'left'
 				}, {
-					header : "搭乘点X坐标",
-					name : 'xPoint',
-					width : 80,
-					//autoextend : true,
-					align : 'left'
-				}, {
-					header : "搭乘点Y坐标",
-					name : 'yPoint',
-					width : 80,
-					//autoextend : true,
-					align : 'left'
-				}, {
+// 					header : "搭乘点X坐标",
+// 					name : 'xPoint',
+// 					width : 80,
+// 					//autoextend : true,
+// 					align : 'left'
+// 				}, {
+// 					header : "搭乘点Y坐标",
+// 					name : 'yPoint',
+// 					width : 80,
+// 					//autoextend : true,
+// 					align : 'left'
+// 				}, {
 					header : "航班号",
 					name : 'fltNo',
 					//width : 80,
@@ -167,22 +166,22 @@ html, body {
 					autoextend : true,
 					align : 'left'
 				}, {
-					header : "登机口X坐标",
-					name : 'xGatePoint',
-					width : 80,
-					//autoextend : true,
-					align : 'left'
-				}, {
-					header : "登机口Y坐标",
-					name : 'yGatePoint',
-					width : 80,
-					//autoextend : true,
-					align : 'left'
-				}, {
-					header : "搭乘距离",
+// 					header : "登机口X坐标",
+// 					name : 'xGatePoint',
+// 					width : 80,
+// 					//autoextend : true,
+// 					align : 'left'
+// 				}, {
+// 					header : "登机口Y坐标",
+// 					name : 'yGatePoint',
+// 					width : 80,
+// 					//autoextend : true,
+// 					align : 'left'
+// 				}, {
+					header : "搭乘距离（米）",
 					name : 'takeDistance',
-					//width : 80,
-					autoextend : true,
+					width : 100,
+					//autoextend : true,
 					align : 'left'
 				}, {
 					header : "区域内搭乘",
@@ -213,11 +212,11 @@ html, body {
 		var timer = null;
 		function grid_onRowClick(rowIndex, rowData, event) {
 			$('#map').css('display', 'block');
-
 			var rst = [ [ rowData.xPoint, rowData.yPoint ],
 					[ rowData.xGatePoint, rowData.yGatePoint ] ]
-
-			createPoint(rst, true);
+			console.log(rst);
+			backgroudChage(rowData.buildingNo, "small.png")
+			createPoint(rst, true, rowData.buildingNo, true);
 			event.stopPropagation();
 		}
 	</script>

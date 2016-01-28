@@ -101,7 +101,7 @@ public class DictServiceImpl implements IDictService {
 			} else {
 				for (SysUser user : list) {
 					ComboStrItem item = new ComboStrItem();
-					item.setText(user.getRealName());
+					item.setText(user.getUserCd());
 					item.setValue(user.getUserCd());
 					source.add(item);
 				}

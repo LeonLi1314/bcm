@@ -368,6 +368,68 @@ public class DateUtils {
 	}
 
 	/**
+	 * 指定日期增加分钟（默认按"yyyy-MM-dd"日期格式转化），可以超过当前小时
+	 * 
+	 * @param date
+	 *            指定日期
+	 * @param minutes
+	 * @return
+	 */
+	public static Date addMinute(Date date, int minutes) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.MINUTE, minutes);
+
+		return cal.getTime();
+	}
+
+	/**
+	 * 增加指定小时数，可以超过当前小时
+	 * 
+	 * @param date
+	 *            指定日期格式字符串
+	 * @param minutes
+	 * @return
+	 */
+	public static String addMinute(String date, int minutes) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(parseDate(date));
+		cal.add(Calendar.MINUTE, minutes);
+
+		return formatDate(cal.getTime(), "yyyy-MM-dd HH:mm:ss");
+	}
+
+	/**
+	 * 
+	 * @param date
+	 *            指定日期
+	 * @param seconds
+	 * @return
+	 */
+	public static Date addSecond(Date date, int seconds) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.SECOND, seconds);
+
+		return cal.getTime();
+	}
+
+	/**
+	 * 
+	 * @param date
+	 *            指定日期格式字符串
+	 * @param seconds
+	 * @return
+	 */
+	public static String addSecond(String date, int seconds) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(parseDate(date));
+		cal.add(Calendar.SECOND, seconds);
+
+		return formatDate(cal.getTime(), "yyyy-MM-dd HH:mm:ss");
+	}
+
+	/**
 	 * 获取两个日期相差的天数
 	 * 
 	 * @param d1

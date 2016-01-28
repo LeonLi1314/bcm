@@ -23,7 +23,7 @@
 		gather_status, partition_no, is_cross_border
 	</sql>
 	<select id="selectEffectCoordinatesByCond" resultMap="BaseResultMap"
-		parameterType="com.rtmap.traffic.bcm.domain.LocationCond" >
+		parameterType="com.rtmap.traffic.bcm.domain.LocationCond">
 		select x_point, y_point from ${tableName}
 		where <![CDATA[ gather_time >= #{beginTime,jdbcType=TIMESTAMP} and gather_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
 		<if test="buildingNo != null">
@@ -35,6 +35,10 @@
 		<if test="vehicleNo != null">
 			and vehicle_no = #{vehicleNo,jdbcType=VARCHAR}
 		</if>
-		and gather_status = 1 order by gather_time
+		and gather_status = 0 order by gather_time
+	</select>
+	<select id="selectLocationTableName" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		show tables like #{tableName}
 	</select>
 </mapper>

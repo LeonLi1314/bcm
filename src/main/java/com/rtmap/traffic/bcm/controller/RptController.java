@@ -11,18 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rtmap.traffic.bcm.domain.DriverCond;
+import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptDriverDay;
 import com.rtmap.traffic.bcm.domain.RptDriverHour;
 import com.rtmap.traffic.bcm.domain.RptDriverSubsection;
-import com.rtmap.traffic.bcm.domain.PassCond;
 import com.rtmap.traffic.bcm.domain.RptPassDay;
 import com.rtmap.traffic.bcm.domain.RptPassDistribute;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeDay;
 import com.rtmap.traffic.bcm.domain.RptVehicleChargeSub;
-import com.rtmap.traffic.bcm.domain.VehicleCond;
 import com.rtmap.traffic.bcm.domain.RptVehicleTripHour;
+import com.rtmap.traffic.bcm.domain.VehicleCond;
 import com.rtmap.traffic.bcm.service.IRptService;
 
+import lqs.frame.util.DatePatterns;
+import lqs.frame.util.DateUtils;
 import my.web.BaseController;
 import operamasks.ui.model.DataConvertor;
 import operamasks.ui.model.GridDataModel;
@@ -36,11 +38,14 @@ public class RptController extends BaseController {
 	private ParamUtils paramUtils;
 
 	// mytest 只有12月1号有数据
-	private String preDateStr = "2015-12-01";
-	private String preDayBeginHour = "2015-12-01 00";
-	private String preDayEndHour = "2015-12-01 24";
-	// private String preDateStr =
-	// DateUtils.formatDate(DateUtils.addDay(DateUtils.getCurrentDate(), -1));
+	// private String preDateStr = "2015-12-01";
+	// private String preDayBeginHour = "2015-12-01 00";
+	// private String preDayEndHour = "2015-12-01 24";
+	private String preDateStr = DateUtils.formatDate(DateUtils.addDay(DateUtils.getCurrentDate(), -1));
+	private String preDayBeginHour = DateUtils.formatDate(
+			DateUtils.addHour(DateUtils.addDay(DateUtils.getCurrentDate(), -1), 1), DatePatterns.POPULAR_DATE_24HOUR);
+	private String preDayEndHour = DateUtils.formatDate(
+			DateUtils.addHour(DateUtils.addDay(DateUtils.getCurrentDate(), -1), 23), DatePatterns.POPULAR_DATE_24HOUR);
 
 	@RequestMapping("/driverSub")
 	public String rptDriverSub(Model model) {

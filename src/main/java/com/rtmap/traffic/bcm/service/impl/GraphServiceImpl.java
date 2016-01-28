@@ -26,6 +26,7 @@ import com.rtmap.traffic.bcm.service.IGraphService;
 import com.rtmap.traffic.bcm.service.IVehicleService;
 
 import lqs.frame.util.DateUtils;
+import lqs.frame.util.StringUtils;
 
 @Service
 public class GraphServiceImpl implements IGraphService {
@@ -94,11 +95,17 @@ public class GraphServiceImpl implements IGraphService {
 	@Override
 	public List<Location> getEffectCoordinatesByCond(LocationCond cond) {
 		cond.setTableName("location_" + DateUtils.formatDate(cond.getBeginTime(), "yyyy_MM_dd"));
+		
+		if (!locationTableExist(cond.getTableName())) {
+			return null;
+		}
+		
 		return locationDao.selectEffectCoordinatesByCond(cond);
 	}
 
 	@Override
 	public int[][] getEffectCoordinateArrayByCond(LocationCond cond) {
+		cond.setEndTime(DateUtils.addMinute(cond.getBeginTime(), 10));
 		List<Location> list = getEffectCoordinatesByCond(cond);
 
 		int length = 0;
@@ -108,21 +115,29 @@ public class GraphServiceImpl implements IGraphService {
 			return null;
 		}
 
-		// 车辆区域列表
-		List<VirtualArea> areas = vehicleService.getOperationAreaByVehicleNo(cond.getVehicleNo());
-
 		int[][] array = new int[length][3];
+		// List<VirtualArea> areas =
+		// vehicleService.getOperationAreaByVehicleNo(cond.getVehicleNo());
 		for (int i = 0; i < length; i++) {
 			array[i][0] = list.get(i).getxPoint();
 			array[i][1] = Math.abs(list.get(i).getyPoint());
 
 			// 计算是否越界
-			array[i][2] = caculateIsInArea(array[i][0], array[i][1], areas);
+			// 需求暂时不启用越界配置// 车辆区域列表
+			// array[i][2] = caculateIsInArea(array[i][0], array[i][1], areas);
+			array[i][2] = 1;
 		}
 
 		return array;
 	}
 
+	private boolean locationTableExist(String tableName) {
+		String table = locationDao.selectLocationTableName(tableName);
+
+		return !StringUtils.isNullOrEmpty(table);
+	}
+
+	@Deprecated
 	private int caculateIsInArea(int x, int y, List<VirtualArea> areas) {
 		for (VirtualArea virtualArea : areas) {
 			if (x <= virtualArea.getBrXPoint() && x >= virtualArea.getTlXPoint() && y <= virtualArea.getBrYPoint()

@@ -71,7 +71,7 @@ public class ParamUtils {
 			} else {
 				// 转化为小时+1
 				Date endDate = DateUtils.parseDate(endStatsDay, DatePatterns.POPULAR_DATE_24HOUR);
-				cond.setEndStatsDay(DateUtils.addHour(endDate, 1));
+				cond.setEndStatsDay(endDate);
 			}
 		}
 
