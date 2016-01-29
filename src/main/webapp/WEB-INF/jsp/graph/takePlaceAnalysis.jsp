@@ -49,7 +49,7 @@ html, body {
 			var maph = $("#center-panel").height()
 					- $("#buttonbar").outerHeight(true)
 					- $("#search-panel").outerHeight(true) - 60;
-			var mapw = 945 * maph / 630;
+			var mapw = 1.5 * maph ;
 			$("#map").css({
 				"width" : mapw,
 				"height" : maph

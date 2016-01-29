@@ -11,10 +11,11 @@ function convertXPoint(buildingNo, xPoint) {
 
 function convertXPoint(buildingNo, yPoint) {
 	buildingNo = buildingNo.toUpperCase();
+	var y=Math.abs(yPoint);
 	if (buildingNo == "T3E") {
-		return Math.floor((yPoint + 24468) * $('#svg-map').height()	/ 880800);
+		return Math.floor((y + 24468) * $('#svg-map').height()	/ 880800);
 	} else if (buildingNo == "T3C") {
-		return Math.floor((yPoint - 74620) * $('#svg-map').height()/ 768600);
+		return Math.floor((y - 74620) * $('#svg-map').height()/ 768600);
 	}
 	
 	return 0;
@@ -23,12 +24,13 @@ function convertXPoint(buildingNo, yPoint) {
 function convertPoint(buildingNo, xPoint, yPoint) {
 	var coordinate = {};
 	buildingNo = buildingNo.toUpperCase();
+	var y=Math.abs(yPoint);
 	if (buildingNo == "T3E") {
 		coordinate.x = Math.floor((xPoint - 15225) * $('#svg-map').width()/1058400);
-		coordinate.y = Math.floor((Math.abs(yPoint) + 24468) * $('#svg-map').height()	/ 880800);
+		coordinate.y = Math.floor(( y+ 24468) * $('#svg-map').height()/ 880800);
 	} else if (buildingNo == "T3C") {
 		coordinate.x = Math.floor((xPoint + 14492)  * $('#svg-map').width()/ 1144395);
-		coordinate.y = Math.floor((Math.abs(yPoint) - 74620) * $('#svg-map').height()/ 768600);
+		coordinate.y = Math.floor((y - 74620) * $('#svg-map').height() / 768600);
 	}
 	
 	return coordinate;
@@ -42,6 +44,8 @@ function backgroudChage(buildingNo, type){
 			$('#svg-map').css({'background':' url(../img/T3C-F3_small.jpg) no-repeat','backgroundSize':'cover'});
 		} else if (buildingNo == "T3E") {
 			$('#svg-map').css({'background':'url(../img/T3E-F2_small.jpg) no-repeat','backgroundSize':'cover'});
+			var h=$('#map').height();
+			$('#map').css({'width':1.33*h});
 		} else {
 			return;
 		}
@@ -50,6 +54,8 @@ function backgroudChage(buildingNo, type){
 			$('#svg-map').css({'background':' url(../img/T3C-F3_small.png) no-repeat','backgroundSize':'cover'});
 		} else if (buildingNo == "T3E") {
 			$('#svg-map').css({'background':' url(../img/T3E-F2_small.png) no-repeat','backgroundSize':'cover'});
+			var h=$('#map').height();
+			$('#map').css({'width':1.33*h});
 		} else {
 			return;
 		}
@@ -58,6 +64,8 @@ function backgroudChage(buildingNo, type){
 			$('#svg-map').css({'background:':'url(../img/T3C-F3_big.jpg) no-repeat','backgroundSize':'cover'});
 		} else if (buildingNo == "T3E") {
 			$('#svg-map').css({'background':'url(../img/T3E-F2_big.jpg) no-repeat','backgroundSize':'cover'});
+			var h=$('#map').height();
+			$('#map').css({'width':1.33*h});
 		} else {
 			return;
 		}
@@ -66,6 +74,8 @@ function backgroudChage(buildingNo, type){
 			$('#svg-map').css({'background':' url(../img/T3C-F3.jpg) no-repeat','backgroundSize':'cover'});
 		} else if (buildingNo == "T3E") {
 			$('#svg-map').css({'background':'url(../img/T3E-F2.jpg) no-repeat','backgroundSize':'cover'});
+			var h=$('#map').height();
+			$('#map').css({'width':1.33*h});
 		} else {
 			return;
 		}
