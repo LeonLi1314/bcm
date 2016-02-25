@@ -143,6 +143,7 @@ html, body {
 										}
 									},
 									yAxis : {
+										floor:0,
 										title : {
 											text : 'People'
 										}

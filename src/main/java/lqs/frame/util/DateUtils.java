@@ -439,8 +439,33 @@ public class DateUtils {
 	 * @return 两个日期相差的天数
 	 */
 	public static long getDateDiffDays(Date d1, Date d2) {
-		return (d1.getTime() - d2.getTime()) / (24 * 60 * 60 * 1000);
+		return Math.abs((d1.getTime() - d2.getTime()) / (24 * 60 * 60 * 1000));
 	}
+	
+	/**
+	 * 获取指定日期之间的日期（天）集合
+	 * @param begin 开始时间
+	 * @param end 结束时间
+	 * @return 日期（天）集合
+	 */
+	public static List<Date> getDates(Date begin, Date end) {  
+		if(begin.getTime() > end.getTime())
+			return null;
+		
+        Calendar calBegin = Calendar.getInstance();  
+        calBegin.setTime(begin);  
+        Calendar calEnd = Calendar.getInstance();  
+        calEnd.setTime(end);  
+
+        List<Date> rst = new ArrayList<Date>();   
+        rst.add(begin);  
+        while (end.after(calBegin.getTime())) {  
+            calBegin.add(Calendar.DAY_OF_MONTH, 1);  
+            rst.add(calBegin.getTime());  
+        }  
+        
+        return rst;  
+    }  
 
 	/**
 	 * 获取本周的周一日期字符串

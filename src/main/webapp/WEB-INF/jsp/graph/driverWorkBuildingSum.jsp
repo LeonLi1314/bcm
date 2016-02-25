@@ -127,6 +127,7 @@ html, body {
 					sum += parseInt(json.value);
 				}
 				var colors = Highcharts.getOptions().colors;
+				colors=colors.concat(colors).concat(colors).concat(colors).concat(colors);
 				for (var i = 0; i < rst.length; i++) {
 					var json = rst[i];
 					arrName.push(json.name);

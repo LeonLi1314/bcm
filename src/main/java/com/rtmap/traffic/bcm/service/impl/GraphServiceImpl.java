@@ -1,6 +1,7 @@
 package com.rtmap.traffic.bcm.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,43 @@ public class GraphServiceImpl implements IGraphService {
 
 	@Override
 	public List<DimensionAnalyzeDto> getPassFlowVolume(PassCond cond) {
-		return passDayDao.selectPassFlowVolume(cond);
+		List<DimensionAnalyzeDto> list = passDayDao.selectPassFlowVolume(cond);
+
+		// 如果结果集时间段中间缺少日期，补0
+		if (list == null || list.size() == 0)
+			return list;
+
+		Date beginDate = DateUtils.parseDate(list.get(0).getName());
+		Date endDate = DateUtils.parseDate(list.get(list.size() - 1).getName());
+		int days = (int) (DateUtils.getDateDiffDays(beginDate, endDate) + 1);
+
+		if (days == list.size())
+			return list;
+
+		List<DimensionAnalyzeDto> rst = new ArrayList<>();
+
+		for (int i = 0; i < days; i++) {
+			String tmp = DateUtils.formatDate(DateUtils.addDay(beginDate, i));
+
+			DimensionAnalyzeDto item = null;
+			for (DimensionAnalyzeDto dimensionAnalyzeDto : list) {
+				if (!dimensionAnalyzeDto.getName().equals(tmp))
+					continue;
+
+				item = dimensionAnalyzeDto;
+				break;
+			}
+
+			if (item == null) {
+				item = new DimensionAnalyzeDto();
+				item.setName(tmp);
+				item.setValue("0");
+			}
+
+			rst.add(item);
+		}
+
+		return rst;
 	}
 
 	@Override
@@ -95,11 +132,17 @@ public class GraphServiceImpl implements IGraphService {
 	@Override
 	public List<Location> getEffectCoordinatesByCond(LocationCond cond) {
 		cond.setTableName("location_" + DateUtils.formatDate(cond.getBeginTime(), "yyyy_MM_dd"));
-		
+
 		if (!locationTableExist(cond.getTableName())) {
 			return null;
 		}
-		
+
+		if (cond.getBuildingNo().equals("T3C")) {
+			cond.setFloorNo("F3");
+		} else {
+			cond.setFloorNo("F2");
+		}
+
 		return locationDao.selectEffectCoordinatesByCond(cond);
 	}
 

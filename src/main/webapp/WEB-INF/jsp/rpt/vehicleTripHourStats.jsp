@@ -114,11 +114,11 @@ html, body {
 				colModel : [ {
 					header : "统计日期",
 					name : 'statsHour',
-					width : 100,
+					width : 65,
 					//autoextend : true,
 					sort : 'clientSide',
 					align : 'left'
-
+					
 				}, {
 					header : "建筑物编号",
 					name : 'buildingNo',
@@ -135,14 +135,14 @@ html, body {
 				}, {
 					header : "实际行驶距离（米）",
 					name : 'tripDistance',
-					width : 80,
+					width : 100,
 					//autoextend : true,
 					sort : 'clientSide',
 					align : 'left'
 				}, {
 					header : "理论行驶距离（米）",
 					name : 'theoryTripDistance',
-					width : 80,
+					width : 100,
 					// autoextend : true,
 					sort : 'clientSide',
 					align : 'left'
